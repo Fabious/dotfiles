@@ -2,42 +2,35 @@
 
 ## Extensions
 
-* bmewburn.vscode-intelephense-client
-* christian-kohler.npm-intellisense
-* christian-kohler.path-intellisense
-* cliffordfajardo.highlight-line-vscode
-* codezombiech.gitignore
-* CoenraadS.bracket-pair-colorizer
-* CoenraadS.disableligatures
-* DavidAnson.vscode-markdownlint
-* dbaeumer.vscode-eslint
-* donjayamanne.githistory
-* donjayamanne.jquerysnippets
-* dracula-theme.theme-dracula
-* EditorConfig.EditorConfig
-* eg2.tslint
-* emmanuelbeziat.vscode-great-icons
-* esbenp.prettier-vscode
-* felixfbecker.php-debug
-* file-icons.file-icons
-* formulahendry.auto-close-tag
-* HookyQR.beautify
-* ikappas.phpcs
-* kamikillerto.vscode-colorize
-* LaurentTreguier.vscode-simple-icons
-* MS-CEINTL.vscode-language-pack-fr
-* neilbrayfield.php-docblocker
-* patbenatar.advanced-new-file
-* PeterJausovec.vscode-docker
-* PKief.material-icon-theme
-* qinjia.view-in-browser
-* robertohuertasm.vscode-icons
-* robinbentley.sass-indented
-* shd101wyy.markdown-preview-enhanced
-* sldobri.bunker
-* teabyii.ayu
-* vincaslt.highlight-matching-tag
-* vsmobile.vscode-react-native
-* wesbos.theme-cobalt2
-* xabikos.ReactSnippets
-* Zignd.html-css-class-completion
+code --install-extension ahmadawais.shades-of-purple
+code --install-extension christian-kohler.npm-intellisense
+code --install-extension christian-kohler.path-intellisense
+code --install-extension codezombiech.gitignore
+code --install-extension CoenraadS.bracket-pair-colorizer-2
+code --install-extension DavidAnson.vscode-markdownlint
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension eamodio.gitlens
+code --install-extension ecmel.vscode-html-css
+code --install-extension EditorConfig.EditorConfig
+code --install-extension eg2.vscode-npm-script
+code --install-extension esbenp.prettier-vscode
+code --install-extension felixfbecker.php-intellisense
+code --install-extension formulahendry.auto-close-tag
+code --install-extension formulahendry.auto-rename-tag
+code --install-extension formulahendry.code-runner
+code --install-extension LaurentTreguier.vscode-simple-icons
+code --install-extension mgmcdermott.vscode-language-babel
+code --install-extension mikestead.dotenv
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension MS-CEINTL.vscode-language-pack-fr
+code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension oderwat.indent-rainbow
+code --install-extension pflannery.vscode-versionlens
+code --install-extension PKief.material-icon-theme
+code --install-extension robinbentley.sass-indented
+code --install-extension Shan.code-settings-sync
+code --install-extension vincaslt.highlight-matching-tag
+code --install-extension vscode-icons-team.vscode-icons
+code --install-extension wix.vscode-import-cost
+code --install-extension xabikos.JavaScriptSnippets
+code --install-extension xabikos.ReactSnippets
