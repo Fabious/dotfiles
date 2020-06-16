@@ -60,8 +60,9 @@ ZSH_THEME="spaceship"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   zsh-autosuggestions
+  zsh-syntax-highlighting
   git
-  osx
+  k
 )
 
 source $ZSH/oh-my-zsh.sh
