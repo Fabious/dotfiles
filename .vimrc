@@ -1,50 +1,119 @@
-" Fabious VIM Setup
-" various settings
-set autoindent                 " Minimal automatic indenting for any filetype
-set backspace=indent,eol,start " Proper backspace behavior
-set hidden                     " Possibility to have more than one unsaved buffers
-set incsearch                  " Incremental search, hit `<CR>` to stop.
-set encoding=UTF-8             " necessary for file icons
+syntax on
+
+set guicursor=
+set noshowmatch
 set relativenumber
+set nohlsearch
+set hidden
+set noerrorbells
+set tabstop=2 shiftwidth=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set nu
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set nowritebackup
+set incsearch
+set termguicolors
+set scrolloff=8
+set noshowmode
+set list
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=50
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
 set cursorline
 set cursorcolumn
-set wildmenu                   " Great command-line completion, use `<Tab>` to move
-                               " around and `<CR>` to validate
-set visualbell                 " Enable vim's internal visual bell
-set t_vb=                      " Set the effect of the vim visual bell to do nothing
-set tabstop=2 shiftwidth=2 expandtab " Set tabs to space and 2 columns
-set list                       " Show all hidden chars
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 
-call plug#begin('$VIM/plugged')
-Plug 'tpope/vim-fugitive'     " Git integration
-Plug 'scrooloose/syntastic'   " Syntax checking plugin
-Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-surround'     " Surround command
-Plug 'joshdick/onedark.vim'   " color theme
-Plug 'sheerun/vim-polyglot'   " syntax color for different langages
-Plug 'preservim/nerdtree'
+call plug#begin('~/.vim/plugged')
+
+" For generic web-development :
+" :CocInstall coc-tsserver coc-json coc-html coc-css
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
+Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'ryanoasis/vim-devicons' " file icons, must be loaded after affected plugins
+Plug 'tpope/vim-dispatch'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" Sweet colors
+Plug 'gruvbox-community/gruvbox'
+Plug 'sainnhe/gruvbox-material'
+Plug 'phanviet/vim-monokai-pro'
+Plug 'vim-airline/vim-airline'
+Plug 'flazz/vim-colorschemes'
+Plug 'luochen1990/rainbow'
+
 call plug#end()
 
-syntax enable
-colorscheme onedark
+let g:gruvbox_contrast_dark = 'hard'
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+let g:gruvbox_invert_selection='0'
+let g:rainbow_active = 1
 
-" mappings
-let mapleader = ","
-nnoremap <leader>s :w<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <C-b> :ls<CR>:b<Space>
-nnoremap <C-p> :Files<CR>
-nnoremap <C-n> :NERDTree<CR>
+colorscheme gruvbox
+set background=dark
 
-if has("gui_running")
-  set guifont=Inconsolata:h16:W500:cANSI:qDRAFT
+if executable('rg')
+    let g:rg_derive_root='true'
 endif
 
-" Use the internal diff if available
-" Otherwise use the special 'diffexpr' for Windows
-if &diffopt !~# 'internal'
-  set diffexpr=MyDiff()
+let loaded_matchparen = 1
+
+let g:netrw_browse_split = 2
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+
+" mappings
+let mapleader = " "
+nnoremap <leader>s :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <C-p> :GFiles<CR>
+nnoremap <Leader>pf :Files<CR>
+nnoremap <Leader>+ :vertical resize +5<CR>
+nnoremap <Leader>- :vertical resize -5<CR>
+nnoremap <Leader>rp :resize 100<CR>
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-c> <esc>
+inoremap jj <esc>
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 50)
+augroup END
+
+autocmd BufWritePre * :call TrimWhitespace()
