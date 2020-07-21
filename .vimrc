@@ -5,7 +5,9 @@ set noshowmatch
 set relativenumber
 set nohlsearch
 set hidden
+set visualbell
 set noerrorbells
+set t_vb=
 set tabstop=2 shiftwidth=2
 set shiftwidth=2
 set expandtab
@@ -45,11 +47,16 @@ call plug#begin('~/.vim/plugged')
 " :CocInstall coc-tsserver coc-json coc-html coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-dispatch'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-dispatch'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'jiangmiao/auto-pairs'
+Plug 'easymotion/vim-easymotion'
 
 " Sweet colors
 Plug 'gruvbox-community/gruvbox'
@@ -86,6 +93,7 @@ let g:netrw_winsize = 25
 let mapleader = " "
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>f :only<CR>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
@@ -97,13 +105,34 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
-nnoremap <Leader>rp :resize 100<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 inoremap <C-c> <esc>
 inoremap jj <esc>
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
