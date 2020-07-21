@@ -65,6 +65,7 @@ Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug 'luochen1990/rainbow'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -91,9 +92,12 @@ let g:netrw_winsize = 25
 
 " mappings
 let mapleader = " "
+inoremap jj <esc>
+inoremap <C-c> <esc>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>f :only<CR>
+nnoremap <leader>; A;<esc>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
@@ -107,8 +111,6 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-inoremap <C-c> <esc>
-inoremap jj <esc>
 
 " Use <c-space> to trigger completion.
 if has('nvim')
