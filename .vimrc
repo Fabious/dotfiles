@@ -59,10 +59,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Sweet colors
 Plug 'gruvbox-community/gruvbox'
-Plug 'sainnhe/gruvbox-material'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'vim-airline/vim-airline'
-Plug 'flazz/vim-colorschemes'
+Plug 'itchyny/lightline.vim'
 Plug 'luochen1990/rainbow'
 Plug 'ap/vim-css-color'
 
@@ -76,11 +73,17 @@ endif
 let g:gruvbox_invert_selection='0'
 let g:rainbow_active = 1
 
+"""" enable 24bit true color
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 colorscheme gruvbox
 set background=dark
 
 if executable('rg')
-    let g:rg_derive_root='true'
+  let g:rg_derive_root='true'
 endif
 
 let loaded_matchparen = 1
@@ -91,7 +94,7 @@ let g:netrw_winsize = 25
 
 " mappings
 let mapleader = " "
-inoremap jj <esc>
+inoremap jk <esc>
 inoremap <C-c> <esc>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
