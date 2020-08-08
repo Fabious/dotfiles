@@ -2,6 +2,8 @@ syntax on
 
 set noshowmatch
 set relativenumber
+set cursorline
+set cursorcolumn
 set nohlsearch
 set hidden
 set visualbell
@@ -21,6 +23,8 @@ set incsearch
 set termguicolors
 set scrolloff=8
 set noshowmode
+set foldmethod=syntax
+set foldnestmax=0
 set list
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
 
@@ -37,8 +41,6 @@ set shortmess+=c
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-set cursorline
-set cursorcolumn
 
 call plug#begin('~/.vim/plugged')
 
@@ -48,16 +50,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
 Plug 'sheerun/vim-polyglot'
+Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
-
-" Sweet colors
 Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'luochen1990/rainbow'
@@ -88,10 +88,6 @@ endif
 
 let loaded_matchparen = 1
 
-let g:netrw_browse_split = 2
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-
 " mappings
 let mapleader = " "
 inoremap jk <esc>
@@ -107,12 +103,15 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" NERDTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen = 1
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -122,10 +121,16 @@ else
 endif
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gy <Plug>(coc-type-definition)
+nmap <leader>gi <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
+nmap <leader>rr <Plug>(coc-rename)
+nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+nmap <leader>g] <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
+nnoremap <leader>cr :CocRestart
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
