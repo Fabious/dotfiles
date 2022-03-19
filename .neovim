@@ -7,22 +7,20 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'     " Show git diff of lines edited
 Plug 'tpope/vim-fugitive'         " :Gblame
 Plug 'tpope/vim-rhubarb'          " :GBrowse
-Plug 'tpope/vim-surround'
-
+Plug 'tpope/vim-surround'         " Surroundings
+Plug 'tpope/vim-commentary'       " Comment stuff
 Plug 'tpope/vim-endwise'          " Autocomplete end after a do
-Plug 'mileszs/ack.vim'            " Use ack in Vim
 
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'styled-components/vim-styled-components'
-
 Plug 'vim-airline/vim-airline'    " Vim powerline
 
+Plug 'mileszs/ack.vim'            " Use ack in Vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'           " Set up fzf and fzf.vim
-
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " All of your Plugins must be added before the following line
@@ -54,6 +52,8 @@ nnoremap <F5> :set invpaste paste?<CR>
 set pastetoggle=<F5>
 set showmode
 
+imap jk <Esc>
+
 " Treat long lines as break lines
 map j gj
 map k gk
@@ -67,6 +67,7 @@ set smartindent
 " Enable folding
 set foldmethod=syntax
 set foldlevel=99
+
 
 " Enable folding with the z key
 nmap z za
@@ -121,10 +122,6 @@ set backspace=indent,eol,start
 " +++ Shortcuts +++
 " Open Buffer
 nnoremap <silent><leader>l :Buffers<CR>
-" Open test file for a current file
-nnoremap <silent><leader>s :A<CR>
-" Open test file for a current file in a vertical window
-nnoremap <silent><leader>v :AV<CR>
 " Vertically split screen
 nnoremap <silent><leader>\ :vs<CR>
 " Split screen
@@ -134,11 +131,11 @@ nnoremap <silent><leader>/ :split<CR>
 nnoremap <silent><leader>w :w!<CR>
 nnoremap <silent><leader>q :q!<CR>
 nnoremap <silent><leader>x :x<CR>
+
 " Open Vim configuration file for editing
 nnoremap <silent><leader>1 :e ~/.config/nvim/init.vim<CR>
 " Source Vim configuration file
 nnoremap <silent><leader>2 :source ~/.config/nvim/init.vim<CR>
-" Install plugins
 nnoremap <silent><leader>3 :PlugInstall<CR>
 
 " Toggle relative line numbers
@@ -148,7 +145,7 @@ nnoremap <leader>rn :set relativenumber!<cr>
 set rtp+=~/.fzf
 " Map fzf search to CTRL P
 nnoremap <C-p> :GFiles<Cr>
-" Map fzf + ag search to CTRL P
+" Map fzf + ag search to CTRL G
 nnoremap <C-g> :Rg <Cr>
 
 " Extra <CR> is for disabling /"Press ENTER or type command to continue/"
@@ -173,6 +170,19 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -201,17 +211,16 @@ au!
 autocmd VimEnter * silent !echo -ne "\e[6 q"
 augroup END
 
+" Highlight yanked text
+au TextYankPost * silent! lua vim.highlight.on_yank()
+
 " Fix syntax highlight for Coc plugin floating errors
-hi CocErrorFloat guifg=whitesmoke guibg=Magenta
-hi CocFloating guifg=whitesmoke guibg=Magenta
+" hi CocErrorFloat guifg=Magenta guibg=Magenta
 
 " Use templates https://vimtricks.com/p/automated-file-templates/
-autocmd BufNewFile *.test.tsx        0r ~/Documents/dotfiles/skeletons/react-typescript.test.tsx
-autocmd BufNewFile *\(test\)\@<!.tsx 0r ~/Documents/dotfiles/skeletons/react-typescript.tsx
-autocmd BufNewFile *content/blog*.md 0r ~/Documents/dotfiles/skeletons/blog-post.md
-autocmd BufNewFile *.sh              0r ~/Documents/dotfiles/skeletons/script.sh
-autocmd BufNewFile *.html            0r ~/Documents/dotfiles/skeletons/page.html
-
-" Highlight yanked text
-autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=200}
+" autocmd BufNewFile *.test.tsx        0r ~/Documents/dotfiles/skeletons/react-typescript.test.tsx
+" autocmd BufNewFile *\(test\)\@<!.tsx 0r ~/Documents/dotfiles/skeletons/react-typescript.tsx
+" autocmd BufNewFile *content/blog*.md 0r ~/Documents/dotfiles/skeletons/blog-post.md
+" autocmd BufNewFile *.sh              0r ~/Documents/dotfiles/skeletons/script.sh
+" autocmd BufNewFile *.html            0r ~/Documents/dotfiles/skeletons/page.html
 
