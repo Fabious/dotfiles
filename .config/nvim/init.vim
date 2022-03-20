@@ -16,7 +16,9 @@ Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'styled-components/vim-styled-components'
-Plug 'vim-airline/vim-airline'    " Vim powerline
+
+Plug 'EdenEast/nightfox.nvim'     " Theme
+Plug 'itchyny/lightline.vim'      " Statusline
 
 Plug 'mileszs/ack.vim'            " Use ack in Vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -30,6 +32,7 @@ filetype plugin indent on    " required
 " Look and Feel settings
 syntax enable
 set background=dark
+colorscheme nightfox
 set wildmenu " when opening a file with e.g. :e ~/.vim<TAB> there is a graphical menu of all the matches
 set ttyfast
 set lazyredraw
