@@ -1,5 +1,6 @@
 syntax on
-
+set autoindent
+set background=dark
 set noshowmatch
 set relativenumber
 set cursorline
@@ -13,7 +14,7 @@ set tabstop=2 shiftwidth=2
 set shiftwidth=2
 set expandtab
 set smartindent
-set nu
+set number
 set nowrap
 set smartcase
 set noswapfile
@@ -27,20 +28,11 @@ set foldmethod=syntax
 set foldnestmax=0
 set list
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
-
-" Give more space for displaying messages.
 set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
 set updatetime=50
-
-" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
+colorscheme tokyonight
 
 call plug#begin('~/.vim/plugged')
 
@@ -58,19 +50,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
-Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'luochen1990/rainbow'
 Plug 'ap/vim-css-color'
 
 call plug#end()
 
-let g:gruvbox_contrast_dark = 'hard'
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-let g:gruvbox_invert_selection='0'
 let g:rainbow_active = 1
 
 """" enable 24bit true color
@@ -78,9 +68,6 @@ let g:rainbow_active = 1
 if (has("termguicolors"))
   set termguicolors
 endif
-
-colorscheme gruvbox
-set background=dark
 
 if executable('rg')
   let g:rg_derive_root='true'
@@ -108,6 +95,10 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+" Open Vim configuration file for editing
+nnoremap <silent><leader>1 :e ~/.vimrc<CR>
+nnoremap <silent><leader>2 :source ~/.vimrc<CR>
+nnoremap <silent><leader>3 :PlugInstall<CR>
 
 " NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -149,9 +140,9 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
+autocmd BufWritePre * :call TrimWhitespace()
+
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 50)
 augroup END
-
-autocmd BufWritePre * :call TrimWhitespace()

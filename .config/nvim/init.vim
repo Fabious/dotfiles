@@ -1,5 +1,40 @@
-set nocompatible " be iMproved, required
-filetype off     " required
+syntax enable
+set autoindent
+set background=dark
+set backspace=indent,eol,start
+set cindent
+set clipboard=unnamed
+set encoding=utf-8
+set expandtab
+set foldlevel=99
+set foldmethod=syntax
+set hidden
+set ignorecase
+set incsearch
+set laststatus=2
+set lazyredraw
+set mouse=a
+set nobackup
+set nocompatible
+set noerrorbells visualbell t_vb=
+set nohlsearch
+set noswapfile
+set nowritebackup
+set number
+set numberwidth=4
+set ruler
+set shiftwidth=2
+set showmode
+set smartcase
+set smartindent
+set softtabstop=2
+set tabstop=2
+set termencoding=utf-8
+set ttyfast
+set updatetime=300
+set wildmenu
+
+colorscheme nightfox
 
 " Keep Plug commands between plug#begin() and plug#end().
 call plug#begin()
@@ -17,7 +52,7 @@ Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'styled-components/vim-styled-components'
 
-Plug 'EdenEast/nightfox.nvim'     " Theme
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'      " Statusline
 
 Plug 'mileszs/ack.vim'            " Use ack in Vim
@@ -26,60 +61,7 @@ Plug 'junegunn/fzf.vim'           " Set up fzf and fzf.vim
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " All of your Plugins must be added before the following line
-call plug#end()              " required
-filetype plugin indent on    " required
-
-" Look and Feel settings
-syntax enable
-set background=dark
-colorscheme nightfox
-set wildmenu " when opening a file with e.g. :e ~/.vim<TAB> there is a graphical menu of all the matches
-set ttyfast
-set lazyredraw
-set updatetime=300
-set hidden " Open other files if current one is not saved
-" Enable Mouse mode in all modes
-set mouse=a
-" Numbers
-set number
-set numberwidth=4
-set ruler
-" paste mode
-nnoremap <F5> :set invpaste paste?<CR>
-set pastetoggle=<F5>
-set showmode
-" Indentation
-set autoindent
-set cindent
-set smartindent
-" Folding
-" Enable folding
-set foldmethod=syntax
-set foldlevel=99
-" Disable all bells and whistles
-set noerrorbells visualbell t_vb=
-" Tab Options
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2 " Number of spaces a tab counts when editing
-set expandtab
-" Set default encoding to utf-8
-set encoding=utf-8
-set termencoding=utf-8
-" Disable backups and swap files
-set nobackup
-set nowritebackup
-set noswapfile
-set ignorecase " Ignore case when searching
-set smartcase  " When searching try to be smart about cases
-set nohlsearch " Don't highlight search term
-set incsearch  " Jumping search
-" Always show the status line
-set laststatus=2
-" Allow copy and paste from system clipboard
-set clipboard=unnamed
-" Delete characters outside of insert area
-set backspace=indent,eol,start
+call plug#end()
 
 " +++ Mappings +++
 " Leader key is SPACE, I find it the best
@@ -190,14 +172,3 @@ augroup END
 
 " Highlight yanked text
 au TextYankPost * silent! lua vim.highlight.on_yank()
-
-" Fix syntax highlight for Coc plugin floating errors
-" hi CocErrorFloat guifg=Magenta guibg=Magenta
-
-" Use templates https://vimtricks.com/p/automated-file-templates/
-" autocmd BufNewFile *.test.tsx        0r ~/Documents/dotfiles/skeletons/react-typescript.test.tsx
-" autocmd BufNewFile *\(test\)\@<!.tsx 0r ~/Documents/dotfiles/skeletons/react-typescript.tsx
-" autocmd BufNewFile *content/blog*.md 0r ~/Documents/dotfiles/skeletons/blog-post.md
-" autocmd BufNewFile *.sh              0r ~/Documents/dotfiles/skeletons/script.sh
-" autocmd BufNewFile *.html            0r ~/Documents/dotfiles/skeletons/page.html
-
