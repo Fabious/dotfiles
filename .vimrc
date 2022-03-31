@@ -2,9 +2,7 @@ syntax on
 set autoindent
 set background=dark
 set noshowmatch
-set relativenumber
 set cursorline
-set cursorcolumn
 set nohlsearch
 set hidden
 set visualbell
@@ -32,8 +30,6 @@ set cmdheight=2
 set updatetime=50
 set shortmess+=c
 
-colorscheme tokyonight
-
 call plug#begin('~/.vim/plugged')
 
 " For generic web-development :
@@ -49,13 +45,14 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'jiangmiao/auto-pairs'
-Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 Plug 'ap/vim-css-color'
 
 call plug#end()
+
+autocmd vimenter * ++nested colorscheme gruvbox
 
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
