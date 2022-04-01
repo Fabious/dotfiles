@@ -10,6 +10,7 @@ set hidden
 set incsearch
 set list
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
+set mouse=a
 set nobackup
 set noerrorbells
 set nohlsearch
