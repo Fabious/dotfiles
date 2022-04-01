@@ -1,35 +1,43 @@
 syntax on
 set autoindent
 set background=dark
+set backspace=indent,eol,start
+set cindent
+set clipboard=unnamedplus
 set cmdheight=2
 set cursorline
+set encoding=utf-8
 set expandtab
+set foldlevel=99
 set foldmethod=syntax
-set foldnestmax=0
 set hidden
+set ignorecase
 set incsearch
+set laststatus=2
+set lazyredraw
 set list
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
 set mouse=a
 set nobackup
-set noerrorbells
+set nocompatible
+set noerrorbells visualbell t_vb=
 set nohlsearch
 set noshowmatch
-set noshowmode
 set noswapfile
 set nowrap
 set nowritebackup
 set number
+set ruler
 set scrolloff=8
 set shiftwidth=2
 set shortmess+=c
 set smartcase
 set smartindent
-set t_vb=
-set tabstop=2 shiftwidth=2
+set tabstop=2
+set termencoding=utf-8
 set termguicolors
-set updatetime=50
-set visualbell
+set ttyfast
+set updatetime=100
 set wildmenu
 
 call plug#begin('~/.vim/plugged')

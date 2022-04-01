@@ -3,7 +3,9 @@ set autoindent
 set background=dark
 set backspace=indent,eol,start
 set cindent
-set clipboard=unnamed
+set clipboard=unnamedplus
+set cmdheight=2
+set cursorline
 set encoding=utf-8
 set expandtab
 set foldlevel=99
@@ -13,25 +15,29 @@ set ignorecase
 set incsearch
 set laststatus=2
 set lazyredraw
+set list
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
 set mouse=a
 set nobackup
 set nocompatible
 set noerrorbells visualbell t_vb=
 set nohlsearch
+set noshowmatch
 set noswapfile
+set nowrap
 set nowritebackup
 set number
-set numberwidth=4
 set ruler
+set scrolloff=8
 set shiftwidth=2
-set showmode
+set shortmess+=c
 set smartcase
 set smartindent
 set softtabstop=2
 set tabstop=2
 set termencoding=utf-8
 set ttyfast
-set updatetime=300
+set updatetime=100
 set wildmenu
 
 colorscheme nightfox
