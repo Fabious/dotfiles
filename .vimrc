@@ -1,34 +1,35 @@
 syntax on
 set autoindent
 set background=dark
-set noshowmatch
+set cmdheight=2
 set cursorline
-set nohlsearch
-set hidden
-set visualbell
-set noerrorbells
-set t_vb=
-set tabstop=2 shiftwidth=2
-set shiftwidth=2
 set expandtab
-set smartindent
-set number
-set nowrap
-set smartcase
-set noswapfile
-set nobackup
-set nowritebackup
-set incsearch
-set termguicolors
-set scrolloff=8
-set noshowmode
 set foldmethod=syntax
 set foldnestmax=0
+set hidden
+set incsearch
 set list
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
-set cmdheight=2
-set updatetime=50
+set nobackup
+set noerrorbells
+set nohlsearch
+set noshowmatch
+set noshowmode
+set noswapfile
+set nowrap
+set nowritebackup
+set number
+set scrolloff=8
+set shiftwidth=2
 set shortmess+=c
+set smartcase
+set smartindent
+set t_vb=
+set tabstop=2 shiftwidth=2
+set termguicolors
+set updatetime=50
+set visualbell
+set wildmenu
 
 call plug#begin('~/.vim/plugged')
 
@@ -76,17 +77,17 @@ let loaded_matchparen = 1
 let mapleader = " "
 inoremap jk <esc>
 inoremap <C-c> <esc>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>f :only<CR>
+nnoremap <leader>o :only<CR>
 nnoremap <leader>; A;<esc>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
