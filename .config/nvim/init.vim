@@ -15,8 +15,8 @@ set ignorecase
 set incsearch
 set laststatus=2
 set lazyredraw
-set list
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
+" set list
+" set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
 set mouse=a
 set nobackup
 set nocompatible
@@ -40,80 +40,73 @@ set ttyfast
 set updatetime=100
 set wildmenu
 
-colorscheme nightfox
-
 " Keep Plug commands between plug#begin() and plug#end().
 call plug#begin()
 
-Plug 'airblade/vim-gitgutter'     " Show git diff of lines edited
-Plug 'tpope/vim-fugitive'         " :Gblame
-Plug 'tpope/vim-rhubarb'          " :GBrowse
-Plug 'tpope/vim-surround'         " Surroundings
-Plug 'tpope/vim-commentary'       " Comment stuff
-Plug 'tpope/vim-endwise'          " Autocomplete end after a do
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'airblade/vim-gitgutter'
 
-Plug 'pangloss/vim-javascript'    " JavaScript support
-Plug 'leafgarland/typescript-vim' " TypeScript syntax
-Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
-Plug 'jparise/vim-graphql'        " GraphQL syntax
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components'
 
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'itchyny/lightline.vim'      " Statusline
+Plug 'itchyny/lightline.vim'
 
 Plug 'mileszs/ack.vim'            " Use ack in Vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'           " Set up fzf and fzf.vim
+Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " All of your Plugins must be added before the following line
 call plug#end()
 
-" +++ Mappings +++
-" Leader key is SPACE, I find it the best
-let mapleader = " "
+colorscheme tokyonight
 
+" === Mappings ===
+let mapleader = " "
 imap jk <Esc>
+nmap z za
 " Treat long lines as break lines
 map j gj
 map k gk
-" Enable folding with the z key
-nmap z za
-
-" Open Buffer
+nnoremap q: <nop>
+nnoremap Q <nop>
 nnoremap <silent><leader>l :Buffers<CR>
-" Vertically split screen
 nnoremap <silent><leader>\ :vs<CR>
-" Split screen
 nnoremap <silent><leader>/ :split<CR>
 " Faster saving and exiting
-nnoremap <silent><leader>w :w!<CR>
+nnoremap <silent><leader>w :w<CR>
 nnoremap <silent><leader>q :q!<CR>
 nnoremap <silent><leader>x :x<CR>
-" Open Vim configuration file for editing
-nnoremap <silent><leader>1 :e ~/.config/nvim/init.vim<CR>
-" Source Vim configuration file
-nnoremap <silent><leader>2 :source ~/.config/nvim/init.vim<CR>
-nnoremap <silent><leader>3 :PlugInstall<CR>
-" Toggle relative line numbers
-nnoremap <leader>rn :set relativenumber!<cr>
-" Extra <CR> is for disabling /"Press ENTER or type command to continue/"
 nnoremap <silent><leader>e :Exp<CR><CR>
-" Easier movement between split windows CTRL + {h, j, k, l}
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+" Fast config
+nnoremap <silent><leader>1 :e ~/.config/nvim/init.vim<CR>
+nnoremap <silent><leader>2 :source ~/.config/nvim/init.vim<CR>
+nnoremap <silent><leader>3 :PlugInstall<CR>
 
-" +++ FZF plugin +++
+" Highlight yanked text
+au TextYankPost * silent! lua vim.highlight.on_yank()
+" Delete empty space from the end of lines on every save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" === FZF plugin ===
 " If fzf installed using git
-set rtp+=~/.fzf
+" set rtp+=~/.fzf
 " Map fzf search to CTRL P
 nnoremap <C-p> :GFiles<Cr>
 " Map fzf + ag search to CTRL G
 nnoremap <C-g> :Rg <Cr>
 
-" +++ Ack plugin +++
+" === Ack plugin ===
 " Ack tricks
 let g:ackprg = 'rg --vimgrep --smart-case --hidden'
 " Any empty ack search will search for the work the cursor is on
@@ -121,60 +114,74 @@ let g:ack_use_cword_for_empty_search = 1
 nmap <leader>a :Ack!<Space>
 nmap <leader>A :Ack! <cword><CR>
 
-" +++ CoC plugin +++
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json']
-" Add CoC Prettier if prettier is installed
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
+" === CoC plugin ===
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-prettier', 'coc-eslint']
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
 endif
-" Add CoC ESLint if ESLint is installed
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
+
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
-" Use `[g` and `]g` to navigate diagnostics
+
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>c  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-" Format
+nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>af  <Plug>(coc-fix-current)
+nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>f   :CocCommand prettier.formatFile<CR>
 
-" +++ Miscellaneous +++
-" Delete empty space from the end of lines on every save
-autocmd BufWritePre * :%s/\s\+$//e
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
-" Spellcheck for features and markdown
-au BufRead,BufNewFile *.md setlocal spell
-au BufRead,BufNewFile *.md.erb setlocal spell
-au BufRead,BufNewFile *.feature setlocal spell
-" Fix some weird error with Fugitive
-let g:fugitive_pty = 0
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Change cursor to solid vertical line
-" There are problems with Vim's floating window setting cursor to a solid
-" block. So these lines below are resetting it to a solid vertical line.
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[6 q"
-
-" Optionally reset the cursor on start:
-augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[6 q"
-augroup END
-
-" Highlight yanked text
-au TextYankPost * silent! lua vim.highlight.on_yank()
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif
