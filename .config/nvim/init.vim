@@ -86,7 +86,6 @@ map j gj
 map k gk
 nnoremap q: <nop>
 nnoremap Q <nop>
-nnoremap <silent><leader>l :Buffers<CR>
 nnoremap <silent><leader>\ :vs<CR>
 nnoremap <silent><leader>/ :split<CR>
 nnoremap <silent><leader>o :only<CR>
@@ -115,6 +114,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Map fzf search to CTRL P
 nnoremap <C-p> :GFiles<Cr>
 nmap <leader>pf :Files<Cr>
+nmap <leader>l :Buffers<CR>
 " Map fzf + ag search to CTRL G
 nnoremap <C-g> :Rg <Cr>
 
