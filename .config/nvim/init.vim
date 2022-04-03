@@ -89,6 +89,7 @@ nnoremap Q <nop>
 nnoremap <silent><leader>l :Buffers<CR>
 nnoremap <silent><leader>\ :vs<CR>
 nnoremap <silent><leader>/ :split<CR>
+nnoremap <silent><leader>o :only<CR>
 " Faster saving and exiting
 nnoremap <silent><leader>w :w<CR>
 nnoremap <silent><leader>q :q!<CR>
