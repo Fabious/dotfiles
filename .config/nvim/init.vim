@@ -55,6 +55,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components'
 
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
 Plug 'mileszs/ack.vim'            " Use ack in Vim
@@ -65,7 +66,16 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " All of your Plugins must be added before the following line
 call plug#end()
 
-colorscheme tokyonight
+" THEME
+if (has("termguicolors"))
+  set termguicolors
+endif
+colorscheme gruvbox
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ],
+      \ }
+      \ }
 
 " === Mappings ===
 let mapleader = " "
