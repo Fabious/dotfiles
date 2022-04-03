@@ -113,8 +113,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 " set rtp+=~/.fzf
 " Map fzf search to CTRL P
 nnoremap <C-p> :GFiles<Cr>
+nmap <leader>pf :Files<Cr>
 " Map fzf + ag search to CTRL G
 nnoremap <C-g> :Rg <Cr>
+
 
 " === Ack plugin ===
 " Ack tricks
