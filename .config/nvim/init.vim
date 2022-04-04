@@ -63,6 +63,8 @@ Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -129,7 +131,7 @@ nmap <leader>a :Ack!<Space>
 nmap <leader>A :Ack! <cword><CR>
 
 " === CoC plugin ===
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-prettier', 'coc-eslint']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-prettier', 'coc-eslint', 'coc-snippets']
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
