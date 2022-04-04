@@ -47,6 +47,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'pangloss/vim-javascript'
