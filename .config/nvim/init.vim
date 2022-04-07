@@ -83,6 +83,7 @@ let g:lightline = {
 " === Mappings ===
 let mapleader = " "
 imap jk <Esc>
+nnoremap ; :
 nmap z za
 " Treat long lines as break lines
 map j gj
@@ -117,6 +118,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Map fzf search to CTRL P
 nnoremap <C-p> :GFiles<Cr>
 nmap <leader>pf :Files<Cr>
+nmap <leader>pg :GFiles?<Cr>
 nmap <leader>l :Buffers<CR>
 " Map fzf + ag search to CTRL G
 nnoremap <C-g> :Rg <Cr>
