@@ -107,8 +107,7 @@ source $ZSH/oh-my-zsh.sh
 alias zc="nvim ~/.zshrc"
 alias v="nvim"
 
-export LVIM="$HOME/.local/bin/lvim"
-
+# NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
