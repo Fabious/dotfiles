@@ -19,6 +19,9 @@ alias gst 'git status'
 alias gd 'git diff'
 alias gp 'git push'
 
+# Dotfiles
+alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
 function f
     git ls-tree -r --name-only HEAD
 end
