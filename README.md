@@ -24,6 +24,7 @@ dotfiles checkout
 # normal git commands
 dotfiles status
 dotfiles add ~/.config/nvim/init.vim
+dotfiles commit -m 'update neovim config'
 dotfiles push
 ```
 
