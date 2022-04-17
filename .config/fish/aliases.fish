@@ -15,7 +15,8 @@ alias c clear
 alias gti git
 alias a 'git amend --allow-empty --no-verify'
 alias gs 'git status -s'
-alias gs 'git diff'
+alias gst 'git status'
+alias gd 'git diff'
 alias gp 'git push'
 
 function f
