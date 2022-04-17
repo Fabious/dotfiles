@@ -18,6 +18,10 @@ git clone --bare https://github.com/fabious/dotfiles.git
 # Then use this alias to update the repo like you would normally do
 # alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
+# initial install of the dotfiles
+dotfiles checkout
+
+# normal git commands
 dotfiles status
 dotfiles add ~/.config/nvim/init.vim
 dotfiles push
