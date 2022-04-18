@@ -14,3 +14,4 @@ test -e ~/.iterm2_shell_integration.fish; and source ~/.iterm2_shell_integration
 # To update the Starship itself, rerun the above script.
 # It will replace the current version without touching Starship's configuration.
 starship init fish | source
+
