@@ -18,6 +18,7 @@ alias gs 'git status -s'
 alias gst 'git status'
 alias gd 'git diff'
 alias gp 'git push'
+alias nah 'git reset --hard && git clean -df'
 
 # Dotfiles
 alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'

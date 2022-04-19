@@ -1,0 +1,35 @@
+# use separate file for username / github token / etc
+[include]
+	path = ~/.gitconfig.local
+
+[alias]
+	c = commit -am
+	fpush = push --force
+	s = status
+	sclone = clone --depth=1
+	amend = commit --amend --all --no-edit
+	undocommit = reset HEAD~
+	hreset = reset --hard
+	co = checkout
+	df = diff --color --color-words --abbrev
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	cherrypick = cherry-pick
+	cherry = cherry-pick
+	cp = cherry-pick
+	diffbranch = !"git diff $(git merge-base HEAD origin/master)"
+
+	# show commit log of unique commits of this branch (not on master)
+	diffcommitsfrommaster = log --no-merges master..
+	# show unified diff of unique commits of this branch (and working tree)
+	difffrommaster = diff master:
+	# ^^^^ diff master... (with THREE dots) is similar, but doesn't include working tree
+	#     ^^^^ also, two dots vs three dots, so important. https://stackoverflow.com/a/48681527
+
+	# What's the ancestor commit this branch shares with master?
+	diffbase = merge-base HEAD origin/master
+
+	# Show the diff between the latest commit and the current state
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+[color]
+  ui = auto
