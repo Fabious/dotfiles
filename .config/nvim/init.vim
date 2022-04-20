@@ -8,8 +8,8 @@ set foldmethod=syntax
 set ignorecase
 set incsearch
 set laststatus=2
-" set list
-" set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
+set list
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
 set mouse=a
 set nobackup
 set noerrorbells visualbell t_vb=
@@ -85,7 +85,6 @@ nmap z za
 " Treat long lines as break lines
 map j gj
 map k gk
-nnoremap q: <nop>
 nnoremap Q <nop>
 nnoremap <silent><leader>\ :vs<CR>
 nnoremap <silent><leader>/ :split<CR>
