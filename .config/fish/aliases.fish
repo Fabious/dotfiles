@@ -20,6 +20,12 @@ alias gd 'git diff'
 alias gp 'git push'
 alias nah 'git reset --hard && git clean -df'
 
+# edit all modified git files in vim
+# alternative: git status --porcelain | awk '{print $2}'
+function vm
+  v $(git diff HEAD --name-only)
+end
+
 # Dotfiles
 alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
