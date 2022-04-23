@@ -11,7 +11,9 @@ Before starting the installation, I recommend reading theses articles to underst
 
 ```
 # To install the dotfiles
-git clone --bare https://github.com/fabious/dotfiles.git
+git clone --bare https://github.com/fabious/dotfiles.git ~/.dotfiles
+/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
+/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 ```
 
 ```
