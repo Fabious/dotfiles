@@ -32,15 +32,16 @@ dotfiles push
 
 ## Tools
 
+* [fish][fish] - The user-friendly command line shell
+* [delta][delta] - A syntax-highlighting pager for git, diff, and grep output
 * [bat][bat] - A cat(1) clone with wings
 * [fd][fd] - A simple, fast and user-friendly alternative to 'find'
-* [Fish][fish] - The user-friendly command line shell
+* [ripgrep][ripgrep] - ripgrep recursively searches directories for a regex pattern
+* [lsd][lsd] - The next gen ls command
 * [fzf][fzf] - 🌸 A command-line fuzzy finder
-* [glow][glow] - Render markdown on the CLI, with pizzazz! 💅🏻
 * [jq][jq] - Command-line JSON processor
 * [lazygit][lazygit] - simple terminal UI for git commands
-* [lsd][lsd] - The next gen ls command
-* [ripgrep][ripgrep] - ripgrep recursively searches directories for a regex pattern
+* [glow][glow] - Render markdown on the CLI, with pizzazz! 💅🏻
 
 ## Fonts
 
@@ -58,6 +59,7 @@ which has been patched with additional glyphs.
 [bat]: https://github.com/sharkdp/bat
 [fd]: https://github.com/sharkdp/fd
 [fish]: https://fishshell.com/
+[delta]: https://github.com/dandavison/delta
 [fzf]: https://github.com/junegunn/fzf
 [glow]: https://github.com/charmbracelet/glow
 [cascadia-font]: https://github.com/microsoft/cascadia-code
