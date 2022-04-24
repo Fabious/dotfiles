@@ -45,14 +45,13 @@
   diffFilter = delta --color-only
 
 [delta]
-  line-numbers = true
+  dark = true
   file-decoration-style = yellow ol ul
   file-style = bold yellow ul
   hunk-header-decoration-style = blue
   hunk-header-line-number-style = purple bold
+  line-numbers = true
   max-line-length = 700
   navigate = true
   syntax-theme = base16
-  dark = true
-
 
