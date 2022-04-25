@@ -33,6 +33,7 @@ dotfiles push
 ## Tools
 
 * [fish][fish] - The user-friendly command line shell
+* [gh][gh] - GitHub’s official command line tool
 * [delta][delta] - A syntax-highlighting pager for git, diff, and grep output
 * [bat][bat] - A cat(1) clone with wings
 * [fd][fd] - A simple, fast and user-friendly alternative to 'find'
@@ -57,10 +58,11 @@ which has been patched with additional glyphs.
 * https://github.com/kalkayan/dotfiles
 
 [bat]: https://github.com/sharkdp/bat
+[delta]: https://github.com/dandavison/delta
 [fd]: https://github.com/sharkdp/fd
 [fish]: https://fishshell.com/
-[delta]: https://github.com/dandavison/delta
 [fzf]: https://github.com/junegunn/fzf
+[gh]: https://github.com/cli/cli
 [glow]: https://github.com/charmbracelet/glow
 [hack-font]: https://sourcefoundry.org/hack/
 [hack-nerd-font]: https://github.com/ryanoasis/nerd-fonts#patched-fonts
