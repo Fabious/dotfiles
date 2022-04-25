@@ -33,6 +33,7 @@ dotfiles push
 ## Tools
 
 * [fish][fish] - The user-friendly command line shell
+* [starship][starhip] - The minimal, blazing-fast, and infinitely customizable prompt
 * [gh][gh] - GitHub’s official command line tool
 * [delta][delta] - A syntax-highlighting pager for git, diff, and grep output
 * [bat][bat] - A cat(1) clone with wings
@@ -70,4 +71,5 @@ which has been patched with additional glyphs.
 [lazygit]: https://github.com/jesseduffield/lazygit
 [lsd]: https://github.com/Peltoche/lsd
 [ripgrep]: https://github.com/BurntSushi/ripgrep
+[starship]: https://github.com/starship/starship
 
