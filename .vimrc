@@ -3,7 +3,7 @@ set autoindent
 set background=dark
 set backspace=indent,eol,start
 set cindent
-set clipboard=unnamedplus
+set clipboard=unnamed
 set cmdheight=2
 set cursorline
 set encoding=utf-8
