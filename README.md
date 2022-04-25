@@ -45,7 +45,7 @@ dotfiles push
 
 ## Fonts
 
-I use the [Cascadia Code Nerd Font][cascadia-nerd-font] which is the [Cascadia Code][cascadia-font] font
+I use the [Hack Nerd Font][hack-nerd-font] which is the [Hack][hack-font] font
 which has been patched with additional glyphs.
 
 ## Inspiration
@@ -62,8 +62,8 @@ which has been patched with additional glyphs.
 [delta]: https://github.com/dandavison/delta
 [fzf]: https://github.com/junegunn/fzf
 [glow]: https://github.com/charmbracelet/glow
-[cascadia-font]: https://github.com/microsoft/cascadia-code
-[cascadia-nerd-font]: https://github.com/ryanoasis/nerd-fonts#patched-fonts
+[hack-font]: https://sourcefoundry.org/hack/
+[hack-nerd-font]: https://github.com/ryanoasis/nerd-fonts#patched-fonts
 [jq]: https://github.com/stedolan/jq
 [lazygit]: https://github.com/jesseduffield/lazygit
 [lsd]: https://github.com/Peltoche/lsd
