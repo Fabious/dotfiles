@@ -6,10 +6,11 @@ alias eg 'nvim ~/.gitconfig'
 alias et 'nvim ~/.tmux.conf'
 
 # Shortcuts
-alias v 'nvim'
-alias l ls
+alias v nvim
 alias g git
 alias c clear
+alias ls lsd
+alias lt 'lsd --tree'
 
 # Git
 alias gti git
