@@ -21,6 +21,9 @@ alias gd 'git diff'
 alias gp 'git push'
 alias nah 'git reset --hard && git clean -df'
 
+# Docker
+alias dc docker-compose
+
 # edit all modified git files in vim
 # alternative: git status --porcelain | awk '{print $2}'
 function vm
