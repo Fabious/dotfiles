@@ -9,15 +9,18 @@ alias et 'nvim ~/.tmux.conf'
 alias v nvim
 alias g git
 alias c clear
+alias l ls
 alias ls lsd
 alias lt 'lsd --tree'
 
 # Git
 alias gti git
 alias a 'git amend --allow-empty --no-verify'
+alias gco 'git checkout'
 alias gs 'git status -s'
 alias gst 'git status'
 alias gd 'git diff'
+alias gl 'git pull'
 alias gp 'git push'
 alias nah 'git reset --hard && git clean -df'
 
