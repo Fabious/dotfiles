@@ -13,7 +13,6 @@ set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
 set mouse=a
 set nobackup
 set noerrorbells visualbell t_vb=
-set nohlsearch
 set noshowmatch
 set noswapfile
 set nowrap
