@@ -18,7 +18,7 @@ git clone --bare https://github.com/fabious/dotfiles.git ~/.dotfiles
 
 ```
 # Then use this alias to update the repo like you would normally do
-# alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # initial install of the dotfiles
 dotfiles checkout
@@ -44,6 +44,13 @@ dotfiles push
 * [jq][jq] - Command-line JSON processor
 * [lazygit][lazygit] - simple terminal UI for git commands
 * [glow][glow] - Render markdown on the CLI, with pizzazz! 💅🏻
+
+## Arch
+
+```
+# To set keyboard repeat rate
+xset r rate 180 40
+```
 
 ## Fonts
 
