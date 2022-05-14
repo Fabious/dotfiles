@@ -33,7 +33,7 @@ dotfiles push
 ## Tools
 
 * [fish][fish] - The user-friendly command line shell
-* [starship][starhip] - The minimal, blazing-fast, and infinitely customizable prompt
+* [starship][starship] - The minimal, blazing-fast, and infinitely customizable prompt
 * [gh][gh] - GitHub’s official command line tool
 * [delta][delta] - A syntax-highlighting pager for git, diff, and grep output
 * [bat][bat] - A cat(1) clone with wings
