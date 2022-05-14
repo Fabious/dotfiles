@@ -85,18 +85,25 @@ nmap z za
 map j gj
 map k gk
 nnoremap Q <nop>
+" Windows management
 nnoremap <silent><leader>\ :vs<CR>
 nnoremap <silent><leader>/ :split<CR>
 nnoremap <silent><leader>o :only<CR>
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+" Registers
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nmap <leader>Y "+Y
+xnoremap <leader>p "_dP
+
 " Faster saving and exiting
 nnoremap <silent><leader>w :w<CR>
 nnoremap <silent><leader>q :q!<CR>
 nnoremap <silent><leader>x :x<CR>
 nnoremap <silent><leader>e :Exp<CR><CR>
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
 " Fast config
 nnoremap <silent><leader>1 :e ~/.config/nvim/init.vim<CR>
 nnoremap <silent><leader>2 :source ~/.config/nvim/init.vim<CR>
