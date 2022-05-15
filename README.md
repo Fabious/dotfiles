@@ -49,7 +49,7 @@ dotfiles push
 
 ```
 # To set keyboard repeat rate
-xset r rate 180 40
+xset r rate 200 40
 ```
 
 ## Fonts
