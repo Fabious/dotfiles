@@ -24,6 +24,7 @@ alias gbD 'git branch -d'
 alias gd 'git diff'
 alias gl 'git pull'
 alias gp 'git push'
+alias gw 'git switch'
 alias nah 'git reset --hard && git clean -df'
 
 # Docker
