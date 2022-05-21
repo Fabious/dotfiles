@@ -40,8 +40,10 @@ dotfiles push
 * [fd][fd] - A simple, fast and user-friendly alternative to 'find'
 * [ripgrep][ripgrep] - ripgrep recursively searches directories for a regex pattern
 * [lsd][lsd] - The next gen ls command
+* [exa][exa] - A modern replacement for ls
 * [fzf][fzf] - 🌸 A command-line fuzzy finder
 * [jq][jq] - Command-line JSON processor
+* [procs][procs] - A modern replacement for ps written in Rust 
 * [lazygit][lazygit] - simple terminal UI for git commands
 * [glow][glow] - Render markdown on the CLI, with pizzazz! 💅🏻
 
@@ -67,6 +69,7 @@ which has been patched with additional glyphs.
 
 [bat]: https://github.com/sharkdp/bat
 [delta]: https://github.com/dandavison/delta
+[exa]: https://github.com/ogham/exa
 [fd]: https://github.com/sharkdp/fd
 [fish]: https://fishshell.com/
 [fzf]: https://github.com/junegunn/fzf
@@ -77,6 +80,7 @@ which has been patched with additional glyphs.
 [jq]: https://github.com/stedolan/jq
 [lazygit]: https://github.com/jesseduffield/lazygit
 [lsd]: https://github.com/Peltoche/lsd
+[procs]: https://github.com/dalance/procs
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [starship]: https://github.com/starship/starship
 
