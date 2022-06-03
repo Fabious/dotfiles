@@ -43,7 +43,7 @@ dotfiles push
 * [exa][exa] - A modern replacement for ls
 * [fzf][fzf] - 🌸 A command-line fuzzy finder
 * [jq][jq] - Command-line JSON processor
-* [procs][procs] - A modern replacement for ps written in Rust 
+* [procs][procs] - A modern replacement for ps written in Rust
 * [lazygit][lazygit] - simple terminal UI for git commands
 * [glow][glow] - Render markdown on the CLI, with pizzazz! 💅🏻
 
@@ -56,6 +56,25 @@ xset r rate 200 40
 # Set Caps Lock to Ctrl_modifier
 setxkbmap -option caps:ctrl_modifier
 
+```
+
+## ASDF
+```
+# Install asdf with yay (AUR helper)
+yay -S asdf-vm
+
+# Install nodejs
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs latest
+asdf global nodejs latest
+
+# Install Python
+asdf plugin add python
+asdf install python latest
+asdf global python latest
+
+# Check everything is fine
+asdf current
 ```
 
 ## Fonts
