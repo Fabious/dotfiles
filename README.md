@@ -50,8 +50,12 @@ dotfiles push
 ## Arch
 
 ```
-# To set keyboard repeat rate
+# Set keyboard repeat rate
 xset r rate 200 40
+
+# Set Caps Lock to Ctrl_modifier
+setxkbmap -option caps:ctrl_modifier
+
 ```
 
 ## Fonts
