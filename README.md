@@ -79,8 +79,13 @@ asdf current
 
 ## Fonts
 
-I use the [Hack Nerd Font][hack-nerd-font] which is the [Hack][hack-font] font
-which has been patched with additional glyphs.
+I use the [Cascadia Code Nerd Font][cascadia-code-nerd-font].
+
+```
+# Install on Arch
+yay -S nerd-fonts-cascadia-code
+```
+
 
 ## Inspiration
 
@@ -99,7 +104,7 @@ which has been patched with additional glyphs.
 [gh]: https://github.com/cli/cli
 [glow]: https://github.com/charmbracelet/glow
 [hack-font]: https://sourcefoundry.org/hack/
-[hack-nerd-font]: https://github.com/ryanoasis/nerd-fonts#patched-fonts
+[cascadia-code-nerd-font]: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CascadiaCode
 [jq]: https://github.com/stedolan/jq
 [lazygit]: https://github.com/jesseduffield/lazygit
 [lsd]: https://github.com/Peltoche/lsd
