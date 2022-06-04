@@ -56,6 +56,9 @@ xset r rate 220 40
 # Set Caps Lock to Ctrl_modifier
 setxkbmap -option caps:ctrl_modifier
 
+# To make it persitent in Xfce4, add this line :
+# Option "XkbOptions" "caps:ctrl_modifier"
+sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf
 ```
 
 ## ASDF
