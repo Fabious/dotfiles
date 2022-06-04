@@ -51,7 +51,7 @@ dotfiles push
 
 ```
 # Set keyboard repeat rate
-xset r rate 200 40
+xset r rate 220 40
 
 # Set Caps Lock to Ctrl_modifier
 setxkbmap -option caps:ctrl_modifier
