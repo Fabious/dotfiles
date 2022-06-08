@@ -3,21 +3,22 @@
   path = ~/.gitconfig.local
 
 [alias]
+  a = add
+  amend = commit --amend --all --no-edit
   c = commit -am
+  cherry = cherry-pick
+  cherrypick = cherry-pick
+  co = checkout
+  cp = cherry-pick
+  df = diff --color --color-words --abbrev
+  diffbranch = !"git diff $(git merge-base HEAD origin/master)"
   fpush = push --force
+  hreset = reset --hard
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   s = status
   sclone = clone --depth=1
-  amend = commit --amend --all --no-edit
   undocommit = reset HEAD~
-  hreset = reset --hard
-  co = checkout
   w = switch
-  df = diff --color --color-words --abbrev
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-  cherrypick = cherry-pick
-  cherry = cherry-pick
-  cp = cherry-pick
-  diffbranch = !"git diff $(git merge-base HEAD origin/master)"
 
   # show commit log of unique commits of this branch (not on master)
   diffcommitsfrommaster = log --no-merges master..
