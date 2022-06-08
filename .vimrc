@@ -49,16 +49,14 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
-Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -86,6 +84,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>o :only<CR>
+nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
@@ -93,7 +92,7 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-" Open Vim configuration file for editing
+" Open Vim configuration file
 nnoremap <silent><leader>1 :e ~/.vimrc<CR>
 nnoremap <silent><leader>2 :source ~/.vimrc<CR>
 nnoremap <silent><leader>3 :PlugInstall<CR>
