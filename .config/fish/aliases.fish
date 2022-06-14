@@ -14,8 +14,9 @@ alias ls lsd
 alias lt 'lsd --tree'
 
 # Git
-alias gti git
 alias a 'git amend --allow-empty --no-verify'
+alias gaa 'git add .'
+alias gti git
 alias gco 'git checkout'
 alias gs 'git status -s'
 alias gst 'git status'
