@@ -24,6 +24,7 @@ require('packer').startup(function(use)
   use 'overcache/NeoSolarized'                                                    -- Solarized
   use 'cocopon/iceberg.vim'                                                       -- Iceberg
   use 'folke/tokyonight.nvim'                                                     -- Tokyonight
+  use ({ "catppuccin/nvim", as = "catppuccin" })                                  -- Catpuccin
   use 'nvim-lualine/lualine.nvim'                                                 -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim'                                       -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
