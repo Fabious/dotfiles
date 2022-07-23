@@ -25,6 +25,7 @@ require('packer').startup(function(use)
   use 'cocopon/iceberg.vim'                                                       -- Iceberg
   use 'folke/tokyonight.nvim'                                                     -- Tokyonight
   use ({ "catppuccin/nvim", as = "catppuccin" })                                  -- Catpuccin
+  use 'sainnhe/everforest'                                                        -- Everforest
   use 'nvim-lualine/lualine.nvim'                                                 -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim'                                       -- Add indentation guides even on blank lines
   use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
@@ -88,7 +89,9 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme gruvbox]]
+vim.o.background = 'dark'
+vim.g.everforest_background = 'hard'
+vim.cmd [[colorscheme everforest]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -130,7 +133,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'gruvbox',
+    theme = 'everforest',
     component_separators = '|',
     section_separators = '',
   },
