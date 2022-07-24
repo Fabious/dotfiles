@@ -63,28 +63,16 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
-
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Enable break indent
 vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = false
-
--- Case insensitive searching UNLESS /C or capital in search
+vim.o.cmdheight = 2
+vim.o.hlsearch = true
 vim.o.ignorecase = true
+vim.o.incsearch = true
+vim.o.mouse = 'a'
 vim.o.smartcase = true
-
--- Decrease update time
+vim.o.undofile = false
 vim.o.updatetime = 250
+vim.wo.number = true
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
@@ -116,6 +104,17 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('n', '<leader>1', ':e ~/.config/nvim/init.lua<CR>', { silent = true })
 
+vim.keymap.set('n', '<leader>w', ':w<CR>', { silent = true })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
+vim.keymap.set('n', '<leader>o', ':only<CR>', { silent = true })
+
+vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
+
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -188,7 +187,7 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
@@ -260,7 +259,7 @@ require('nvim-treesitter.configs').setup {
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
