@@ -26,17 +26,12 @@ alias gd 'git diff'
 alias gfa 'git fetch --all'
 alias gl 'git pull'
 alias gp 'git push'
+alias gstat 'git show HEAD --stat'
 alias gw 'git switch'
 alias nah 'git reset --hard && git clean -df'
 
 # Docker
 alias dc docker-compose
-
-# edit all modified git files in vim
-# alternative: git status --porcelain | awk '{print $2}'
-function vm
-  v $(git diff HEAD --name-only)
-end
 
 # Dotfiles
 alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'

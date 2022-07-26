@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- [[ Setting options ]]
 -- See `:help vim.o`
 vim.o.breakindent = true
-vim.o.cmdheight = 2
+vim.o.cmdheight = 1
 vim.o.hlsearch = true
 vim.o.ignorecase = true
 vim.o.incsearch = true
