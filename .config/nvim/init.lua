@@ -31,6 +31,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Fuzzy Finder (files, lsp, etc)
   use { "windwp/nvim-autopairs" }                                                 -- Autopairs
+  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
@@ -144,6 +145,13 @@ require('Comment').setup()
 
 -- Enable Autopairs.nvim
 require("nvim-autopairs").setup()
+
+-- Enable toggleterm.nvim
+require("toggleterm").setup {
+  direction = 'vertical',
+  open_mapping = [[<c-t>]],
+  size = vim.o.columns * 0.4
+}
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
