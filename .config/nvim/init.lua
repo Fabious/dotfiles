@@ -31,7 +31,8 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Fuzzy Finder (files, lsp, etc)
   use { "windwp/nvim-autopairs" }                                                 -- Autopairs
-  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
+  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }                                 -- Toggleterm
+  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File explorer
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
@@ -153,6 +154,10 @@ require("toggleterm").setup {
   size = vim.o.columns * 0.4
 }
 
+-- Enable File explorer
+require("nvim-tree").setup()
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
+
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 require('indent_blankline').setup {
@@ -270,7 +275,7 @@ require('nvim-treesitter.configs').setup {
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
 
 -- LSP settings.
