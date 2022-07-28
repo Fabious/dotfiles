@@ -68,6 +68,8 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- See `:help vim.o`
 vim.o.breakindent = true
 vim.o.cmdheight = 1
+vim.o.cursorcolumn = true
+vim.o.cursorline = true
 vim.o.hlsearch = true
 vim.o.ignorecase = true
 vim.o.incsearch = true
