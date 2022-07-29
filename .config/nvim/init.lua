@@ -200,7 +200,7 @@ require("toggleterm").setup {
 
 -- Enable File explorer
 require("nvim-tree").setup()
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
+vim.keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<CR>", { silent = true })
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
