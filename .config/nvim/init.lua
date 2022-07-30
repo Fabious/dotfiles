@@ -13,6 +13,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'                                                        -- Git commands in nvim
   use 'tpope/vim-rhubarb'                                                         -- Fugitive-companion to interact with github
   use 'tpope/vim-surround'                                                        -- Surround
+  use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
   use 'numToStr/Comment.nvim'                                                     -- "gc" to comment visual regions/lines
   use 'nvim-treesitter/nvim-treesitter'                                           -- Highlight, edit, and navigate code
@@ -23,13 +24,10 @@ require('packer').startup(function(use)
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } }           -- Snippet Engine and Snippet Expansion
   use 'ellisonleao/gruvbox.nvim'                                                  -- Gruvbox
   use 'overcache/NeoSolarized'                                                    -- Solarized
-  use 'cocopon/iceberg.vim'                                                       -- Iceberg
   use 'folke/tokyonight.nvim'                                                     -- Tokyonight
-  use ({ "catppuccin/nvim", as = "catppuccin" })                                  -- Catpuccin
   use 'sainnhe/everforest'                                                        -- Everforest
   use 'nvim-lualine/lualine.nvim'                                                 -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim'                                       -- Add indentation guides even on blank lines
-  use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Fuzzy Finder (files, lsp, etc)
   use { "windwp/nvim-autopairs" }                                                 -- Autopairs
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }                                 -- Toggleterm
@@ -86,7 +84,7 @@ vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.g.everforest_background = 'hard'
-vim.cmd [[colorscheme everforest]]
+vim.cmd [[colorscheme gruvbox]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -139,7 +137,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'everforest',
+    theme = 'gruvbox',
     component_separators = '|',
     section_separators = '',
   },
@@ -329,7 +327,7 @@ end
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua' }
+local servers = { 'tsserver', 'sumneko_lua' }
 
 -- Ensure the servers above are installed
 require('nvim-lsp-installer').setup {
