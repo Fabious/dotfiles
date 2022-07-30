@@ -12,6 +12,7 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'                                                    -- Package manager
   use 'tpope/vim-fugitive'                                                        -- Git commands in nvim
   use 'tpope/vim-rhubarb'                                                         -- Fugitive-companion to interact with github
+  use 'tpope/vim-surround'                                                        -- Surround
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
   use 'numToStr/Comment.nvim'                                                     -- "gc" to comment visual regions/lines
   use 'nvim-treesitter/nvim-treesitter'                                           -- Highlight, edit, and navigate code
@@ -33,6 +34,7 @@ require('packer').startup(function(use)
   use { "windwp/nvim-autopairs" }                                                 -- Autopairs
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }                                 -- Toggleterm
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File explorer
+  use { "prettier/vim-prettier" }                                                 -- Prettier
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
