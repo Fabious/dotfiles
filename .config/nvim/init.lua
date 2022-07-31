@@ -10,8 +10,6 @@ end
 -- stylua: ignore start
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'                                                    -- Package manager
-  use 'tpope/vim-fugitive'                                                        -- Git commands in nvim
-  use 'tpope/vim-rhubarb'                                                         -- Fugitive-companion to interact with github
   use 'tpope/vim-surround'                                                        -- Surround
   use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
@@ -68,7 +66,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- See `:help vim.o`
 vim.o.breakindent = true
 vim.o.cmdheight = 1
-vim.o.cursorcolumn = true
+vim.o.cursorcolumn = false
 vim.o.cursorline = true
 vim.o.hlsearch = true
 vim.o.ignorecase = true
