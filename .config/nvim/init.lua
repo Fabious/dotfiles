@@ -10,10 +10,12 @@ end
 -- stylua: ignore start
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'                                                    -- Package manager
+  use 'tpope/vim-fugitive'                                                        -- Fugitive
   use 'tpope/vim-surround'                                                        -- Surround
   use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
-  use 'numToStr/Comment.nvim'                                                     -- "gc" to comment visual regions/lines
+  use 'numToStr/Comment.nvim'                                                     -- Comment
+  use 'JoosepAlviste/nvim-ts-context-commentstring'                               -- Enable JSX comment
   use 'nvim-treesitter/nvim-treesitter'                                           -- Highlight, edit, and navigate code
   use 'nvim-treesitter/nvim-treesitter-textobjects'                               -- Additional textobjects for treesitter
   use 'neovim/nvim-lspconfig'                                                     -- Collection of configurations for built-in LSP client
@@ -31,6 +33,18 @@ require('packer').startup(function(use)
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }                                 -- Toggleterm
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File explorer
   use { "prettier/vim-prettier" }                                                 -- Prettier
+
+  -- WhichKey
+  use {
+  "folke/which-key.nvim",
+  config = function()
+    require("which-key").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
@@ -82,7 +96,7 @@ vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.g.everforest_background = 'hard'
-vim.cmd [[colorscheme gruvbox]]
+vim.cmd [[colorscheme tokyonight]]
 
 -- Prettier configuration
 vim.g["prettier#autoformat"  ] = 1
@@ -111,6 +125,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- best keymaps
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('n', '<leader>1', ':e ~/.config/nvim/init.lua<CR>', { silent = true })
+vim.keymap.set('n', '<leader>5', ':PackerSync<CR>', { silent = true })
 
 vim.keymap.set('n', '<leader>w', ':w<CR>', { silent = true })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
@@ -140,14 +155,37 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'gruvbox',
+    theme = 'tokyonight',
     component_separators = '|',
     section_separators = '',
   },
 }
 
 -- Enable Comment.nvim
-require('Comment').setup()
+require('Comment').setup {
+   pre_hook = function(ctx)
+        -- Only calculate commentstring for tsx filetypes
+        if vim.bo.filetype == 'typescriptreact' then
+            local U = require('Comment.utils')
+
+            -- Determine whether to use linewise or blockwise commentstring
+            local type = ctx.ctype == U.ctype.line and '__default' or '__multiline'
+
+            -- Determine the location where to calculate commentstring from
+            local location = nil
+            if ctx.ctype == U.ctype.block then
+                location = require('ts_context_commentstring.utils').get_cursor_location()
+            elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+                location = require('ts_context_commentstring.utils').get_visual_start_location()
+            end
+
+            return require('ts_context_commentstring.internal').calculate_commentstring({
+                key = type,
+                location = location,
+            })
+        end
+    end,
+}
 
 -- Enable Autopairs.nvim
 require("nvim-autopairs").setup()
@@ -209,7 +247,7 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
@@ -220,7 +258,9 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'lua', 'typescript', 'javascript' },
-
+  context_commentstring = {
+    enable = true
+  },
   highlight = { enable = true },
   indent = { enable = true },
   incremental_selection = {
