@@ -125,6 +125,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- best keymaps
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('n' , ';', ':')
+vim.keymap.set('n' , 'Q', '<nop>')
 vim.keymap.set('n', '<leader>1', ':e ~/.config/nvim/init.lua<CR>', { silent = true })
 vim.keymap.set('n', '<leader>5', ':PackerSync<CR>', { silent = true })
 
