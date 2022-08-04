@@ -140,6 +140,13 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
 vim.keymap.set("n", "<S-l>", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true })
 
+vim.keymap.set("x", "<leader>p", "\"_dP", { silent = true })
+vim.keymap.set("n", "<leader>d", "\"_d", { silent = true })
+vim.keymap.set("v", "<leader>d", "\"_d", { silent = true })
+vim.keymap.set("n", "<leader>y", "\"+y", { silent = true })
+vim.keymap.set("v", "<leader>y", "\"+y", { silent = true })
+vim.keymap.set("n", "<leader>Y", "\"+Y", { silent = true })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
