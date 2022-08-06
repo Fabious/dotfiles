@@ -22,10 +22,6 @@ require('packer').startup(function(use)
   use 'williamboman/nvim-lsp-installer'                                           -- Automatically install language servers to stdpath
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }               -- Autocompletion
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } }           -- Snippet Engine and Snippet Expansion
-  use 'ellisonleao/gruvbox.nvim'                                                  -- Gruvbox
-  use 'overcache/NeoSolarized'                                                    -- Solarized
-  use 'folke/tokyonight.nvim'                                                     -- Tokyonight
-  use 'sainnhe/everforest'                                                        -- Everforest
   use 'nvim-lualine/lualine.nvim'                                                 -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim'                                       -- Add indentation guides even on blank lines
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Fuzzy Finder (files, lsp, etc)
@@ -33,6 +29,13 @@ require('packer').startup(function(use)
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }                                 -- Toggleterm
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File explorer
   use { "prettier/vim-prettier" }                                                 -- Prettier
+
+  -- THEMES
+  use "EdenEast/nightfox.nvim"
+  use 'ellisonleao/gruvbox.nvim'                                                  
+  use 'overcache/NeoSolarized'                                                   
+  use 'folke/tokyonight.nvim'                                                   
+  use 'sainnhe/everforest'                                                     
 
   -- WhichKey
   use {
@@ -96,7 +99,7 @@ vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.g.everforest_background = 'hard'
-vim.cmd [[colorscheme tokyonight]]
+vim.cmd [[colorscheme terafox]]
 
 -- Prettier configuration
 vim.g["prettier#autoformat"  ] = 1
@@ -164,7 +167,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'tokyonight',
+    theme = 'terafox',
     component_separators = '|',
     section_separators = '',
   },
