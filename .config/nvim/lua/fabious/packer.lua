@@ -30,6 +30,7 @@ require('packer').startup(function(use)
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }                                 -- Toggleterm
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File explorer
   use { "prettier/vim-prettier" }                                                 -- Prettier
+  use  "folke/which-key.nvim"
 
   -- THEMES
   use "EdenEast/nightfox.nvim"
@@ -37,18 +38,6 @@ require('packer').startup(function(use)
   use 'overcache/NeoSolarized'                                                   
   use 'folke/tokyonight.nvim'                                                   
   use 'sainnhe/everforest'                                                     
-
-  -- WhichKey
-  use {
-  "folke/which-key.nvim",
-  config = function()
-    require("which-key").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
