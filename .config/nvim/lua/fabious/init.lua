@@ -1,6 +1,6 @@
-require('fabious.packer')
-require('fabious.options')
 require('fabious.keymaps')
+require('fabious.options')
+require('fabious.packer')
 require('fabious.treesitter')
 require('fabious.telescope')
 require('fabious.comment')
