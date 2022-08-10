@@ -42,10 +42,10 @@ require('packer').startup(function(use)
 
   -- THEMES
   use "EdenEast/nightfox.nvim"
-  use 'ellisonleao/gruvbox.nvim'                                                  
-  use 'overcache/NeoSolarized'                                                   
-  use 'folke/tokyonight.nvim'                                                   
-  use 'sainnhe/everforest'                                                     
+  use 'ellisonleao/gruvbox.nvim'
+  use 'overcache/NeoSolarized'
+  use 'folke/tokyonight.nvim'
+  use 'sainnhe/everforest'
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
