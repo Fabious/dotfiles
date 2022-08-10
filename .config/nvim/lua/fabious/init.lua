@@ -25,6 +25,9 @@ require("nvim-autopairs").setup()
 -- Enable WhichKey
 require("which-key").setup()
 
+-- Enable Surround
+require("nvim-surround").setup()
+
 -- Enable toggleterm.nvim
 require("toggleterm").setup {
   direction = 'vertical',

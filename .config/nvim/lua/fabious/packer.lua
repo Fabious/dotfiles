@@ -16,15 +16,17 @@ require('packer').startup(function(use)
     "neovim/nvim-lspconfig",                                                      -- Collection of configurations for built-in LSP client
   }
 
+  -- Treesitter
+  use 'nvim-treesitter/nvim-treesitter'                                           -- Highlight, edit, and navigate code
+  use 'nvim-treesitter/nvim-treesitter-textobjects'                               -- Additional textobjects for treesitter
+
   use 'wbthomason/packer.nvim'                                                    -- Package manager
   use 'tpope/vim-fugitive'                                                        -- Fugitive
-  use 'tpope/vim-surround'                                                        -- Surround
+  use "kylechui/nvim-surround"                                                    -- Surround
   use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
   use 'numToStr/Comment.nvim'                                                     -- Comment
   use 'JoosepAlviste/nvim-ts-context-commentstring'                               -- Enable JSX comment
-  use 'nvim-treesitter/nvim-treesitter'                                           -- Highlight, edit, and navigate code
-  use 'nvim-treesitter/nvim-treesitter-textobjects'                               -- Additional textobjects for treesitter
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }               -- Autocompletion
   use 'feline-nvim/feline.nvim'
   use "nanozuki/tabby.nvim"
