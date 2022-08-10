@@ -22,6 +22,7 @@ require('packer').startup(function(use)
 
   use 'wbthomason/packer.nvim'                                                    -- Package manager
   use 'tpope/vim-fugitive'                                                        -- Fugitive
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
   use "kylechui/nvim-surround"                                                    -- Surround
   use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
