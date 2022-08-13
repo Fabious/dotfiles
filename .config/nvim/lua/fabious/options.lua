@@ -22,7 +22,6 @@ vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.g.everforest_background = 'hard'
-vim.cmd [[colorscheme terafox]]
 
 -- Prettier configuration
 vim.g["prettier#autoformat"] = 1
