@@ -28,8 +28,14 @@ require('packer').startup(function(use)
   use "nanozuki/tabby.nvim"
   use 'lukas-reineke/indent-blankline.nvim'
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
-  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   use { "prettier/vim-prettier" }
+
+  use { 'kyazdani42/nvim-tree.lua',
+    config = function()
+      require("nvim-tree").setup()
+    end,
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
 
   use {
     "folke/which-key.nvim",
@@ -48,7 +54,8 @@ require('packer').startup(function(use)
     config = function()
       require("neogit").setup()
     end,
-    requires = 'nvim-lua/plenary.nvim' }
+    requires = 'nvim-lua/plenary.nvim'
+  }
 
   use { "kylechui/nvim-surround",
 
