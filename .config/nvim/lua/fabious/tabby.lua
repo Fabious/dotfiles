@@ -32,7 +32,7 @@ local fmt = string.format
 ---@return string
 local hex = function(n)
   if n then
-    return fmt("#%06x", n)
+    return fmt('#%06x', n)
   end
 end
 
@@ -40,12 +40,12 @@ end
 ---@param style string
 ---@return table
 local function parse_style(style)
-  if not style or style == "NONE" then
+  if not style or style == 'NONE' then
     return {}
   end
 
   local result = {}
-  for token in string.gmatch(style, "([^,]+)") do
+  for token in string.gmatch(style, '([^,]+)') do
     result[token] = true
   end
 
@@ -94,14 +94,14 @@ local function generate_pallet_from_colorscheme()
 
   local pallet = {}
   for name, value in pairs(color_map) do
-    local global_name = "terminal_color_" .. value.index
+    local global_name = 'terminal_color_' .. value.index
     pallet[name] = vim.g[global_name] and vim.g[global_name] or value.default
   end
 
-  pallet.sl = get_highlight("StatusLine")
-  pallet.tab = get_highlight("TabLine")
-  pallet.sel = get_highlight("TabLineSel")
-  pallet.fill = get_highlight("TabLineFill")
+  pallet.sl = get_highlight 'StatusLine'
+  pallet.tab = get_highlight 'TabLine'
+  pallet.sel = get_highlight 'TabLineSel'
+  pallet.fill = get_highlight 'TabLineFill'
 
   return pallet
 end
@@ -127,8 +127,8 @@ _G._genreate_user_tabline_highlights = function()
 
   local colors = {}
   for name, value in pairs(sl_colors) do
-    colors["User" .. name] = { fg = value.fg, bg = value.bg, bold = true }
-    colors["UserRv" .. name] = { fg = value.bg, bg = value.fg, bold = true }
+    colors['User' .. name] = { fg = value.fg, bg = value.bg, bold = true }
+    colors['UserRv' .. name] = { fg = value.bg, bg = value.fg, bold = true }
   end
 
   local groups = {
@@ -141,13 +141,13 @@ _G._genreate_user_tabline_highlights = function()
     UserTLLineSep = { fg = pal.tab.bg, bg = pal.fill.bg },
   }
 
-  set_highlights(vim.tbl_extend("force", colors, groups))
+  set_highlights(vim.tbl_extend('force', colors, groups))
 end
 
 _genreate_user_tabline_highlights()
 
-vim.api.nvim_create_augroup("UserTablineHighlightGroups", { clear = true })
-vim.api.nvim_create_autocmd({ "SessionLoadPost", "ColorScheme" }, {
+vim.api.nvim_create_augroup('UserTablineHighlightGroups', { clear = true })
+vim.api.nvim_create_autocmd({ 'SessionLoadPost', 'ColorScheme' }, {
   callback = function()
     _genreate_user_tabline_highlights()
   end,
@@ -156,65 +156,65 @@ vim.api.nvim_create_autocmd({ "SessionLoadPost", "ColorScheme" }, {
 ----------------------------------------------------------------------------------------------------
 -- Feline
 
-local filename = require("tabby.filename")
+local filename = require 'tabby.filename'
 
 local cwd = function()
-  return "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " "
+  return '  ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t') .. ' '
 end
 
 local line = {
-  hl = "TabLineFill",
-  layout = "active_wins_at_tail",
+  hl = 'TabLineFill',
+  layout = 'active_wins_at_tail',
   head = {
-    { cwd, hl = "UserTLHead" },
-    { "", hl = "UserTLHeadSep" },
+    { cwd, hl = 'UserTLHead' },
+    { '', hl = 'UserTLHeadSep' },
   },
   active_tab = {
     label = function(tabid)
       return {
-        "  " .. tabid .. " ",
-        hl = "UserTLActive",
+        '  ' .. tabid .. ' ',
+        hl = 'UserTLActive',
       }
     end,
-    left_sep = { "", hl = "UserTLActiveSep" },
-    right_sep = { "", hl = "UserTLActiveSep" },
+    left_sep = { '', hl = 'UserTLActiveSep' },
+    right_sep = { '', hl = 'UserTLActiveSep' },
   },
   inactive_tab = {
     label = function(tabid)
       return {
-        "  " .. tabid .. " ",
-        hl = "UserTLBoldLine",
+        '  ' .. tabid .. ' ',
+        hl = 'UserTLBoldLine',
       }
     end,
-    left_sep = { "", hl = "UserTLLineSep" },
-    right_sep = { "", hl = "UserTLLineSep" },
+    left_sep = { '', hl = 'UserTLLineSep' },
+    right_sep = { '', hl = 'UserTLLineSep' },
   },
   top_win = {
     label = function(winid)
       return {
-        "  " .. filename.unique(winid) .. " ",
-        hl = "TabLine",
+        '  ' .. filename.unique(winid) .. ' ',
+        hl = 'TabLine',
       }
     end,
-    left_sep = { "", hl = "UserTLLineSep" },
-    right_sep = { "", hl = "UserTLLineSep" },
+    left_sep = { '', hl = 'UserTLLineSep' },
+    right_sep = { '', hl = 'UserTLLineSep' },
   },
   win = {
     label = function(winid)
       return {
-        "  " .. filename.unique(winid) .. " ",
-        hl = "TabLine",
+        '  ' .. filename.unique(winid) .. ' ',
+        hl = 'TabLine',
       }
     end,
-    left_sep = { "", hl = "UserTLLineSep" },
-    right_sep = { "", hl = "UserTLLineSep" },
+    left_sep = { '', hl = 'UserTLLineSep' },
+    right_sep = { '', hl = 'UserTLLineSep' },
   },
   tail = {
-    { "", hl = "UserTLHeadSep" },
-    { "  ", hl = "UserTLHead" },
+    { '', hl = 'UserTLHeadSep' },
+    { '  ', hl = 'UserTLHead' },
   },
 }
 
-require("tabby").setup({
+require('tabby').setup {
   tabline = line,
-})
+}

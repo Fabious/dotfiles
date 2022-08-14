@@ -39,6 +39,8 @@ local function config(_config)
         vim.lsp.buf.format or vim.lsp.buf.formatting,
         { desc = 'Format current buffer with LSP' }
       )
+
+      require('illuminate').on_attach(client)
     end,
   }, _config or {})
 end
