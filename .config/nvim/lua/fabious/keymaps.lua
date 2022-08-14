@@ -17,7 +17,7 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 -- [[ My Keymaps ]]
 -- best keymaps
 map('i', 'jk', '<ESC>')
-map('n', ';', ':')
+map('n', ';', ':', { noremap = false })
 map('n', 'Q', '<nop>')
 map('n', 'q:', '<Nop>')
 map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious/init.lua<CR>', { desc = 'Open confing' })

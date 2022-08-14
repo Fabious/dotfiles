@@ -30,8 +30,6 @@ require('packer').startup(function(use)
   use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   use { "prettier/vim-prettier" }
-  use { "folke/which-key.nvim", config = function() require('which-key').setup() end }
-
 
   use {
     "folke/which-key.nvim",
