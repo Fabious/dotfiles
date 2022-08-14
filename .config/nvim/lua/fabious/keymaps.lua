@@ -8,17 +8,17 @@ vim.g.maplocalleader = ' '
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+map({ 'n', 'v' }, '<Space>', '<Nop>')
 
 -- Remap for dealing with word wrap
-map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
-map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
+-- map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
+-- map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- [[ My Keymaps ]]
 -- best keymaps
 map('i', 'jk', '<ESC>')
 map('n', ';', ':', { noremap = false })
-map('n', 'Q', '<nop>')
+map('n', 'Q', '<Nop>')
 map('n', 'q:', '<Nop>')
 map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious/init.lua<CR>', { desc = 'Open confing' })
 map('n', '<leader>2', ':e ~/.config/nvim/lua/fabious/keymaps.lua<CR>', { desc = 'Open keymaps' })
