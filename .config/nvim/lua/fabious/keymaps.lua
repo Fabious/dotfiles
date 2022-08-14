@@ -1,11 +1,6 @@
-local Remap = require('fabious.helpers.keybind')
-local nmap = Remap.nmap
-local nnoremap = Remap.nnoremap
-local inoremap = Remap.inoremap
-local vnoremap = Remap.vnoremap
-local xnoremap = Remap.xnoremap
-
-local silent = { silent = true }
+local map = function(mode, key, cmd, opts)
+  vim.keymap.set(mode, key, cmd, opts or { noremap = true, silent = true })
+end
 
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
@@ -13,55 +8,57 @@ vim.g.maplocalleader = ' '
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', silent)
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
-nnoremap('k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-nnoremap('j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
+map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- [[ My Keymaps ]]
 -- best keymaps
--- vim.keymap.set('i', 'jk', '<ESC>',silent)
-inoremap('jk', '<ESC>')
-nmap(';', ':')
-nmap('Q', '<nop>')
-nnoremap('<leader>1', ':e ~/.config/nvim/lua/fabious/init.lua<CR>', { desc = 'Open confing' })
-nnoremap('<leader>2', ':e ~/.config/nvim/lua/fabious/keymaps.lua<CR>', { desc = 'Open keymaps'})
-nnoremap('<leader>4', ':e ~/.config/nvim/lua/fabious/packer.lua<CR>', { desc = 'Open plugins'})
-nnoremap('<leader>5', ':PackerSync<CR>', { desc = 'reload Packer'})
+map('i', 'jk', '<ESC>')
+map('n', ';', ':')
+map('n', 'Q', '<nop>')
+map('n', 'q:', '<Nop>')
+map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious/init.lua<CR>', { desc = 'Open confing' })
+map('n', '<leader>2', ':e ~/.config/nvim/lua/fabious/keymaps.lua<CR>', { desc = 'Open keymaps' })
+map('n', '<leader>4', ':e ~/.config/nvim/lua/fabious/packer.lua<CR>', { desc = 'Open plugins' })
+map('n', '<leader>5', ':PackerSync<CR>', { desc = 'reload Packer' })
 
-nnoremap('<leader>w', ':w<CR>', silent)
-nnoremap('<leader>q', ':q<CR>', silent)
-nnoremap('<leader>o', ':only<CR>', silent)
+map('n', '<leader>w', ':w<CR>')
+map('n', '<leader>q', ':q<CR>')
+map('n', '<leader>o', ':only<CR>')
 
-nnoremap('<C-h>', '<C-w>h', silent)
-nnoremap('<C-j>', '<C-w>j', silent)
-nnoremap('<C-k>', '<C-w>k', silent)
-nnoremap('<C-l>', '<C-w>l', silent)
+map('n', '<C-h>', '<C-w>h')
+map('n', '<C-j>', '<C-w>j')
+map('n', '<C-k>', '<C-w>k')
+map('n', '<C-l>', '<C-w>l')
 
-nnoremap("<S-l>", ":bnext<CR>")
-nnoremap("<S-h>", ":bprevious<CR>")
+map('n', "<S-l>", ":bnext<CR>")
+map('n', "<S-h>", ":bprevious<CR>")
 
-xnoremap("<leader>p", "\"_dP", silent)
-nnoremap("<leader>d", "\"_d", silent)
-vnoremap("<leader>d", "\"_d", silent)
-nnoremap("<leader>y", "\"+y", silent)
-vnoremap("<leader>y", "\"+y", silent)
-nnoremap("<leader>Y", "\"+Y", silent)
+map('x', "<leader>p", "\"_dP")
+map('n', "<leader>d", "\"_d")
+map('v', "<leader>d", "\"_d")
+map('n', "<leader>y", "\"+y")
+map('v', "<leader>y", "\"+y")
+map('n', "<leader>Y", "\"+Y")
 
 -- tabs
-nnoremap("<leader>ta", ":$tabnew<CR>", silent)
-nnoremap("<leader>tc", ":tabclose<CR>", silent)
-nnoremap("<leader>to", ":tabonly<CR>", silent)
-nnoremap("<leader>tn", ":tabn<CR>", silent)
-nnoremap("<leader>tp", ":tabp<CR>", silent)
+map('n', "<leader>ta", ":$tabnew<CR>")
+map('n', "<leader>tc", ":tabclose<CR>")
+map('n', "<leader>to", ":tabonly<CR>")
+map('n', "<leader>tn", ":tabn<CR>")
+map('n', "<leader>tp", ":tabp<CR>")
 -- move current tab to previous position
-nnoremap("<leader>tmp", ":-tabmove<CR>", silent)
+map('n', "<leader>tmp", ":-tabmove<CR>")
 -- move current tab to next position
-nnoremap("<leader>tmn", ":+tabmove<CR>", silent)
+map('n', "<leader>tmn", ":+tabmove<CR>")
 
 -- Diagnostic keymaps
-nnoremap('[d', vim.diagnostic.goto_prev)
-nnoremap(']d', vim.diagnostic.goto_next)
-nnoremap('<leader>vf', vim.diagnostic.open_float)
-nnoremap('<leader>vl', vim.diagnostic.setloclist)
+map('n', '[d', vim.diagnostic.goto_prev)
+map('n', ']d', vim.diagnostic.goto_next)
+map('n', '<leader>vf', vim.diagnostic.open_float)
+map('n', '<leader>vl', vim.diagnostic.setloclist)
+
+map("n", "<leader>e", ":NvimTreeFindFileToggle<CR>")

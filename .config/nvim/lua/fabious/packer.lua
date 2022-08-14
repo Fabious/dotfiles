@@ -7,40 +7,61 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- stylua: ignore start
 require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
+
   -- LSP
   use {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",                                                      -- Collection of configurations for built-in LSP client
+    "neovim/nvim-lspconfig",
   }
 
   -- Treesitter
-  use 'nvim-treesitter/nvim-treesitter'                                           -- Highlight, edit, and navigate code
-  use 'nvim-treesitter/nvim-treesitter-textobjects'                               -- Additional textobjects for treesitter
+  use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'numToStr/Comment.nvim'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-  use 'wbthomason/packer.nvim'                                                    -- Package manager
-  use 'tpope/vim-fugitive'                                                        -- Fugitive
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
-  use "kylechui/nvim-surround"                                                    -- Surround
-  use 'tpope/vim-sleuth'                                                          -- Detect tabstop and shiftwidth automatically
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
-  use 'numToStr/Comment.nvim'                                                     -- Comment
-  use 'JoosepAlviste/nvim-ts-context-commentstring'                               -- Enable JSX comment
-  use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }               -- Autocompletion
+  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'feline-nvim/feline.nvim'
   use "nanozuki/tabby.nvim"
-  use 'lukas-reineke/indent-blankline.nvim'                                       -- Add indentation guides even on blank lines
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Fuzzy Finder (files, lsp, etc)
-  use { "windwp/nvim-autopairs" }                                                 -- Autopairs
-  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }                                 -- Toggleterm
-  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File explorer
-  use { "prettier/vim-prettier" }                                                 -- Prettier
-  use  "folke/which-key.nvim"
+  use 'lukas-reineke/indent-blankline.nvim'
+  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
+  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
+  use { "prettier/vim-prettier" }
+  use { "folke/which-key.nvim", config = function() require('which-key').setup() end }
 
-  -- SNIPPETS
-  use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } }           -- Snippet Engine and Snippet Expansion
+
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup()
+    end
+  }
+
+  use { "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup()
+    end
+  }
+
+  use { 'TimUntersberger/neogit',
+    config = function()
+      require("neogit").setup()
+    end,
+    requires = 'nvim-lua/plenary.nvim' }
+
+  use { "kylechui/nvim-surround",
+
+    config = function()
+      require("nvim-surround").setup()
+    end,
+  }
+
+  -- Autocomplete
+  use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }
+  use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
   use "rafamadriz/friendly-snippets"
 
   -- THEMES
@@ -50,6 +71,7 @@ require('packer').startup(function(use)
   use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
 
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Fuzzy Finder (files, lsp, etc)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
 
@@ -57,11 +79,7 @@ require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
--- stylua: ignore end
 
--- When we are bootstrapping a configuration, it doesn't
--- make sense to execute the rest of the init.lua.
---
 -- You'll need to restart nvim, and then it will work.
 if is_bootstrap then
   print '=================================='
@@ -71,4 +89,3 @@ if is_bootstrap then
   print '=================================='
   return
 end
-

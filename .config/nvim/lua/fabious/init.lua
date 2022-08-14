@@ -19,18 +19,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Enable Autopairs.nvim
-require("nvim-autopairs").setup()
-
--- Enable WhichKey
-require("which-key").setup()
-
--- Enable Neogit
-require("neogit").setup()
-
--- Enable Surround
-require("nvim-surround").setup()
-
 -- Enable toggleterm.nvim
 require("toggleterm").setup {
   direction = 'vertical',
@@ -40,7 +28,6 @@ require("toggleterm").setup {
 
 -- Enable File explorer
 require("nvim-tree").setup()
-vim.keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<CR>", { silent = true })
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
