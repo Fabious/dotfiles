@@ -1,15 +1,15 @@
-require('fabious.keymaps')
-require('fabious.options')
-require('fabious.packer')
-require('fabious.treesitter')
-require('fabious.telescope')
-require('fabious.comment')
-require('fabious.feline')
-require('fabious.tabby')
-require('fabious.lsp')
-require('fabious.toggleterm')
-require('fabious.indent-blankline')
-require('fabious.gitsigns')
+require 'fabious.keymaps'
+require 'fabious.options'
+require 'fabious.packer'
+require 'fabious.treesitter'
+require 'fabious.telescope'
+require 'fabious.comment'
+require 'fabious.feline'
+require 'fabious.tabby'
+require 'fabious.lsp'
+require 'fabious.toggleterm'
+require 'fabious.indent-blankline'
+require 'fabious.gitsigns'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -21,4 +21,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-

@@ -12,9 +12,14 @@ require('packer').startup(function(use)
 
   -- LSP
   use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
+    'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
+      'b0o/schemastore.nvim',
+      'RRethy/vim-illuminate',
+    },
   }
 
   -- Treesitter
@@ -25,52 +30,55 @@ require('packer').startup(function(use)
 
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'feline-nvim/feline.nvim'
-  use "nanozuki/tabby.nvim"
+  use 'nanozuki/tabby.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
-  use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
-  use { "prettier/vim-prettier" }
+  use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
 
-  use { 'kyazdani42/nvim-tree.lua',
+  use {
+    'kyazdani42/nvim-tree.lua',
     config = function()
-      require("nvim-tree").setup()
+      require('nvim-tree').setup()
     end,
-    requires = 'kyazdani42/nvim-web-devicons'
+    requires = 'kyazdani42/nvim-web-devicons',
   }
 
   use {
-    "folke/which-key.nvim",
+    'folke/which-key.nvim',
     config = function()
-      require("which-key").setup()
-    end
-  }
-
-  use { "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup()
-    end
-  }
-
-  use { 'TimUntersberger/neogit',
-    config = function()
-      require("neogit").setup()
+      require('which-key').setup()
     end,
-    requires = 'nvim-lua/plenary.nvim'
   }
 
-  use { "kylechui/nvim-surround",
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
+    end,
+  }
+
+  use {
+    'TimUntersberger/neogit',
+    config = function()
+      require('neogit').setup()
+    end,
+    requires = 'nvim-lua/plenary.nvim',
+  }
+
+  use {
+    'kylechui/nvim-surround',
 
     config = function()
-      require("nvim-surround").setup()
+      require('nvim-surround').setup()
     end,
   }
 
   -- Autocomplete
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }
   use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
-  use "rafamadriz/friendly-snippets"
+  use 'rafamadriz/friendly-snippets'
 
   -- THEMES
-  use "EdenEast/nightfox.nvim"
+  use 'EdenEast/nightfox.nvim'
   use 'ellisonleao/gruvbox.nvim'
   use 'overcache/NeoSolarized'
   use 'folke/tokyonight.nvim'
@@ -78,7 +86,7 @@ require('packer').startup(function(use)
 
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Fuzzy Finder (files, lsp, etc)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
   if is_bootstrap then
     require('packer').sync()

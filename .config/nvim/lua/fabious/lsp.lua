@@ -1,8 +1,14 @@
 -- LSP settings.
 local function config(_config)
-  return vim.tbl_deep_extend("force", {
+  return vim.tbl_deep_extend('force', {
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = function(_, bufnr)
+    on_attach = function(client, bufnr)
+      -- TODO: update when Neovim 0.8 is out
+      -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts#neovim-08
+      if client.name ~= 'null-ls' then
+        client.resolved_capabilities.document_formatting = false
+      end
+
       local nmap = function(keys, func, desc)
         if desc then
           desc = 'LSP: ' .. desc
@@ -27,16 +33,44 @@ local function config(_config)
       nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 
       -- Create a command `:Format` local to the LSP buffer
-      vim.api.nvim_buf_create_user_command(bufnr, 'Format', vim.lsp.buf.format or vim.lsp.buf.formatting,
-        { desc = 'Format current buffer with LSP' })
-    end
+      vim.api.nvim_buf_create_user_command(
+        bufnr,
+        'Format',
+        vim.lsp.buf.format or vim.lsp.buf.formatting,
+        { desc = 'Format current buffer with LSP' }
+      )
+    end,
   }, _config or {})
 end
 
-require("mason").setup()
-require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua", "eslint", "tsserver" }
-})
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+require('null-ls').setup {
+  sources = {
+    require('null-ls').builtins.formatting.stylua,
+    require('null-ls').builtins.formatting.prettierd,
+    -- require("null-ls").builtins.diagnostics.eslint,
+  },
+  -- you can reuse a shared lspconfig on_attach callback here
+  on_attach = function(client, bufnr)
+    if client.supports_method 'textDocument/formatting' then
+      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          -- TODO: Change with Neovim 0.8
+          -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+          vim.lsp.buf.formatting_sync()
+        end,
+      })
+    end
+  end,
+}
+
+require('mason').setup()
+require('mason-lspconfig').setup {
+  ensure_installed = { 'sumneko_lua', 'eslint', 'tsserver' },
+}
 
 require('lspconfig').eslint.setup(config())
 require('lspconfig').tsserver.setup(config())
@@ -48,7 +82,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').sumneko_lua.setup(config({
+require('lspconfig').sumneko_lua.setup(config {
   settings = {
     Lua = {
       runtime = {
@@ -62,10 +96,10 @@ require('lspconfig').sumneko_lua.setup(config({
       },
       workspace = { library = vim.api.nvim_get_runtime_file('', true) },
       -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = { enable = false, },
+      telemetry = { enable = false },
     },
   },
-}))
+})
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -110,4 +144,4 @@ cmp.setup {
   },
 }
 
-require("luasnip.loaders.from_vscode").lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load()
