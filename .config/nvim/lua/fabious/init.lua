@@ -10,6 +10,7 @@ require 'fabious.lsp'
 require 'fabious.toggleterm'
 require 'fabious.indent-blankline'
 require 'fabious.gitsigns'
+require 'fabious.neogit'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

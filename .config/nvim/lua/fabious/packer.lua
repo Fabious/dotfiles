@@ -58,17 +58,20 @@ require('packer').startup(function(use)
 
   use {
     'TimUntersberger/neogit',
-    config = function()
-      require('neogit').setup()
-    end,
-    requires = 'nvim-lua/plenary.nvim',
+    requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
   }
 
   use {
     'kylechui/nvim-surround',
-
     config = function()
       require('nvim-surround').setup()
+    end,
+  }
+
+  use {
+    'folke/zen-mode.nvim',
+    config = function()
+      require('zen-mode').setup()
     end,
   }
 
