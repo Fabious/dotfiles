@@ -80,7 +80,6 @@ require('packer').startup(function(use)
   -- THEMES
   use 'EdenEast/nightfox.nvim'
   use 'ellisonleao/gruvbox.nvim'
-  use 'overcache/NeoSolarized'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
 
