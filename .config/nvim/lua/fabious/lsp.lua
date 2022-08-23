@@ -71,11 +71,12 @@ require('null-ls').setup {
 
 require('mason').setup()
 require('mason-lspconfig').setup {
-  ensure_installed = { 'sumneko_lua', 'eslint', 'tsserver' },
+  ensure_installed = { 'sumneko_lua', 'eslint', 'tailwindcss', 'tsserver' },
 }
 
 require('lspconfig').eslint.setup(config())
 require('lspconfig').tsserver.setup(config())
+require('lspconfig').tailwindcss.setup(config())
 
 -- LUA
 --

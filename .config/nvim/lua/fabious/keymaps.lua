@@ -78,7 +78,7 @@ map('n', '<leader>vf', vim.diagnostic.open_float)
 map('n', '<leader>vl', vim.diagnostic.setloclist)
 
 -- Tree
-map('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<CR>')
+map('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Git
 map('n', '<leader>gs', '<cmd>Neogit<CR>')
