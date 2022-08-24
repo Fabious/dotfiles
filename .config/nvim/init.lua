@@ -1,2 +1,2 @@
-require('fabious')
-vim.cmd 'silent! colorscheme terafox'
+require 'fabious'
+vim.cmd [[colorscheme nord]]

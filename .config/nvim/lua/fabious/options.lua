@@ -27,6 +27,7 @@ vim.opt.expandtab = true
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.g.everforest_background = 'hard'
+vim.g.nord_italic = false
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
