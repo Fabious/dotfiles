@@ -40,6 +40,9 @@
   # https://github.com/dandavison/delta
   pager = delta
 
+[pull]
+  rebase = true
+
 [diff]
   colorMoved = default
 
