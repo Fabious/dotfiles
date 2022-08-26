@@ -1,6 +1,7 @@
 # Quick edits
 alias ea 'vim ~/.config/fish/aliases.fish'
 alias ef 'vim ~/.config/fish/config.fish'
+alias ek 'vim ~/.config/kitty/kitty.conf'
 alias ev 'vim ~/.config/nvim/init.vim'
 alias eg 'vim ~/.gitconfig'
 alias et 'vim ~/.tmux.conf'
