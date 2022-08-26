@@ -21,6 +21,17 @@ require('packer').startup(function(use)
       'RRethy/vim-illuminate',
     },
   }
+  use {
+    'glepnir/lspsaga.nvim',
+    branch = 'main',
+    config = function()
+      local saga = require 'lspsaga'
+
+      saga.init_lsp_saga {
+        -- your configuration
+      }
+    end,
+  }
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -31,7 +42,12 @@ require('packer').startup(function(use)
 
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'feline-nvim/feline.nvim'
-  use 'nanozuki/tabby.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+  }
+  use { 'akinsho/bufferline.nvim', tag = 'v2.*', requires = 'kyazdani42/nvim-web-devicons' }
+  -- use 'nanozuki/tabby.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
 
