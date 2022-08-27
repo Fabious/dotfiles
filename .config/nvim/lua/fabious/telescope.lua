@@ -1,3 +1,7 @@
+local map = function(mode, key, cmd, opts)
+  vim.keymap.set(mode, key, cmd, opts or { noremap = true, silent = true })
+end
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
