@@ -10,6 +10,8 @@ end
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  use 'glepnir/dashboard-nvim'
+
   -- LSP
   use {
     'neovim/nvim-lspconfig',

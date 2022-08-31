@@ -25,7 +25,7 @@ map('n', '<C-s>', '<cmd>w<CR>')
 -- a tester
 map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 
-map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious/init.lua<CR>', { desc = 'Open confing' })
+map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious<CR>', { desc = 'Open config' })
 map('n', '<leader>2', ':e ~/.config/nvim/lua/fabious/keymaps.lua<CR>', { desc = 'Open keymaps' })
 map('n', '<leader>4', ':e ~/.config/nvim/lua/fabious/packer.lua<CR>', { desc = 'Open plugins' })
 map('n', '<leader>5', ':PackerSync<CR>', { desc = 'reload Packer' })
@@ -87,4 +87,3 @@ map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
 
 -- Zen mode
 map('n', '<leader>z', '<cmd>ZenMode<CR>')
-

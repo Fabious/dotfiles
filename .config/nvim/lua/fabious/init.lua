@@ -4,15 +4,14 @@ require 'fabious.packer'
 require 'fabious.treesitter'
 require 'fabious.telescope'
 require 'fabious.comment'
--- require 'fabious.feline'
 require 'fabious.lualine'
 require 'fabious.bufferline'
--- require 'fabious.tabby'
 require 'fabious.lsp'
 require 'fabious.toggleterm'
 require 'fabious.indent-blankline'
 require 'fabious.gitsigns'
 require 'fabious.neogit'
+require 'fabious.dashboard'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
