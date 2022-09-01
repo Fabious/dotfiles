@@ -11,6 +11,8 @@ alias v nvim
 alias g git
 alias c clear
 alias l ls
+alias ld lazydocker
+alias lg lazygit
 alias ls lsd
 alias lt 'lsd --tree'
 
