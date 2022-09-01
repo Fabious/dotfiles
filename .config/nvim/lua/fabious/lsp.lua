@@ -17,15 +17,15 @@ local function config(_config)
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, noremap = true })
       end
 
-      nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+      -- nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+      -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-      nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+      -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
       nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-      nmap('gr', require('telescope.builtin').lsp_references)
+      -- rmap('gr', require('telescope.builtin').lsp_references)
 
       -- See `:help K` for why this keymap
-      nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+      -- nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
 
       -- Lesser used LSP functionality

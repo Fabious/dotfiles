@@ -8,7 +8,7 @@ vim.g.maplocalleader = ' '
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
--- map({ 'n', 'v' }, '<Space>', '<Nop>')
+map({ 'n', 'v' }, '<Space>', '<Nop>')
 
 -- Remap for dealing with word wrap
 -- map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
@@ -66,16 +66,13 @@ map('n', '<leader>tc', ':tabclose<CR>')
 map('n', '<leader>to', ':tabonly<CR>')
 map('n', '<leader>tn', ':tabn<CR>')
 map('n', '<leader>tp', ':tabp<CR>')
--- move current tab to previous position
-map('n', '<leader>tmp', ':-tabmove<CR>')
--- move current tab to next position
-map('n', '<leader>tmn', ':+tabmove<CR>')
+-- move current tamn', ':+tabmove<CR>')
 
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
-map('n', '<leader>vf', vim.diagnostic.open_float)
-map('n', '<leader>vl', vim.diagnostic.setloclist)
+-- map('n', '<leader>vf', vim.diagnostic.open_float)
+map('n', '<leader>cl', vim.diagnostic.setloclist)
 
 -- Tree
 map('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>')
