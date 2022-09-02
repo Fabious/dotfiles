@@ -78,7 +78,7 @@ map('n', '<leader>cl', vim.diagnostic.setloclist)
 map('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Git
-map('n', '<leader>gs', '<cmd>Neogit<CR>')
+map('n', '<leader>g', '<cmd>Neogit<CR>')
 map('n', ']g', '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', { expr = true })
 map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
 
