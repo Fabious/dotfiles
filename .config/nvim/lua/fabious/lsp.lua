@@ -20,7 +20,7 @@ local function config(_config)
       -- nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
       -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-      -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+      nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
       nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
       -- rmap('gr', require('telescope.builtin').lsp_references)
 
