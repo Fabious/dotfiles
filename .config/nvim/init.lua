@@ -1,2 +1,2 @@
 require 'fabious'
-vim.cmd [[colorscheme nord]]
+vim.cmd [[colorscheme onedark]]
