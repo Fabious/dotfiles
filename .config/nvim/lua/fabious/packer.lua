@@ -33,13 +33,11 @@ require('packer').startup(function(use)
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use 'feline-nvim/feline.nvim'
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   }
   use { 'akinsho/bufferline.nvim', tag = 'v2.*', requires = 'kyazdani42/nvim-web-devicons' }
-  -- use 'nanozuki/tabby.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
 
@@ -91,13 +89,12 @@ require('packer').startup(function(use)
 
   -- THEMES
   use 'EdenEast/nightfox.nvim'
-  use 'ellisonleao/gruvbox.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
   use 'shaunsingh/nord.nvim'
   use 'navarasu/onedark.nvim'
 
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Fuzzy Finder (files, lsp, etc)
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
