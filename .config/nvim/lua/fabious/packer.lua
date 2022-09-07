@@ -10,7 +10,13 @@ end
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'glepnir/dashboard-nvim'
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require('alpha').setup(require('alpha.themes.startify').config)
+    end,
+  }
 
   -- LSP
   use {
@@ -44,7 +50,13 @@ require('packer').startup(function(use)
   use {
     'kyazdani42/nvim-tree.lua',
     config = function()
-      require('nvim-tree').setup()
+      require('nvim-tree').setup {
+        actions = {
+          open_file = {
+            quit_on_open = true,
+          },
+        },
+      }
     end,
     requires = 'kyazdani42/nvim-web-devicons',
   }

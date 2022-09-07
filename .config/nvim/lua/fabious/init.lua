@@ -12,7 +12,6 @@ require 'fabious.toggleterm'
 require 'fabious.indent-blankline'
 require 'fabious.gitsigns'
 require 'fabious.neogit'
-require 'fabious.dashboard'
 require 'fabious.onedark'
 
 -- [[ Highlight on yank ]]
