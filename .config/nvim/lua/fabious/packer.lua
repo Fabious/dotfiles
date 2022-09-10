@@ -51,6 +51,9 @@ require('packer').startup(function(use)
     'kyazdani42/nvim-tree.lua',
     config = function()
       require('nvim-tree').setup {
+        view = {
+          width = '100%',
+        },
         actions = {
           open_file = {
             quit_on_open = true,
