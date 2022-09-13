@@ -12,5 +12,8 @@ test -e ~/.iterm2_shell_integration.fish; and source ~/.iterm2_shell_integration
 # It will replace the current version without touching Starship's configuration.
 starship init fish | source
 
+# Zoxide
+zoxide init fish | source
+
 # ASDF
 source ~/.asdf/asdf.fish
