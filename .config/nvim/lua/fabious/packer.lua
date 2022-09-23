@@ -108,6 +108,7 @@ require('packer').startup(function(use)
   use 'sainnhe/everforest'
   use 'shaunsingh/nord.nvim'
   use 'navarasu/onedark.nvim'
+  use 'ellisonleao/gruvbox.nvim'
 
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
