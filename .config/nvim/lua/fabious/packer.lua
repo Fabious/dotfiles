@@ -106,8 +106,6 @@ require('packer').startup(function(use)
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
-  use 'shaunsingh/nord.nvim'
-  use 'navarasu/onedark.nvim'
   use 'ellisonleao/gruvbox.nvim'
 
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }

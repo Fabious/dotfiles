@@ -12,7 +12,7 @@ require 'fabious.toggleterm'
 require 'fabious.indent-blankline'
 require 'fabious.gitsigns'
 require 'fabious.neogit'
-require 'fabious.onedark'
+require 'fabious.gruvbox'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
