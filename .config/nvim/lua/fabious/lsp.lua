@@ -78,6 +78,15 @@ require('lspconfig').eslint.setup(config())
 require('lspconfig').tsserver.setup(config())
 require('lspconfig').tailwindcss.setup(config())
 
+require('lspconfig').jsonls.setup {
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
+  },
+}
+
 -- LUA
 --
 -- Make runtime files discoverable to the server
