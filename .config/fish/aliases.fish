@@ -21,6 +21,7 @@ alias a 'git amend --allow-empty --no-verify'
 alias gaa 'git add .'
 alias gap 'git add -p'
 alias gti git
+alias gcm 'git commit --message'
 alias gco 'git checkout'
 alias gs 'git status -s'
 alias gst 'git status'
