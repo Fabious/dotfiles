@@ -11,6 +11,13 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
+    'aserowy/tmux.nvim',
+    config = function()
+      require('tmux').setup()
+    end,
+  }
+
+  use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
