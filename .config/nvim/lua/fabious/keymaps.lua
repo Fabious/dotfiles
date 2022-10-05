@@ -76,7 +76,7 @@ map('n', ']d', vim.diagnostic.goto_next)
 map('n', '<leader>cl', vim.diagnostic.setloclist)
 
 -- Tree
-map('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>')
+-- map('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Git
 map('n', '<leader>g', '<cmd>Neogit<CR>')

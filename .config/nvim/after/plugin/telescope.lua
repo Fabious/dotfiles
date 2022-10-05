@@ -2,6 +2,10 @@ local map = function(mode, key, cmd, opts)
   vim.keymap.set(mode, key, cmd, opts or { noremap = true, silent = true })
 end
 
+-- local function telescope_buffer_dir()
+--   return vim.fn.expand '%:p:h'
+-- end
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -11,6 +15,21 @@ require('telescope').setup {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
       },
+    },
+  },
+  extensions = {
+    file_browser = {
+      -- cwd = telescope_buffer_dir(),
+      grouped = true,
+      hidden = true,
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      initial_mode = 'normal',
+      layout_config = { height = 40 },
+      path = '%:p:h',
+      previewer = false,
+      respect_gitignore = false,
+      theme = 'dropdown',
     },
   },
 }
@@ -36,4 +55,15 @@ map('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind
 map('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
 map('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
 map('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
-map('n', '<leader>fb', require('telescope').extensions.file_browser.file_browser, { desc = '[F]ile [B]rowser' })
+map('n', '<leader>e', require('telescope').extensions.file_browser.file_browser, { desc = '[F]ile [B]rowser' })
+-- map('n', '<leader>fb', function()
+--   require('telescope').extensions.file_browser.file_browser {
+--     path = '%:p:h',
+--     respect_gitignore = false,
+--     hidden = true,
+--     grouped = true,
+--     previewer = false,
+--     initial_mode = 'normal',
+--     layout_config = { height = 40 },
+--   }
+-- end)
