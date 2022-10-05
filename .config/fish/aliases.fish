@@ -54,3 +54,7 @@ end
 function vts -d 'Opens all files with TypeScript issues in Vim'
     edit ( tsc | grep -vEe '^\s' | cut -d'(' -f1 | sort -u )
 end
+
+function fish_user_key_bindings
+    bind \cz 'fg 2>/dev/null; commandline -f repaint'
+end
