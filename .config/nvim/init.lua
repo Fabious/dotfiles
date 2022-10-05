@@ -1,2 +1,2 @@
 require 'fabious'
-vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd [[colorscheme gruvbox]]

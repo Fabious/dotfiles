@@ -1,18 +1,8 @@
 require 'fabious.keymaps'
 require 'fabious.options'
 require 'fabious.packer'
-require 'fabious.treesitter'
 require 'fabious.lsp'
 require 'fabious.lspsaga'
-require 'fabious.telescope'
-require 'fabious.comment'
-require 'fabious.lualine'
-require 'fabious.bufferline'
-require 'fabious.toggleterm'
-require 'fabious.indent-blankline'
-require 'fabious.gitsigns'
-require 'fabious.neogit'
-require 'fabious.gruvbox'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

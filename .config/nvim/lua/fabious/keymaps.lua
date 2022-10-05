@@ -27,6 +27,7 @@ map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 
 map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious<CR>', { desc = 'Open config' })
 map('n', '<leader>2', ':e ~/.config/nvim/lua/fabious/keymaps.lua<CR>', { desc = 'Open keymaps' })
+map('n', '<leader>3', ':e ~/.config/nvim/after/plugin<CR>', { desc = 'Open plugins config' })
 map('n', '<leader>4', ':e ~/.config/nvim/lua/fabious/packer.lua<CR>', { desc = 'Open plugins' })
 map('n', '<leader>5', ':PackerSync<CR>', { desc = 'reload Packer' })
 

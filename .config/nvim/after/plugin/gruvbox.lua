@@ -1,4 +1,9 @@
-require('gruvbox').setup {
+local status, gruvbox = pcall(require, 'gruvbox')
+if not status then
+  return
+end
+
+gruvbox.setup {
   undercurl = true,
   underline = true,
   bold = true,
@@ -14,3 +19,5 @@ require('gruvbox').setup {
   dim_inactive = false,
   transparent_mode = false,
 }
+
+vim.cmd 'colorscheme gruvbox'
