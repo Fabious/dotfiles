@@ -5,6 +5,7 @@ end
 -- local function telescope_buffer_dir()
 --   return vim.fn.expand '%:p:h'
 -- end
+local fb_actions = require('telescope').extensions.file_browser.actions
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -30,6 +31,17 @@ require('telescope').setup {
       previewer = false,
       respect_gitignore = false,
       theme = 'dropdown',
+      mappings = {
+        ['n'] = {
+          ['D'] = fb_actions.remove,
+          ['N'] = fb_actions.create,
+          ['h'] = fb_actions.goto_parent_dir,
+          ['.'] = fb_actions.toggle_hidden,
+          ['/'] = function()
+            vim.cmd 'startinsert'
+          end,
+        },
+      },
     },
   },
 }
