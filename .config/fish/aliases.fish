@@ -7,7 +7,7 @@ alias eg 'v ~/.gitconfig'
 alias et 'v ~/.tmux.conf'
 
 # Quick open
-alias vc 'v $(git show HEAD --pretty="format:" --name-only)'
+alias vc 'v (git show HEAD --pretty="format:" --name-only)'
 
 # Shortcuts
 alias v nvim
