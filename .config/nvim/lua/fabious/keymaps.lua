@@ -22,7 +22,10 @@ map('n', 'Q', '<Nop>')
 map('n', '<C-c>', '<Esc>')
 map('n', '<C-s>', '<cmd>w<CR>')
 
--- a tester
+-- Suspend (aka go to terminal)
+map('n', '<C-t>', ':stop<CR>', { noremap = false })
+
+-- Turn off last search highlight
 map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 
 map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious<CR>', { desc = 'Open config' })
@@ -75,7 +78,7 @@ map('n', ']d', vim.diagnostic.goto_next)
 -- map('n', '<leader>vf', vim.diagnostic.open_float)
 map('n', '<leader>cl', vim.diagnostic.setloclist)
 
--- Tree
+-- Tree (to be deleted if I like Telescope file browser)
 -- map('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Git

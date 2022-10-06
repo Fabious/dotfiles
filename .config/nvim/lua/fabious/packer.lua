@@ -52,7 +52,6 @@ require('packer').startup(function(use)
   }
   use { 'akinsho/bufferline.nvim', tag = 'v2.*', requires = 'kyazdani42/nvim-web-devicons' }
   use 'lukas-reineke/indent-blankline.nvim'
-  use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
 
   -- use {
   --   'kyazdani42/nvim-tree.lua',
