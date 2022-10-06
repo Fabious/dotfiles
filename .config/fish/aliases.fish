@@ -24,6 +24,7 @@ alias a 'git amend --allow-empty --no-verify'
 alias gaa 'git add .'
 alias gap 'git add -p'
 alias gti git
+alias gcb 'git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout'
 alias gcm 'git commit --message'
 alias gco 'git checkout'
 alias gs 'git status -s'
