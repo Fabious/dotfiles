@@ -6,6 +6,9 @@ alias ev 'v ~/.config/nvim/init.vim'
 alias eg 'v ~/.gitconfig'
 alias et 'v ~/.tmux.conf'
 
+# Quick open
+alias vc 'v $(git show HEAD --pretty="format:" --name-only)'
+
 # Shortcuts
 alias v nvim
 alias g git
@@ -36,6 +39,7 @@ alias grc 'git rebase --continue'
 alias gstat 'git show HEAD --stat'
 alias gw 'git switch'
 alias nah 'git reset --hard && git clean -df'
+
 
 # Docker
 alias dc docker-compose
