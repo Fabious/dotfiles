@@ -55,6 +55,9 @@ function vts -d 'Opens all files with TypeScript issues in Vim'
     edit ( tsc | grep -vEe '^\s' | cut -d'(' -f1 | sort -u )
 end
 
+# Ctrl + Z
+# 2>/dev/null removes the Send job X, “PROGRAM” to foreground message, omit that if you wish to keep it.
+# commandline -f repaint tells fish to redraw the prompt to avoid weird cursor position issues.
 function fish_user_key_bindings
     bind \cz 'fg 2>/dev/null; commandline -f repaint'
 end
