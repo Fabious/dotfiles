@@ -8,7 +8,6 @@ alias et 'v ~/.tmux.conf'
 
 # Quick open
 alias gvc 'v (git show HEAD --pretty="format:" --name-only)'
-alias gvs 'v (git diff --name-only)'
 
 # Shortcuts
 alias v nvim
@@ -53,12 +52,16 @@ function f
     git ls-tree -r --name-only HEAD
 end
 
+function vs -d 'Opens all git staged files in Vim'
+    v (git diff --name-only)
+end
+
 function veslint -d 'Opens all files in Vim with ESLint issues'
-    edit ( eslint $argv | grep -Ee '^/' )
+    v ( eslint $argv | grep -Ee '^/' )
 end
 
 function vts -d 'Opens all files with TypeScript issues in Vim'
-    edit ( tsc | grep -vEe '^\s' | cut -d'(' -f1 | sort -u )
+    v ( tsc | grep -vEe '^\s' | cut -d'(' -f1 | sort -u )
 end
 
 # Ctrl + T
