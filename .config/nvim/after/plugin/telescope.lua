@@ -26,7 +26,7 @@ require('telescope').setup {
       -- disables netrw and use telescope-file-browser in its place
       hijack_netrw = true,
       initial_mode = 'normal',
-      layout_config = { height = 40 },
+      layout_config = { height = 40, width = 100 },
       path = '%:p:h',
       previewer = false,
       respect_gitignore = false,
