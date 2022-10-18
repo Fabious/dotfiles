@@ -37,6 +37,7 @@ require('packer').startup(function(use)
     },
   }
   use { 'glepnir/lspsaga.nvim', branch = 'main' }
+  use 'simrat39/rust-tools.nvim'
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
