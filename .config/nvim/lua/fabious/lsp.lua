@@ -1,7 +1,7 @@
 -- LSP settings.
 local function config(_config)
   return vim.tbl_deep_extend('force', {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = function(client, bufnr)
       -- TODO: update when Neovim 0.8 is out
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts#neovim-08
