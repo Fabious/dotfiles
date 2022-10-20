@@ -56,6 +56,10 @@ function vs -d 'Opens all git staged files in Vim'
     v (git diff --name-only)
 end
 
+function vc -d 'Opens all files from last commit in Vim'
+    v (git show --oneline --name-only --format='')
+end
+
 function veslint -d 'Opens all files in Vim with ESLint issues'
     v ( eslint $argv | grep -Ee '^/' )
 end
@@ -70,3 +74,4 @@ end
 function fish_user_key_bindings
     bind \ct 'fg 2>/dev/null; commandline -f repaint'
 end
+
