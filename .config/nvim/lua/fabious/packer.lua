@@ -113,7 +113,11 @@ require('packer').startup(function(use)
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
-  use 'ellisonleao/gruvbox.nvim'
+  use {
+    'ellisonleao/gruvbox.nvim',
+    -- remove this with neovim 0.8
+    commit = 'cb7a8a867cfaa7f0e8ded57eb931da88635e7007',
+  }
   use 'B4mbus/oxocarbon-lua.nvim'
   use {
     'svrana/neosolarized.nvim',
