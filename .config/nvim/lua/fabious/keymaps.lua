@@ -82,7 +82,22 @@ map('n', '<leader>cl', vim.diagnostic.setloclist)
 -- map('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Git
-map('n', '<leader>g', '<cmd>Neogit<CR>')
+map('n', '<leader>gY', '<cmd>lua require"gitlinker".get_repo_url()<cr>')
+map(
+  'n',
+  '<leader>gb',
+  '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".open_in_browser})<cr>'
+)
+map(
+  'v',
+  '<leader>gb',
+  '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>'
+)
+map(
+  'n',
+  '<leader>gB',
+  '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>'
+)
 map('n', ']g', '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', { expr = true })
 map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
 

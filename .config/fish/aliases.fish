@@ -53,7 +53,7 @@ function f
 end
 
 function gwi -d 'git switch fzf'
-  git switch (git branch -avv --color=always | grep -v '/HEAD\s' |
+  git switch (git branch -vv --color=always | grep -v '/HEAD\s' |
     fzf --height 40% --ansi --multi --tac | sed 's/^..//' | awk '{print $1}' |
     sed 's#^remotes/[^/]*/##')
 end

@@ -85,6 +85,7 @@ require('packer').startup(function(use)
     end,
   }
 
+  use 'ruifm/gitlinker.nvim'
   use {
     'TimUntersberger/neogit',
     requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
