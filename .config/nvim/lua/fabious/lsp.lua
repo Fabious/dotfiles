@@ -51,6 +51,10 @@ require('null-ls').setup {
     require('null-ls').builtins.formatting.stylua,
     require('null-ls').builtins.formatting.prettierd,
     -- require("null-ls").builtins.diagnostics.eslint,
+
+    -- Golang
+    require('null-ls').builtins.formatting.gofmt,
+    -- require('null-ls').builtins.formatting.gofumpt, -- stricter than gofmt
   },
   -- you can reuse a shared lspconfig on_attach callback here
   on_attach = function(client, bufnr)
@@ -71,21 +75,34 @@ require('null-ls').setup {
 
 require('mason').setup()
 require('mason-lspconfig').setup {
-  ensure_installed = { 'sumneko_lua', 'eslint', 'tailwindcss', 'tsserver' },
+  ensure_installed = { 'eslint', 'gopls', 'sumneko_lua', 'tailwindcss', 'tsserver' },
 }
 
 require('lspconfig').eslint.setup(config())
 require('lspconfig').tsserver.setup(config())
 require('lspconfig').tailwindcss.setup(config())
 
-require('lspconfig').jsonls.setup {
+require('lspconfig').jsonls.setup(config {
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
       validate = { enable = true },
     },
   },
-}
+})
+
+-- Golang
+require('lspconfig').gopls.setup(config {
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      gofumpt = true, -- null-ls handle the formatting
+      staticcheck = true,
+    },
+  },
+})
 
 -- Rust
 require('rust-tools').setup()
