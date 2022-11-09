@@ -1,4 +1,5 @@
 # dotfiles
+
 My 1337 setup
 
 ## Installation
@@ -32,20 +33,22 @@ dotfiles push
 
 ## Tools
 
-* [fish][fish] - The user-friendly command line shell
-* [starship][starship] - The minimal, blazing-fast, and infinitely customizable prompt
-* [gh][gh] - GitHub’s official command line tool
-* [delta][delta] - A syntax-highlighting pager for git, diff, and grep output
-* [bat][bat] - A cat(1) clone with wings
-* [fd][fd] - A simple, fast and user-friendly alternative to 'find'
-* [ripgrep][ripgrep] - ripgrep recursively searches directories for a regex pattern
-* [lsd][lsd] - The next gen ls command
-* [exa][exa] - A modern replacement for ls
-* [fzf][fzf] - 🌸 A command-line fuzzy finder
-* [jq][jq] - Command-line JSON processor
-* [procs][procs] - A modern replacement for ps written in Rust
-* [lazygit][lazygit] - simple terminal UI for git commands
-* [glow][glow] - Render markdown on the CLI, with pizzazz! 💅🏻
+- [fish][fish] - The user-friendly command line shell
+- [starship][starship] - The minimal, blazing-fast, and infinitely customizable prompt
+- [gh][gh] - GitHub’s official command line tool
+- [delta][delta] - A syntax-highlighting pager for git, diff, and grep output
+- [bat][bat] - A cat(1) clone with wings
+- [fd][fd] - A simple, fast and user-friendly alternative to 'find'
+- [ripgrep][ripgrep] - ripgrep recursively searches directories for a regex pattern
+- [lsd][lsd] - The next gen ls command
+- [exa][exa] - A modern replacement for ls
+- [fzf][fzf] - 🌸 A command-line fuzzy finder
+- [jq][jq] - Command-line JSON processor
+- [procs][procs] - A modern replacement for ps written in Rust
+- [lazydocker][lazydocker] - Docker TUI
+- [lazygit][lazygit] - Simple terminal UI for git commands
+- [tokei][tokei] - Count your code, quickly
+- [glow][glow] - Render markdown on the CLI, with pizzazz! 💅🏻
 
 ## Arch
 
@@ -62,6 +65,7 @@ sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf
 ```
 
 ## ASDF
+
 ```
 # Install asdf with yay (AUR helper)
 yay -S asdf-vm
@@ -89,14 +93,13 @@ I use the [Cascadia Code Nerd Font][cascadia-code-nerd-font].
 yay -S nerd-fonts-cascadia-code
 ```
 
-
 ## Inspiration
 
-* https://github.com/nvie/dotfiles
-* https://github.com/gf3/dotfiles
-* https://github.com/paulirish/dotfiles
-* https://github.com/mathiasbynens/dotfiles/
-* https://github.com/kalkayan/dotfiles
+- https://github.com/nvie/dotfiles
+- https://github.com/gf3/dotfiles
+- https://github.com/paulirish/dotfiles
+- https://github.com/mathiasbynens/dotfiles/
+- https://github.com/kalkayan/dotfiles
 
 [bat]: https://github.com/sharkdp/bat
 [delta]: https://github.com/dandavison/delta
@@ -109,9 +112,10 @@ yay -S nerd-fonts-cascadia-code
 [hack-font]: https://sourcefoundry.org/hack/
 [cascadia-code-nerd-font]: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CascadiaCode
 [jq]: https://github.com/stedolan/jq
+[lazydocker]: https://github.com/jesseduffield/lazydocker
 [lazygit]: https://github.com/jesseduffield/lazygit
 [lsd]: https://github.com/Peltoche/lsd
 [procs]: https://github.com/dalance/procs
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [starship]: https://github.com/starship/starship
-
+[tokei]: https://github.com/XAMPPRocky/tokei
