@@ -40,19 +40,6 @@
   # https://github.com/dandavison/delta
   pager = delta
 
-[pull]
-  rebase = true
-
-[diff]
-  colorMoved = default
-
-[merge]
-  conflictstyle = diff3
-  tool = nvimdiff
-
-[interactive]
-  diffFilter = delta --color-only
-
 [delta]
   dark = true
   file-decoration-style = yellow ol ul
@@ -63,4 +50,20 @@
   max-line-length = 700
   navigate = true
   syntax-theme = base16
+
+[diff]
+  colorMoved = default
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  conflictstyle = diff3
+  tool = nvimdiff
+
+[mergetool]
+	keepBackup = false
+
+[pull]
+  rebase = true
 
