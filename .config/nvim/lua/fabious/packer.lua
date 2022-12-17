@@ -11,13 +11,6 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-    'aserowy/tmux.nvim',
-    config = function()
-      require('tmux').setup()
-    end,
-  }
-
-  use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
@@ -33,6 +26,7 @@ require('packer').startup(function(use)
       'williamboman/mason-lspconfig.nvim',
       'jose-elias-alvarez/null-ls.nvim',
       'b0o/schemastore.nvim',
+      'ray-x/lsp_signature.nvim',
       'RRethy/vim-illuminate',
     },
   }

@@ -1,12 +1,28 @@
--- LSP settings.
+local lsp_formatting = function(bufnr)
+  vim.lsp.buf.format {
+    filter = function(client)
+      return client.name == 'null-ls'
+    end,
+    bufnr = bufnr,
+  }
+end
+
+-- if you want to set up formatting on save, you can use this as a callback
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
 local function config(_config)
   return vim.tbl_deep_extend('force', {
     capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = function(client, bufnr)
-      -- TODO: update when Neovim 0.8 is out
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts#neovim-08
-      if client.name ~= 'null-ls' then
-        client.resolved_capabilities.document_formatting = false
+      if client.supports_method 'textDocument/formatting' then
+        vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            lsp_formatting(bufnr)
+          end,
+        })
       end
 
       local nmap = function(keys, func, desc)
@@ -40,41 +56,34 @@ local function config(_config)
         { desc = 'Format current buffer with LSP' }
       )
 
+      vim.api.nvim_create_user_command('DisableLspFormatting', function()
+        vim.api.nvim_clear_autocmds { group = augroup, buffer = 0 }
+      end, { nargs = 0 })
+
       require('illuminate').on_attach(client)
     end,
   }, _config or {})
 end
 
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 require('null-ls').setup {
   sources = {
     require('null-ls').builtins.formatting.stylua,
     require('null-ls').builtins.formatting.prettierd,
-    -- require("null-ls").builtins.diagnostics.eslint,
+    -- require('null-ls').builtins.diagnostics.eslint,
 
     -- Golang
     require('null-ls').builtins.formatting.gofmt,
     -- require('null-ls').builtins.formatting.gofumpt, -- stricter than gofmt
   },
-  -- you can reuse a shared lspconfig on_attach callback here
-  on_attach = function(client, bufnr)
-    if client.supports_method 'textDocument/formatting' then
-      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          -- TODO: Change with Neovim 0.8
-          -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-          vim.lsp.buf.formatting_sync()
-        end,
-      })
-    end
-  end,
 }
 
+-- Function signature as you type
+require('lsp_signature').setup(config())
+
+-- Easily install and manage LSP servers
 require('mason').setup()
 require('mason-lspconfig').setup {
+  automatic_installation = true,
   ensure_installed = { 'eslint', 'gopls', 'sumneko_lua', 'tailwindcss', 'tsserver' },
 }
 
