@@ -16,7 +16,7 @@ alias c clear
 alias l ls
 alias ld lazydocker
 alias lg lazygit
-alias ls lsd
+alias ls 'lsd --group-directories-first'
 alias lt 'lsd --tree'
 
 # Git
