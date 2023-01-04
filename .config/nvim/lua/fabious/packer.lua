@@ -48,27 +48,19 @@ require('packer').startup(function(use)
   use { 'akinsho/bufferline.nvim', tag = 'v2.*', requires = 'kyazdani42/nvim-web-devicons' }
   use 'lukas-reineke/indent-blankline.nvim'
 
-  -- use {
-  --   'kyazdani42/nvim-tree.lua',
-  --   config = function()
-  --     require('nvim-tree').setup {
-  --       view = {
-  --         width = '100%',
-  --       },
-  --       actions = {
-  --         open_file = {
-  --           quit_on_open = true,
-  --         },
-  --       },
-  --     }
-  --   end,
-  --   requires = 'kyazdani42/nvim-web-devicons',
-  -- }
-
   use {
     'folke/which-key.nvim',
     config = function()
       require('which-key').setup()
+    end,
+  }
+
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require('hop').setup()
     end,
   }
 
