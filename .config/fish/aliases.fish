@@ -12,6 +12,7 @@ alias gvc 'v (git show HEAD --pretty="format:" --name-only)'
 # Shortcuts
 alias v nvim
 alias g git
+alias r ranger
 alias c clear
 alias l ls
 alias ld lazydocker

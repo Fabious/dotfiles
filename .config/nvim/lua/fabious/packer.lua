@@ -114,7 +114,9 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-  use { 'nvim-telescope/telescope-file-browser.nvim' }
+
+  use { 'elihunter173/dirbuf.nvim' }
+  use { 'kevinhwang91/rnvimr' }
 
   if is_bootstrap then
     require('packer').sync()

@@ -66,16 +66,16 @@ map('n', '<leader>tc', ':tabclose<CR>')
 map('n', '<leader>to', ':tabonly<CR>')
 map('n', '<leader>tn', ':tabn<CR>')
 map('n', '<leader>tp', ':tabp<CR>')
--- move current tamn', ':+tabmove<CR>')
+
+-- File Browser
+map('n', '<leader>e', ':RnvimrToggle<CR>')
+vim.g.rnvimr_enable_picker = 1
 
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
 -- map('n', '<leader>vf', vim.diagnostic.open_float)
 map('n', '<leader>cl', vim.diagnostic.setloclist)
-
--- Tree (to be deleted if I like Telescope file browser)
--- map('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Git
 map('n', '<leader>gY', '<cmd>lua require"gitlinker".get_repo_url()<cr>')
