@@ -30,7 +30,9 @@ require('packer').startup(function(use)
       'RRethy/vim-illuminate',
     },
   }
-  use { 'glepnir/lspsaga.nvim', branch = 'main' }
+
+  -- Lspsaga 2.3 BC, remove commit later
+  use { 'glepnir/lspsaga.nvim', branch = 'main', commit = 'b7b4777369b441341b2dcd45c738ea4167c11c9e' }
   use 'simrat39/rust-tools.nvim'
 
   -- Treesitter
