@@ -1,6 +1,7 @@
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
+
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
@@ -102,16 +103,8 @@ require('packer').startup(function(use)
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
-  use {
-    'ellisonleao/gruvbox.nvim',
-    -- remove this with neovim 0.8
-    commit = 'cb7a8a867cfaa7f0e8ded57eb931da88635e7007',
-  }
+  use { 'ellisonleao/gruvbox.nvim' }
   use 'B4mbus/oxocarbon-lua.nvim'
-  use {
-    'svrana/neosolarized.nvim',
-    requires = { 'tjdevries/colorbuddy.nvim' },
-  }
 
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
