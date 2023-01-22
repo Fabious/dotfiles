@@ -44,8 +44,9 @@ require('packer').startup(function(use)
 
   -- Autocomplete & Snippets
   use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }
-  use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
+  use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } }
   use 'rafamadriz/friendly-snippets'
+  use 'honza/vim-snippets'
 
   -- Visual enhancements
   use {

@@ -49,6 +49,7 @@ map('n', '<leader>=', '<cmd>wincmd =<CR>')
 map('n', '<Tab>', '<cmd>bn<CR>')
 map('n', '<S-Tab>', '<cmd>bp<CR>')
 map('n', '<leader>bd', '<cmd>bd<CR>')
+map('n', '<leader>ba', '<cmd>%bd|e#<CR>')
 
 -- Copypasta
 map('n', 'x', '"_x')
