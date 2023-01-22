@@ -11,6 +11,7 @@ end
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  -- Startup plugin
   use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
@@ -31,10 +32,8 @@ require('packer').startup(function(use)
       'RRethy/vim-illuminate',
     },
   }
-
   -- Lspsaga 2.3 BC, remove commit later
   use { 'glepnir/lspsaga.nvim', branch = 'main', commit = 'b7b4777369b441341b2dcd45c738ea4167c11c9e' }
-  use 'simrat39/rust-tools.nvim'
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -43,7 +42,12 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  -- Autocomplete & Snippets
+  use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }
+  use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
+  use 'rafamadriz/friendly-snippets'
+
+  -- Visual enhancements
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
@@ -51,6 +55,19 @@ require('packer').startup(function(use)
   use { 'akinsho/bufferline.nvim', tag = 'v2.*', requires = 'kyazdani42/nvim-web-devicons' }
   use 'lukas-reineke/indent-blankline.nvim'
 
+  -- Utils
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
+    end,
+  }
+  use {
+    'kylechui/nvim-surround',
+    config = function()
+      require('nvim-surround').setup()
+    end,
+  }
   use {
     'folke/which-key.nvim',
     config = function()
@@ -58,51 +75,26 @@ require('packer').startup(function(use)
     end,
   }
 
-  use {
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup()
-    end,
-  }
-
+  -- Git
+  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'ruifm/gitlinker.nvim'
   use {
     'TimUntersberger/neogit',
     requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
   }
 
-  use {
-    'kylechui/nvim-surround',
-    config = function()
-      require('nvim-surround').setup()
-    end,
-  }
+  -- Project explorer
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+  use { 'kevinhwang91/rnvimr' }
+  use { 'elihunter173/dirbuf.nvim' }
 
-  use {
-    'folke/zen-mode.nvim',
-    config = function()
-      require('zen-mode').setup()
-    end,
-  }
-
-  -- Autocomplete
-  use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }
-  use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
-  use 'rafamadriz/friendly-snippets'
-
-  -- THEMES
+  -- Themes
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
   use { 'ellisonleao/gruvbox.nvim' }
   use 'B4mbus/oxocarbon-lua.nvim'
-
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-
-  use { 'elihunter173/dirbuf.nvim' }
-  use { 'kevinhwang91/rnvimr' }
 
   if is_bootstrap then
     require('packer').sync()

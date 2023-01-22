@@ -113,9 +113,6 @@ require('lspconfig').gopls.setup(config {
   },
 })
 
--- Rust
-require('rust-tools').setup()
-
 -- LUA
 --
 -- Make runtime files discoverable to the server
