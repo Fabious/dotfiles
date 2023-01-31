@@ -55,6 +55,7 @@ require('packer').startup(function(use)
   }
   use { 'akinsho/bufferline.nvim', tag = 'v2.*', requires = 'kyazdani42/nvim-web-devicons' }
   use 'lukas-reineke/indent-blankline.nvim'
+  use 'gen740/SmoothCursor.nvim'
 
   -- Utils
   use {
@@ -87,14 +88,14 @@ require('packer').startup(function(use)
   -- Project explorer
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-  use { 'kevinhwang91/rnvimr' }
-  use { 'elihunter173/dirbuf.nvim' }
+  use 'kevinhwang91/rnvimr'
+  use 'elihunter173/dirbuf.nvim'
 
   -- Themes
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
-  use { 'ellisonleao/gruvbox.nvim' }
+  use 'ellisonleao/gruvbox.nvim'
   use 'B4mbus/oxocarbon-lua.nvim'
 
   if is_bootstrap then
