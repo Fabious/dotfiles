@@ -8,7 +8,6 @@ end
 -- See `:help telescope` and `:help telescope.setup()`
 telescope.setup {
   defaults = {
-    layout_strategy = 'vertical',
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -16,17 +15,23 @@ telescope.setup {
         ['<C-h>'] = 'which_key',
       },
     },
+    sorting_strategy = 'ascending',
+    layout_strategy = 'center',
+    layout_config = {
+      height = 30,
+    },
+    border = true,
+    borderchars = {
+      prompt = { '─', '│', ' ', '│', '╭', '╮', '│', '│' },
+      results = { '─', '│', '─', '│', '├', '┤', '╯', '╰' },
+    },
   },
+
   pickers = {
-    find_files = {
-      previewer = false,
-    },
-    git_files = {
-      previewer = false,
-    },
-    live_grep = {
-      previewer = false,
-    },
+    find_files = { previewer = false },
+    git_files = { previewer = false },
+    live_grep = { previewer = false },
+    oldfiles = { previewer = false },
   },
 }
 
