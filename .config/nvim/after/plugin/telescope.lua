@@ -16,22 +16,13 @@ telescope.setup {
       },
     },
     sorting_strategy = 'ascending',
-    layout_strategy = 'center',
+    layout_strategy = 'vertical',
     layout_config = {
-      height = 30,
+      prompt_position = 'top',
+      width = 0.5,
+      height = 0.6,
     },
-    border = true,
-    borderchars = {
-      prompt = { '─', '│', ' ', '│', '╭', '╮', '│', '│' },
-      results = { '─', '│', '─', '│', '├', '┤', '╯', '╰' },
-    },
-  },
-
-  pickers = {
-    find_files = { previewer = false },
-    git_files = { previewer = false },
-    live_grep = { previewer = false },
-    oldfiles = { previewer = false },
+    preview = false,
   },
 }
 
