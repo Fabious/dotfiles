@@ -84,7 +84,7 @@ require('lsp_signature').setup(config())
 require('mason').setup()
 require('mason-lspconfig').setup {
   automatic_installation = true,
-  ensure_installed = { 'eslint', 'gopls', 'sumneko_lua', 'tailwindcss', 'tsserver' },
+  ensure_installed = { 'eslint', 'gopls', 'lua_ls', 'tailwindcss', 'tsserver' },
 }
 
 require('lspconfig').eslint.setup(config())
@@ -120,7 +120,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').sumneko_lua.setup(config {
+require('lspconfig').lua_ls.setup(config {
   settings = {
     Lua = {
       runtime = {
