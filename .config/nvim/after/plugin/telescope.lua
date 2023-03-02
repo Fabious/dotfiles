@@ -10,19 +10,9 @@ telescope.setup {
   defaults = {
     mappings = {
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
         ['<C-h>'] = 'which_key',
       },
     },
-    sorting_strategy = 'ascending',
-    layout_strategy = 'vertical',
-    layout_config = {
-      prompt_position = 'top',
-      width = 0.5,
-      height = 0.7,
-    },
-    preview = false,
   },
 }
 
