@@ -32,8 +32,7 @@ require('packer').startup(function(use)
       'RRethy/vim-illuminate',
     },
   }
-  -- Lspsaga 2.3 BC, remove commit later
-  use { 'glepnir/lspsaga.nvim', branch = 'main', commit = 'b7b4777369b441341b2dcd45c738ea4167c11c9e' }
+  use { 'glepnir/lspsaga.nvim', branch = 'main' }
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
