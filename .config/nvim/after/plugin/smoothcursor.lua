@@ -1,3 +1,4 @@
+-- luacheck: no max line length
 require('smoothcursor').setup {
   autostart = true,
   cursor = '', -- cursor shape (need nerd font)

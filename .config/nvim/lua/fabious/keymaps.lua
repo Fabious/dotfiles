@@ -1,3 +1,4 @@
+-- luacheck: no max line length
 local map = function(mode, key, cmd, opts)
   vim.keymap.set(mode, key, cmd, opts or { noremap = true, silent = true })
 end

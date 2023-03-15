@@ -10,7 +10,7 @@ end
 -- if you want to set up formatting on save, you can use this as a callback
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
-local function config(_config)
+local function config(customConfig)
   return vim.tbl_deep_extend('force', {
     capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = function(client, bufnr)
@@ -62,7 +62,7 @@ local function config(_config)
 
       require('illuminate').on_attach(client)
     end,
-  }, _config or {})
+  }, customConfig or {})
 end
 
 require('null-ls').setup {
