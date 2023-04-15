@@ -89,7 +89,12 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
   use 'kevinhwang91/rnvimr'
-  use 'elihunter173/dirbuf.nvim'
+  use {
+    'stevearc/oil.nvim',
+    config = function()
+      require('oil').setup()
+    end,
+  }
   use 'mileszs/ack.vim'
   use 'tpope/vim-unimpaired'
 
