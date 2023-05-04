@@ -88,7 +88,7 @@ map('n', '<leader>tn', ':tabn<CR>')
 map('n', '<leader>tp', ':tabp<CR>')
 
 -- File Browser
-vim.keymap.set('n', '-', require('oil').open, { desc = 'Open parent directory' })
+map('n', '-', require('oil').open, { desc = 'Open parent directory' })
 map('n', '<leader>e', ':RnvimrToggle<CR>')
 vim.g.rnvimr_enable_picker = 1
 

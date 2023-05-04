@@ -80,10 +80,6 @@ require('packer').startup(function(use)
   -- Git
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'ruifm/gitlinker.nvim'
-  use {
-    'TimUntersberger/neogit',
-    requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
-  }
 
   -- Project explorer
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
