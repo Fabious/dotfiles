@@ -77,6 +77,26 @@ require('packer').startup(function(use)
     end,
   }
 
+  use {
+    'nvim-neorg/neorg',
+    run = ':Neorg sync-parsers',
+    config = function()
+      require('neorg').setup {
+        load = {
+          ['core.defaults'] = {},
+          ['core.dirman'] = {
+            config = {
+              workspaces = {
+                notes = '~/notes',
+              },
+              default_workspace = 'notes',
+            },
+          },
+        },
+      }
+    end,
+  }
+
   -- Git
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'ruifm/gitlinker.nvim'
