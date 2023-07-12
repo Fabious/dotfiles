@@ -95,7 +95,7 @@ vim.g.rnvimr_enable_picker = 1
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
--- map('n', '<leader>vf', vim.diagnostic.open_float)
+map('n', '<leader>vf', vim.diagnostic.open_float)
 map('n', '<leader>cl', vim.diagnostic.setloclist)
 
 -- Git
