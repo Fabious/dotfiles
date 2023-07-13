@@ -3,7 +3,7 @@ if not status then
   return
 end
 
-gruvbox.setup {
+gruvbox.setup({
   undercurl = true,
   underline = true,
   bold = true,
@@ -23,6 +23,6 @@ gruvbox.setup {
   overrides = {},
   dim_inactive = false,
   transparent_mode = false,
-}
+})
 
-vim.cmd 'colorscheme gruvbox'
+vim.cmd('colorscheme gruvbox')

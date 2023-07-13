@@ -88,9 +88,7 @@ map('n', '<leader>tn', ':tabn<CR>')
 map('n', '<leader>tp', ':tabp<CR>')
 
 -- File Browser
-map('n', '-', require('oil').open, { desc = 'Open parent directory' })
-map('n', '<leader>e', ':RnvimrToggle<CR>')
-vim.g.rnvimr_enable_picker = 1
+-- map('n', '-', require('oil').open, { desc = 'Open parent directory' })
 
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)

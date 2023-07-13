@@ -1,12 +1,12 @@
-local telescope = require 'telescope'
-local builtin = require 'telescope.builtin'
+local telescope = require('telescope')
+local builtin = require('telescope.builtin')
 local map = function(mode, key, cmd, opts)
   vim.keymap.set(mode, key, cmd, opts or { noremap = true, silent = true })
 end
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-telescope.setup {
+telescope.setup({
   defaults = {
     mappings = {
       i = {
@@ -14,7 +14,7 @@ telescope.setup {
       },
     },
   },
-}
+})
 
 -- Enable telescope fzf native, if installed
 pcall(telescope.load_extension, 'fzf')
@@ -26,10 +26,10 @@ map('n', '<leader>h', builtin.oldfiles, { desc = 'Files [H]istory' })
 map('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 map('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
-  builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+  builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
     winblend = 10,
     previewer = false,
-  })
+  }))
 end, { desc = '[/] Fuzzily search in current buffer]' })
 map('n', '<C-p>', builtin.git_files, { desc = 'Fuzzy finder' })
 map('n', '<C-g>', builtin.live_grep, { desc = 'Live [G]rep' })

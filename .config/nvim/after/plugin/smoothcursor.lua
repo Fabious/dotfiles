@@ -1,5 +1,5 @@
 -- luacheck: no max line length
-require('smoothcursor').setup {
+require('smoothcursor').setup({
   autostart = true,
   cursor = '', -- cursor shape (need nerd font)
   texthl = 'SmoothCursor', -- highlight group, default is { bg = nil, fg = "#FFD400" }
@@ -28,4 +28,4 @@ require('smoothcursor').setup {
   disable_float_win = true, -- disable on float window
   enabled_filetypes = nil, -- example: { "lua", "vim" }
   disabled_filetypes = nil, -- this option will be skipped if enabled_filetypes is set. example: { "TelescopePrompt", "NvimTree" }
-}
+})

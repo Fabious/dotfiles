@@ -1,8 +1,8 @@
-require 'fabious.keymaps'
-require 'fabious.options'
-require 'fabious.packer'
-require 'fabious.lsp'
-require 'fabious.lspsaga'
+require('fabious.keymaps')
+require('fabious.options')
+require('fabious.lazy')
+require('fabious.lsp')
+require('fabious.lspsaga')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

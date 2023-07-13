@@ -1,10 +1,10 @@
 local lsp_formatting = function(bufnr)
-  vim.lsp.buf.format {
+  vim.lsp.buf.format({
     filter = function(client)
       return client.name == 'null-ls'
     end,
     bufnr = bufnr,
-  }
+  })
 end
 
 -- if you want to set up formatting on save, you can use this as a callback
@@ -14,8 +14,8 @@ local function config(customConfig)
   return vim.tbl_deep_extend('force', {
     capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = function(client, bufnr)
-      if client.supports_method 'textDocument/formatting' then
-        vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+      if client.supports_method('textDocument/formatting') then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd('BufWritePre', {
           group = augroup,
           buffer = bufnr,
@@ -57,7 +57,7 @@ local function config(customConfig)
       )
 
       vim.api.nvim_create_user_command('DisableLspFormatting', function()
-        vim.api.nvim_clear_autocmds { group = augroup, buffer = 0 }
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
       end, { nargs = 0 })
 
       require('illuminate').on_attach(client)
@@ -65,7 +65,7 @@ local function config(customConfig)
   }, customConfig or {})
 end
 
-require('null-ls').setup {
+require('null-ls').setup({
   sources = {
     require('null-ls').builtins.formatting.stylua,
     require('null-ls').builtins.formatting.prettierd,
@@ -75,33 +75,33 @@ require('null-ls').setup {
     require('null-ls').builtins.formatting.gofmt,
     -- require('null-ls').builtins.formatting.gofumpt, -- stricter than gofmt
   },
-}
+})
 
 -- Function signature as you type
 require('lsp_signature').setup(config())
 
 -- Easily install and manage LSP servers
 require('mason').setup()
-require('mason-lspconfig').setup {
+require('mason-lspconfig').setup({
   automatic_installation = true,
   ensure_installed = { 'eslint', 'gopls', 'lua_ls', 'tailwindcss', 'tsserver' },
-}
+})
 
 require('lspconfig').eslint.setup(config())
 require('lspconfig').tsserver.setup(config())
 require('lspconfig').tailwindcss.setup(config())
 
-require('lspconfig').jsonls.setup(config {
+require('lspconfig').jsonls.setup(config({
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
       validate = { enable = true },
     },
   },
-})
+}))
 
 -- Golang
-require('lspconfig').gopls.setup(config {
+require('lspconfig').gopls.setup(config({
   settings = {
     gopls = {
       analyses = {
@@ -111,7 +111,7 @@ require('lspconfig').gopls.setup(config {
       staticcheck = true,
     },
   },
-})
+}))
 
 -- LUA
 --
@@ -120,7 +120,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').lua_ls.setup(config {
+require('lspconfig').lua_ls.setup(config({
   settings = {
     Lua = {
       runtime = {
@@ -137,4 +137,4 @@ require('lspconfig').lua_ls.setup(config {
       telemetry = { enable = false },
     },
   },
-})
+}))
