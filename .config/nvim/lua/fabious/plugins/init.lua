@@ -78,7 +78,6 @@ return {
       require('oil').setup()
     end,
   },
-  'tpope/vim-unimpaired',
   { 'folke/neodev.nvim', opts = {} },
 
   -- Themes
