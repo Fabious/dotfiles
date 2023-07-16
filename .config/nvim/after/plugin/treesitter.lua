@@ -2,7 +2,26 @@
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup({
   auto_install = true,
-  ensure_installed = { 'lua', 'typescript', 'javascript' },
+  ensure_installed = {
+    'bash',
+    'c',
+    'html',
+    'javascript',
+    'json',
+    'lua',
+    'luadoc',
+    'luap',
+    'markdown',
+    'markdown_inline',
+    'python',
+    'query',
+    'regex',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'yaml',
+  },
   autotag = {
     enable = true,
   },
