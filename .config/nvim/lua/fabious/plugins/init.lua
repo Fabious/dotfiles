@@ -41,7 +41,6 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
   },
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons' },
   'lukas-reineke/indent-blankline.nvim',
   'gen740/SmoothCursor.nvim',
 
