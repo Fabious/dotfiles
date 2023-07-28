@@ -67,16 +67,11 @@ return {
   -- Git
   { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   'ruifm/gitlinker.nvim',
+  'sindrets/diffview.nvim',
 
   -- Project explorer
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable('make') == 1 },
-  {
-    'stevearc/oil.nvim',
-    config = function()
-      require('oil').setup()
-    end,
-  },
   { 'folke/neodev.nvim', opts = {} },
 
   -- Themes

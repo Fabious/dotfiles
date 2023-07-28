@@ -87,9 +87,6 @@ map('n', '<leader>to', ':tabonly<CR>')
 map('n', '<leader>tn', ':tabn<CR>')
 map('n', '<leader>tp', ':tabp<CR>')
 
--- File Browser
--- map('n', '-', require('oil').open, { desc = 'Open parent directory' })
-
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
