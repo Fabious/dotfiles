@@ -25,6 +25,9 @@ map('n', '<C-t>', ':stop<CR>', { noremap = false })
 -- Turn off last search highlight
 map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 
+-- Oil
+map('n', '-', ':Oil<CR>', { desc = 'Open parent directory' })
+
 map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious<CR>', { desc = 'Open config' })
 map('n', '<leader>2', ':e ~/.config/nvim/lua/fabious/keymaps.lua<CR>', { desc = 'Open keymaps' })
 map('n', '<leader>3', ':e ~/.config/nvim/after/plugin<CR>', { desc = 'Open plugins config' })

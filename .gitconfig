@@ -69,3 +69,6 @@
 
 [init]
 	defaultBranch = main
+[user]
+	email = fabious@free.fr
+	name = Fabious
