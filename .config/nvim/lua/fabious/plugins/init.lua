@@ -63,6 +63,13 @@ return {
       require('which-key').setup()
     end,
   },
+  {
+    'Wansmer/treesj',
+    keys = {
+      { 'J', '<cmd>TSJToggle<cr>', desc = 'Join Toggle' },
+    },
+    opts = { use_default_keymaps = false, max_join_length = 150 },
+  },
 
   -- Git
   { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -73,11 +80,4 @@ return {
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable('make') == 1 },
   { 'folke/neodev.nvim', opts = {} },
-
-  -- Themes
-  'EdenEast/nightfox.nvim',
-  'folke/tokyonight.nvim',
-  'sainnhe/everforest',
-  'ellisonleao/gruvbox.nvim',
-  'B4mbus/oxocarbon-lua.nvim',
 }
