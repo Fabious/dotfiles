@@ -3,10 +3,6 @@ return {
     'ellisonleao/gruvbox.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme gruvbox]])
-    end,
     opts = {
       undercurl = true,
       underline = true,
@@ -28,6 +24,11 @@ return {
       dim_inactive = false,
       transparent_mode = false,
     },
+    config = function(_, opts)
+      require('gruvbox').setup(opts)
+      -- load the colorscheme here
+      vim.cmd([[colorscheme gruvbox]])
+    end,
   },
   {
     'EdenEast/nightfox.nvim',

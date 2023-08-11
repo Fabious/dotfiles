@@ -22,14 +22,6 @@ return {
   },
   { 'glepnir/lspsaga.nvim', branch = 'main' },
 
-  -- Treesitter
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-  'nvim-treesitter/nvim-treesitter-context',
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  'windwp/nvim-ts-autotag',
-  'numToStr/Comment.nvim',
-  'JoosepAlviste/nvim-ts-context-commentstring',
-
   -- Autocomplete & Snippets
   { 'hrsh7th/nvim-cmp', dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
   { 'L3MON4D3/LuaSnip', dependencies = { 'saadparwaiz1/cmp_luasnip' } },
@@ -79,5 +71,4 @@ return {
   -- Project explorer
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable('make') == 1 },
-  { 'folke/neodev.nvim', opts = {} },
 }
