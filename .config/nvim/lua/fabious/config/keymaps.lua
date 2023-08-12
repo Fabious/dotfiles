@@ -29,7 +29,7 @@ map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 map('n', '-', ':Oil<CR>', { desc = 'Open parent directory' })
 
 map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious<CR>', { desc = 'Open config' })
-map('n', '<leader>2', ':e ~/.config/nvim/lua/fabious/keymaps.lua<CR>', { desc = 'Open keymaps' })
+map('n', '<leader>2', ':e ~/.config/nvim/lua/fabious/config/keymaps.lua<CR>', { desc = 'Open keymaps' })
 map('n', '<leader>3', ':e ~/.config/nvim/after/plugin<CR>', { desc = 'Open plugins config' })
 map('n', '<leader>4', ':e ~/.config/nvim/lua/fabious/plugins/init.lua<CR>', { desc = 'Open plugins config' })
 map('n', '<leader>5', ':Lazy<CR>', { desc = 'Open Lazy UI' })
@@ -95,23 +95,3 @@ map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
 map('n', '<leader>vf', vim.diagnostic.open_float)
 map('n', '<leader>cl', vim.diagnostic.setloclist)
-
--- Git
-map('n', '<leader>gY', '<cmd>lua require"gitlinker".get_repo_url()<cr>')
-map(
-  'n',
-  '<leader>gb',
-  '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".open_in_browser})<cr>'
-)
-map(
-  'v',
-  '<leader>gb',
-  '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>'
-)
-map(
-  'n',
-  '<leader>gB',
-  '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>'
-)
-map('n', ']g', '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', { expr = true })
-map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
