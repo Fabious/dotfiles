@@ -1,4 +1,6 @@
 return {
+
+  -- Bufferline
   {
     'akinsho/bufferline.nvim',
     version = '*',
@@ -41,6 +43,8 @@ return {
       { '<C-9>', '<cmd>BufferLineGoToBuffer 9<CR>' },
     },
   },
+
+  -- Lualine
   {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
@@ -85,6 +89,8 @@ return {
       extensions = {},
     },
   },
+
+  -- Indent Blankline
   {
     'lukas-reineke/indent-blankline.nvim',
     event = 'VeryLazy',
@@ -97,6 +103,8 @@ return {
       use_treesitter = true,
     },
   },
+
+  -- SmoothCursor
   {
     'gen740/SmoothCursor.nvim',
     event = 'VeryLazy',
