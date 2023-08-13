@@ -22,12 +22,6 @@ return {
   },
   { 'glepnir/lspsaga.nvim', branch = 'main' },
 
-  -- Autocomplete & Snippets
-  { 'hrsh7th/nvim-cmp', dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
-  { 'L3MON4D3/LuaSnip', dependencies = { 'saadparwaiz1/cmp_luasnip' } },
-  'rafamadriz/friendly-snippets',
-  'honza/vim-snippets',
-
   -- Visual enhancements
   {
     'nvim-lualine/lualine.nvim',
