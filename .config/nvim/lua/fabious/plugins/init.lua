@@ -22,14 +22,6 @@ return {
   },
   { 'glepnir/lspsaga.nvim', branch = 'main' },
 
-  -- Visual enhancements
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
-  },
-  'lukas-reineke/indent-blankline.nvim',
-  'gen740/SmoothCursor.nvim',
-
   -- Utils
   {
     'windwp/nvim-autopairs',
