@@ -30,8 +30,7 @@ map('n', '-', ':Oil<CR>', { desc = 'Open parent directory' })
 
 map('n', '<leader>1', ':e ~/.config/nvim/lua/fabious<CR>', { desc = 'Open config' })
 map('n', '<leader>2', ':e ~/.config/nvim/lua/fabious/config/keymaps.lua<CR>', { desc = 'Open keymaps' })
-map('n', '<leader>3', ':e ~/.config/nvim/after/plugin<CR>', { desc = 'Open plugins config' })
-map('n', '<leader>4', ':e ~/.config/nvim/lua/fabious/plugins/init.lua<CR>', { desc = 'Open plugins config' })
+map('n', '<leader>3', ':e ~/.config/nvim/lua/fabious/plugins<CR>', { desc = 'Open plugins config' })
 map('n', '<leader>5', ':Lazy<CR>', { desc = 'Open Lazy UI' })
 
 map('n', '<leader>w', ':w<CR>')
