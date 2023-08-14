@@ -27,6 +27,7 @@ return {
       require('which-key').setup()
     end,
   },
+  { 'rhysd/clever-f.vim' },
   {
     'Wansmer/treesj',
     keys = {
