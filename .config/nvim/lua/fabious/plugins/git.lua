@@ -41,7 +41,7 @@ return {
   { 'sindrets/diffview.nvim' },
   {
     'ruifm/gitlinker.nvim',
-    confog = function()
+    config = function()
       require('gitlinker').setup({
         callbacks = {
           ['gitlab.ftven.net'] = require('gitlinker.hosts').get_gitlab_type_url,

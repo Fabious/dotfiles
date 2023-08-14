@@ -8,20 +8,6 @@ return {
     end,
   },
 
-  -- LSP
-  {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
-      'b0o/schemastore.nvim',
-      'ray-x/lsp_signature.nvim',
-      'RRethy/vim-illuminate',
-    },
-  },
-  { 'glepnir/lspsaga.nvim', branch = 'main' },
-
   -- Utils
   {
     'windwp/nvim-autopairs',
@@ -46,6 +32,9 @@ return {
     keys = {
       { 'J', '<cmd>TSJToggle<cr>', desc = 'Join Toggle' },
     },
-    opts = { use_default_keymaps = false, max_join_length = 150 },
+    opts = {
+      use_default_keymaps = false,
+      max_join_length = 150,
+    },
   },
 }
