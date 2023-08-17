@@ -181,4 +181,14 @@ return {
       end
     end,
   },
+
+  -- show function signature as you type
+  {
+    'ray-x/lsp_signature.nvim',
+    event = 'VeryLazy',
+    opts = {},
+    config = function(_, opts)
+      require('lsp_signature').setup(opts)
+    end,
+  },
 }
