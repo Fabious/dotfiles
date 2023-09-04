@@ -17,3 +17,8 @@ zoxide init fish | source
 
 # ASDF
 source ~/.asdf/asdf.fish
+
+# pnpm
+set -gx PNPM_HOME "/home/fabious/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end

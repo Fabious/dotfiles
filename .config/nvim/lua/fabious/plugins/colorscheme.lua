@@ -30,20 +30,10 @@ return {
       vim.cmd([[colorscheme gruvbox]])
     end,
   },
-  {
-    'EdenEast/nightfox.nvim',
-    lazy = true,
-  },
-  {
-    'folke/tokyonight.nvim',
-    lazy = true,
-  },
-  {
-    'sainnhe/everforest',
-    lazy = true,
-  },
-  {
-    'B4mbus/oxocarbon-lua.nvim',
-    lazy = true,
-  },
+  { 'EdenEast/nightfox.nvim', lazy = true },
+  { 'folke/tokyonight.nvim', lazy = true },
+  { 'sainnhe/everforest', lazy = true },
+  { 'B4mbus/oxocarbon-lua.nvim', lazy = true },
+  { 'rebelot/kanagawa.nvim', lazy = true },
+  { 'talha-akram/noctis.nvim', lazy = true },
 }
