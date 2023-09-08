@@ -19,6 +19,31 @@ return {
       history = true,
       delete_check_events = 'TextChanged',
     },
+    keys = {
+      {
+        '<tab>',
+        function()
+          return require('luasnip').jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>'
+        end,
+        expr = true,
+        silent = true,
+        mode = 'i',
+      },
+      {
+        '<tab>',
+        function()
+          require('luasnip').jump(1)
+        end,
+        mode = 's',
+      },
+      {
+        '<s-tab>',
+        function()
+          require('luasnip').jump(-1)
+        end,
+        mode = { 'i', 's' },
+      },
+    },
   },
 
   -- auto completion
@@ -57,24 +82,8 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
+          ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
