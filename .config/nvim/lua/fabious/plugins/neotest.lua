@@ -1,7 +1,4 @@
-local Plugin = {
-
-  'nvim-neotest/neotest',
-}
+local Plugin = { 'nvim-neotest/neotest' }
 
 Plugin.dependencies = {
   'nvim-lua/plenary.nvim',

@@ -12,7 +12,6 @@ return {
     opts = {
       auto_install = true,
       ensure_installed = {
-        'bash',
         'c',
         'html',
         'javascript',
