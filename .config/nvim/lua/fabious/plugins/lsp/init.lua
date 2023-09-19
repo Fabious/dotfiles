@@ -83,6 +83,7 @@ return {
       require('lspconfig').eslint.setup(config())
       require('lspconfig').tsserver.setup(config())
       require('lspconfig').tailwindcss.setup(config())
+      require('lspconfig').intelephense.setup(config())
       -- Golang
       require('lspconfig').gopls.setup(config({
         settings = {
@@ -161,6 +162,7 @@ return {
         'lua-language-server',
         'tailwindcss-language-server',
         'typescript-language-server',
+        'intelephense',
       },
     },
     config = function(_, opts)
