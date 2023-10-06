@@ -26,7 +26,7 @@ return {
         require('flash').remote()
       end,
       desc = 'Remote Flash',
-    }
+    },
     {
       'R',
       mode = { 'o', 'x' },
