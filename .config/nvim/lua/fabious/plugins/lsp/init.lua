@@ -96,6 +96,27 @@ return {
           },
         },
       }))
+      -- Rust
+      require('lspconfig').rust_analyzer.setup(config({
+        settings = {
+          ['rust-analyzer'] = {
+            imports = {
+              granularity = {
+                group = 'module',
+              },
+              prefix = 'self',
+            },
+            cargo = {
+              buildScripts = {
+                enable = true,
+              },
+            },
+            procMacro = {
+              enable = true,
+            },
+          },
+        },
+      }))
       require('lspconfig').jsonls.setup(config({
         settings = {
           json = {
@@ -158,6 +179,7 @@ return {
       ensure_installed = {
         'eslint-lsp',
         'gopls',
+        'rust-analyzer',
         'json-lsp',
         'lua-language-server',
         'tailwindcss-language-server',
