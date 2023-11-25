@@ -33,9 +33,6 @@ return {
       autotag = {
         enable = true,
       },
-      context_commentstring = {
-        enable = true,
-      },
       highlight = { enable = true },
       indent = { enable = true },
       incremental_selection = {
