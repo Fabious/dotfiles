@@ -12,7 +12,7 @@ Before starting the installation, I recommend reading theses articles to underst
 
 ```
 # To install the dotfiles
-git clone --bare https://github.com/fabious/dotfiles.git ~/.dotfiles
+git clone --bare git@github.com:fabious/dotfiles.git ~/.dotfiles
 /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 ```
@@ -59,8 +59,11 @@ xset r rate 220 40
 # Set Caps Lock to Ctrl_modifier
 setxkbmap -option caps:ctrl_modifier
 
+# Set Compose key (eg: french accents)
+setxkbmap -option compose:ralt
+
 # To make it persitent in Xfce4, add this line :
-# Option "XkbOptions" "caps:ctrl_modifier"
+# Option "XkbOptions" "caps:ctrl_modifier,compose:ralt"
 sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf
 ```
 
