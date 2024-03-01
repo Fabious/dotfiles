@@ -3,9 +3,6 @@
 # Globals
 set -gx EDITOR nvim
 
-# iTerm shell integration
-test -e ~/.iterm2_shell_integration.fish; and source ~/.iterm2_shell_integration.fish
-
 # Install Starship prompt
 # curl -sS https://starship.rs/install.sh | sh
 # To update the Starship itself, rerun the above script.
@@ -17,6 +14,9 @@ zoxide init fish | source
 
 # ASDF
 source ~/.asdf/asdf.fish
+
+# Zellij
+source ~/.config/fish/completions/zellij.fish
 
 # pnpm
 set -gx PNPM_HOME "/home/fabious/.local/share/pnpm"
