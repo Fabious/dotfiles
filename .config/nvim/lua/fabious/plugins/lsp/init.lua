@@ -82,6 +82,7 @@ return {
       table.insert(runtime_path, 'lua/?/init.lua')
       require('lspconfig').eslint.setup(config())
       require('lspconfig').tsserver.setup(config())
+      require('lspconfig').cssls.setup(config())
       require('lspconfig').tailwindcss.setup(config())
       require('lspconfig').intelephense.setup(config())
       -- Golang
@@ -177,14 +178,15 @@ return {
     opts = {
       automatic_installation = true,
       ensure_installed = {
+        'css-lsp',
         'eslint-lsp',
         'gopls',
-        'rust-analyzer',
+        'intelephense',
         'json-lsp',
         'lua-language-server',
+        'rust-analyzer',
         'tailwindcss-language-server',
         'typescript-language-server',
-        'intelephense',
       },
     },
     config = function(_, opts)
