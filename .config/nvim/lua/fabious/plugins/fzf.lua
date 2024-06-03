@@ -1,5 +1,22 @@
 return {
   {
+    'ibhagwan/fzf-lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      -- calling `setup` is optional for customization
+      require('fzf-lua').setup({})
+    end,
+    keys = {
+      { '<C-p>', '<Cmd>lua require"fzf-lua".files()<CR>', desc = 'Files' },
+      { '<C-g>', '<Cmd>lua require"fzf-lua".grep_project()<CR>', desc = 'Grep' },
+      { '<C-l>', '<Cmd>lua require"fzf-lua".live_grep_glob()<CR>', desc = 'Live Grep' },
+      { '<C-\\>', '<Cmd>lua require"fzf-lua".buffers()<CR>', desc = 'Buffers' },
+      { '<C-k>', '<Cmd>lua require"fzf-lua".builtin()<CR>', desc = 'Builtin commands' },
+      { '<F1>', '<Cmd>lua require"fzf-lua".help_tags()<CR>', desc = 'Neovim help' },
+    },
+  },
+  {
+    enabled = false,
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     cmd = 'Telescope',
@@ -28,6 +45,7 @@ return {
     },
   },
   {
+    enabled = false,
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
     cond = vim.fn.executable('make') == 1,
