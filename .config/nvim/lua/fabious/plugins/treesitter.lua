@@ -5,7 +5,6 @@ return {
     event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
-      'windwp/nvim-ts-autotag',
       'numToStr/Comment.nvim',
       'JoosepAlviste/nvim-ts-context-commentstring',
     },
@@ -29,9 +28,6 @@ return {
         'vim',
         'vimdoc',
         'yaml',
-      },
-      autotag = {
-        enable = true,
       },
       highlight = { enable = true },
       indent = { enable = true },
