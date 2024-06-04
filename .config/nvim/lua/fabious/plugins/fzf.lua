@@ -11,7 +11,7 @@ return {
       { '<C-g>', '<Cmd>lua require"fzf-lua".grep_project()<CR>', desc = 'Grep' },
       { '<C-l>', '<Cmd>lua require"fzf-lua".live_grep_glob()<CR>', desc = 'Live Grep' },
       { '<C-\\>', '<Cmd>lua require"fzf-lua".buffers()<CR>', desc = 'Buffers' },
-      { '<C-k>', '<Cmd>lua require"fzf-lua".builtin()<CR>', desc = 'Builtin commands' },
+      { '<C-b>', '<Cmd>lua require"fzf-lua".builtin()<CR>', desc = 'Builtin commands' },
       { '<F1>', '<Cmd>lua require"fzf-lua".help_tags()<CR>', desc = 'Neovim help' },
     },
   },
