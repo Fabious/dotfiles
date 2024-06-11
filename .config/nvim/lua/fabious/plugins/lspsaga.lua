@@ -1,5 +1,7 @@
 local Plugin = { 'glepnir/lspsaga.nvim' }
 
+Plugin.enabled = false
+
 Plugin.branch = 'main'
 
 Plugin.opts = {

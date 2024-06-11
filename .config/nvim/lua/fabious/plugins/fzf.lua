@@ -4,7 +4,11 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       -- calling `setup` is optional for customization
-      require('fzf-lua').setup({})
+      require('fzf-lua').setup({
+        fzf_opts = {
+          ['--layout'] = 'reverse', -- default
+        },
+      })
     end,
     keys = {
       { '<C-p>', '<Cmd>lua require"fzf-lua".files()<CR>', desc = 'Files' },
@@ -12,6 +16,7 @@ return {
       { '<C-\\>', '<Cmd>lua require"fzf-lua".buffers()<CR>', desc = 'Buffers' },
       { '<C-b>', '<Cmd>lua require"fzf-lua".builtin()<CR>', desc = 'Builtin commands' },
       { '<F1>', '<Cmd>lua require"fzf-lua".help_tags()<CR>', desc = 'Neovim help' },
+      { '<leader>h', '<Cmd>lua require"fzf-lua".oldfiles()<CR>', desc = 'Find [H]istory' },
     },
   },
   {
