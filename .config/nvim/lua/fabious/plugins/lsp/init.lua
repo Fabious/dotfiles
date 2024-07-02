@@ -41,6 +41,8 @@ local function config(customConfig)
       -- See `:help K` for why this keymap
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
+      nmap(']e', vim.diagnostic.goto_next, 'Goto next diagnostic')
+      nmap('[e', vim.diagnostic.goto_prev, 'Goto previous diagnostic')
 
       -- Lesser used LSP functionality
       nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
