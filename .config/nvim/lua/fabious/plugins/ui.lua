@@ -141,4 +141,13 @@ return {
       disabled_filetypes = nil, -- this option will be skipped if enabled_filetypes is set. example: { "TelescopePrompt", "NvimTree" }
     },
   },
+
+  -- Fidget (notifications and LSP progress messages)
+  {
+    'j-hui/fidget.nvim',
+    event = 'LspAttach',
+    opts = {
+      -- options
+    },
+  },
 }
