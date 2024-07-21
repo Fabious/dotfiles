@@ -1,53 +1,9 @@
 return {
 
-  -- Bufferline
-  {
-    'akinsho/bufferline.nvim',
-    version = '*',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    event = 'VeryLazy',
-    opts = {
-      options = {
-        mode = 'buffers',
-        numbers = 'ordinal',
-        diagnostics = 'nvim_lsp',
-        separator_style = 'slant',
-        offsets = {
-          {
-            filetype = 'neo-tree',
-            text = 'Neo-tree',
-            highlight = 'Directory',
-            text_align = 'left',
-          },
-        },
-      },
-    },
-    keys = {
-      { '<A-1>', '<cmd>BufferLineGoToBuffer 1<CR>' },
-      { '<A-2>', '<cmd>BufferLineGoToBuffer 2<CR>' },
-      { '<A-3>', '<cmd>BufferLineGoToBuffer 3<CR>' },
-      { '<A-4>', '<cmd>BufferLineGoToBuffer 4<CR>' },
-      { '<A-5>', '<cmd>BufferLineGoToBuffer 5<CR>' },
-      { '<A-6>', '<cmd>BufferLineGoToBuffer 6<CR>' },
-      { '<A-7>', '<cmd>BufferLineGoToBuffer 7<CR>' },
-      { '<A-8>', '<cmd>BufferLineGoToBuffer 8<CR>' },
-      { '<A-9>', '<cmd>BufferLineGoToBuffer 9<CR>' },
-      { '<C-1>', '<cmd>BufferLineGoToBuffer 1<CR>' },
-      { '<C-2>', '<cmd>BufferLineGoToBuffer 2<CR>' },
-      { '<C-3>', '<cmd>BufferLineGoToBuffer 3<CR>' },
-      { '<C-4>', '<cmd>BufferLineGoToBuffer 4<CR>' },
-      { '<C-5>', '<cmd>BufferLineGoToBuffer 5<CR>' },
-      { '<C-6>', '<cmd>BufferLineGoToBuffer 6<CR>' },
-      { '<C-7>', '<cmd>BufferLineGoToBuffer 7<CR>' },
-      { '<C-8>', '<cmd>BufferLineGoToBuffer 8<CR>' },
-      { '<C-9>', '<cmd>BufferLineGoToBuffer 9<CR>' },
-    },
-  },
-
   -- Lualine
   {
     'nvim-lualine/lualine.nvim',
-    event = 'VeryLazy',
+    lazy = false, -- avoid flickering on start
     opts = {
       options = {
         icons_enabled = true,
@@ -71,19 +27,35 @@ return {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = { { 'filename', path = 1 } },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location' },
+        lualine_x = {},
+        lualine_y = { 'encoding', 'fileformat', 'filetype' },
+        lualine_z = { 'progress' },
       },
       inactive_sections = {
-        lualine_a = {},
+        lualine_a = { { 'filename', path = 1 } },
         lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
+        lualine_c = {},
+        lualine_x = {},
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {},
+      tabline = {
+        lualine_a = {
+          {
+            'buffers',
+            mode = 0,
+            buffers_color = {
+              active = { bg = '#d8a657', fg = '#1d1d1d', gui = 'bold' },
+              inactive = { bg = '#444444', fg = '#fff4d2', gui = 'italic' },
+            },
+          },
+        },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { 'grapple' },
+      },
       winbar = {},
       inactive_winbar = {},
       extensions = {},
