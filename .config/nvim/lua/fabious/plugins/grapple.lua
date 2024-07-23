@@ -20,10 +20,10 @@ return {
     { '<leader>4', '<cmd>Grapple select index=4<cr>', desc = 'Select fourth tag' },
     { '<leader>5', '<cmd>Grapple select index=5<cr>', desc = 'Select fifth tag' },
 
-    { 'C-1', '<cmd>Grapple tag index=1<cr>', desc = 'Bind first tag' },
-    { 'C-2', '<cmd>Grapple tag index=2<cr>', desc = 'Bind second tag' },
-    { 'C-3', '<cmd>Grapple tag index=3<cr>', desc = 'Bind third tag' },
-    { 'C-4', '<cmd>Grapple tag index=4<cr>', desc = 'Bind fourth tag' },
-    { 'C-5', '<cmd>Grapple tag index=5<cr>', desc = 'Bind fifth tag' },
+    { '<leader>g1', '<cmd>Grapple tag index=1<cr>', desc = 'Bind first tag' },
+    { '<leader>g2', '<cmd>Grapple tag index=2<cr>', desc = 'Bind second tag' },
+    { '<leader>g3', '<cmd>Grapple tag index=3<cr>', desc = 'Bind third tag' },
+    { '<leader>g4', '<cmd>Grapple tag index=4<cr>', desc = 'Bind fourth tag' },
+    { '<leader>g5', '<cmd>Grapple tag index=5<cr>', desc = 'Bind fifth tag' },
   },
 }
