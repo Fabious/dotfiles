@@ -8,6 +8,7 @@ vim.o.cursorline = true
 vim.o.hlsearch = true
 vim.o.ignorecase = true
 vim.o.incsearch = true
+vim.o.laststatus = 3
 vim.o.mouse = 'a'
 vim.o.scrolloff = 8
 vim.o.signcolumn = 'yes'
@@ -31,3 +32,7 @@ vim.g.nord_italic = false
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+-- :make to populate quickfix with ESLint
+vim.o.errorformat = '%f:%l:%c: %m [%t%*[^]]]' -- parse eslint errors
+vim.o.makeprg = "npx eslint -f unix 'src/**/*.{js,ts,jsx,tsx}'" -- make command
