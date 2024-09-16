@@ -17,6 +17,8 @@ return {
       { '<C-b>', '<Cmd>lua require"fzf-lua".builtin()<CR>', desc = 'Builtin commands' },
       { '<F1>', '<Cmd>lua require"fzf-lua".help_tags()<CR>', desc = 'Neovim help' },
       { '<leader>h', '<Cmd>lua require"fzf-lua".oldfiles()<CR>', desc = 'Find [H]istory' },
+      { '<leader>fw', '<Cmd>lua require"fzf-lua".grep_cword()<CR>', desc = '[F]ind current [W]ord' },
+      { '<leader>fd', '<Cmd>lua require"fzf-lua".diagnostics_workspace()<CR>', desc = '[F]ind [D]iagnostics' },
     },
   },
   {

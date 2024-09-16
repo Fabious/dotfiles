@@ -82,7 +82,7 @@ return {
       table.insert(runtime_path, 'lua/?.lua')
       table.insert(runtime_path, 'lua/?/init.lua')
       require('lspconfig').eslint.setup(config())
-      require('lspconfig').tsserver.setup(config())
+      require('lspconfig').ts_ls.setup(config())
       require('lspconfig').cssls.setup(config())
       require('lspconfig').tailwindcss.setup(config())
       require('lspconfig').intelephense.setup(config())
