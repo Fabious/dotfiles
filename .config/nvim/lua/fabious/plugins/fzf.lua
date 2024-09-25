@@ -19,6 +19,7 @@ return {
       { '<leader>h', '<Cmd>lua require"fzf-lua".oldfiles()<CR>', desc = 'Find [H]istory' },
       { '<leader>fw', '<Cmd>lua require"fzf-lua".grep_cword()<CR>', desc = '[F]ind current [W]ord' },
       { '<leader>fd', '<Cmd>lua require"fzf-lua".diagnostics_workspace()<CR>', desc = '[F]ind [D]iagnostics' },
+      { '<leader>fi', '<Cmd>lua require"fzf-lua".lsp_incoming_calls()<CR>', desc = '[F]ind [I]ncoming calls' },
     },
   },
   {

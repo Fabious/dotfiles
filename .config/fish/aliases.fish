@@ -42,6 +42,8 @@ alias gstat 'git show HEAD --stat'
 alias gw 'git switch'
 alias nah 'git reset --hard && git clean -df'
 
+# PNPM
+alias pn pnpm
 
 # Docker
 alias dc docker-compose
