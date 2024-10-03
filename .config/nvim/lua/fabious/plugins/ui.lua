@@ -67,15 +67,30 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
     event = 'VeryLazy',
-    opts = {
-      indent = {
-        char = '▏',
-      },
-      exclude = {
-        filetypes = { 'help', 'NvimTree', 'dashboard', 'packer', 'TelescopePrompt', 'alpha' },
-        buftypes = { 'terminal' },
-      },
-    },
+    config = function()
+      local highlight = {
+        'RainbowViolet',
+      }
+      local hooks = require('ibl.hooks')
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = '#C678DD' })
+      end)
+
+      require('ibl').setup({
+        indent = {
+          char = '▏',
+        },
+        scope = {
+          highlight = highlight,
+        },
+        exclude = {
+          filetypes = { 'help', 'NvimTree', 'dashboard', 'packer', 'TelescopePrompt', 'alpha' },
+          buftypes = { 'terminal' },
+        },
+      })
+    end,
   },
 
   -- SmoothCursor
