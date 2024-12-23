@@ -1,5 +1,19 @@
 return {
 
+  -- Barbecue: Visual Studio Code inspired breadcrumbs
+  {
+    'utilyre/barbecue.nvim',
+    name = 'barbecue',
+    version = '*',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'nvim-tree/nvim-web-devicons', -- optional dependency
+    },
+    opts = {
+      -- configurations go here
+    },
+  },
+
   -- Lualine
   {
     'nvim-lualine/lualine.nvim',
@@ -18,9 +32,9 @@ return {
         always_divide_middle = true,
         globalstatus = true,
         refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
+          statusline = 100,
+          tabline = 100,
+          winbar = 100,
         },
       },
       sections = {
@@ -107,8 +121,8 @@ return {
         enable = true, -- enable fancy mode
         head = { cursor = '▷', texthl = 'SmoothCursor', linehl = nil },
         body = {
-          { cursor = '', texthl = 'SmoothCursorRed' },
-          { cursor = '', texthl = 'SmoothCursorOrange' },
+          { cursor = '󰝥', texthl = 'SmoothCursorRed' },
+          { cursor = '󰝥', texthl = 'SmoothCursorOrange' },
           { cursor = '●', texthl = 'SmoothCursorYellow' },
           { cursor = '●', texthl = 'SmoothCursorGreen' },
           { cursor = '•', texthl = 'SmoothCursorAqua' },
