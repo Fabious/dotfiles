@@ -8,12 +8,6 @@ return {
       dashboard = {
         enabled = true,
         sections = {
-          {
-            section = 'terminal',
-            cmd = 'colorscript -e square',
-            height = 5,
-            padding = 1,
-          },
           { icon = ' ', title = 'Files', section = 'recent_files', limit = 9, indent = 2, padding = 1 },
           { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
         },

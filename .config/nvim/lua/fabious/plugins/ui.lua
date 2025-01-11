@@ -1,19 +1,5 @@
 return {
 
-  -- Barbecue: Visual Studio Code inspired breadcrumbs
-  {
-    'utilyre/barbecue.nvim',
-    name = 'barbecue',
-    version = '*',
-    dependencies = {
-      'SmiteshP/nvim-navic',
-      'nvim-tree/nvim-web-devicons', -- optional dependency
-    },
-    opts = {
-      -- configurations go here
-    },
-  },
-
   -- Lualine
   {
     'nvim-lualine/lualine.nvim',

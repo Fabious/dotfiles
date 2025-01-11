@@ -3,6 +3,12 @@
 # Globals
 set -gx EDITOR nvim
 
+# Zellij
+if set -q ZELLIJ
+else
+  zellij
+end
+
 # Install Starship prompt
 # curl -sS https://starship.rs/install.sh | sh
 # To update the Starship itself, rerun the above script.
