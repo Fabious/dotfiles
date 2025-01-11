@@ -6,7 +6,7 @@ set -gx EDITOR nvim
 # Zellij
 if set -q ZELLIJ
 else
-  zellij
+  zellij --layout compact
 end
 
 # Install Starship prompt
@@ -30,3 +30,7 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# SSH
+eval (keychain --eval --agents ssh ~/.ssh/id_ed25519)
+
