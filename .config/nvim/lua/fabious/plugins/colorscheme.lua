@@ -36,7 +36,7 @@ return {
   { 'talha-akram/noctis.nvim', lazy = true },
   {
     'craftzdog/solarized-osaka.nvim',
-    lazy = true,
+    lazy = false,
     priority = 1000,
     opts = {},
     config = function()
@@ -46,7 +46,7 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       transparent_background = true, -- disables setting the background color.
