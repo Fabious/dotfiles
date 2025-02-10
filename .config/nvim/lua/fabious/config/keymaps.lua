@@ -33,6 +33,7 @@ map('n', '<leader>0', ':e ~/.config/nvim/lua/fabious<CR>', { desc = 'Open config
 map('n', '<leader>9', ':Lazy<CR>', { desc = 'Open Lazy UI' })
 
 map('n', '<leader>w', ':w<CR>')
+map('n', '<leader>W', ':noautocmd w<CR>')
 map('n', '<leader>q', ':q<CR>')
 map('n', '<leader>o', ':only<CR>')
 

@@ -1,7 +1,7 @@
 return {
   {
     'ellisonleao/gruvbox.nvim',
-    lazy = true, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
       undercurl = true,
@@ -36,7 +36,7 @@ return {
   { 'talha-akram/noctis.nvim', lazy = true },
   {
     'craftzdog/solarized-osaka.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {},
     config = function()
