@@ -10,6 +10,23 @@ return {
         sections = {
           { icon = ' ', title = 'Files', section = 'recent_files', limit = 9, indent = 2, padding = 1 },
           { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
+          {
+            icon = ' ',
+            desc = 'Browse Repo',
+            padding = 1,
+            key = 'b',
+            action = function()
+              Snacks.gitbrowse()
+            end,
+          },
+          {
+            icon = ' ',
+            desc = 'Diff [l]ast commit',
+            padding = 1,
+            key = 'l',
+            action = ':DiffviewOpen HEAD^',
+          },
+          { section = 'startup' },
         },
       },
       lazygit = { enabled = true },

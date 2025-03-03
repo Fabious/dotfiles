@@ -6,10 +6,12 @@ return {
     'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
     'nvim-neotest/neotest-jest',
+    'olimorris/neotest-phpunit',
   },
   config = function()
     require('neotest').setup({
       adapters = {
+        require('neotest-phpunit'),
         require('neotest-jest')({
           jestCommand = 'npm test --',
           env = { CI = true },
