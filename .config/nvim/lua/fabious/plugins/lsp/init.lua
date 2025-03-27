@@ -86,7 +86,13 @@ return {
       require('lspconfig').cssls.setup(config())
       require('lspconfig').superhtml.setup(config())
       require('lspconfig').tailwindcss.setup(config())
-      require('lspconfig').intelephense.setup(config())
+      -- require('lspconfig').intelephense.setup(config())
+      require('lspconfig').phpactor.setup(config({
+        init_options = {
+          ['language_server_phpstan.enabled'] = false,
+          ['language_server_psalm.enabled'] = false,
+        },
+      }))
       -- Golang
       require('lspconfig').gopls.setup(config({
         settings = {
@@ -161,6 +167,7 @@ return {
         sources = {
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.prettierd,
+          nls.builtins.formatting.phpcsfixer,
           -- require('null-ls').builtins.diagnostics.eslint,
 
           -- Golang
@@ -184,6 +191,7 @@ return {
         'eslint-lsp',
         'gopls',
         'intelephense',
+        'phpactor',
         'json-lsp',
         'lua-language-server',
         'rust-analyzer',
