@@ -84,7 +84,8 @@ return {
       require('lspconfig').eslint.setup(config())
       require('lspconfig').ts_ls.setup(config())
       require('lspconfig').cssls.setup(config())
-      require('lspconfig').superhtml.setup(config())
+      require('lspconfig').html.setup(config())
+      -- require('lspconfig').superhtml.setup(config())
       require('lspconfig').tailwindcss.setup(config())
       -- require('lspconfig').intelephense.setup(config())
       require('lspconfig').phpactor.setup(config({

@@ -64,4 +64,35 @@ return {
       require('nordic').load()
     end,
   },
+  {
+    'rose-pine/neovim',
+    lazy = true,
+    name = 'rose-pine',
+    config = function()
+      vim.cmd('colorscheme rose-pine')
+    end,
+  },
+  {
+    'neanias/everforest-nvim',
+    version = false,
+    lazy = true,
+    priority = 1000, -- make sure to load this before all the other start plugins
+    -- Optional; default configuration will be used if setup isn't called.
+    config = function()
+      require('everforest').setup({
+        -- Your config here
+      })
+    end,
+  },
+  {
+    'ribru17/bamboo.nvim',
+    lazy = true,
+    priority = 1000,
+    config = function()
+      require('bamboo').setup({
+        -- optional configuration here
+      })
+      require('bamboo').load()
+    end,
+  },
 }

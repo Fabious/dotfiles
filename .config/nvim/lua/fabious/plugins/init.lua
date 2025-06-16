@@ -21,10 +21,17 @@ return {
           },
           {
             icon = ' ',
-            desc = 'Diff [l]ast commit',
+            desc = 'Diffview [l]ast commit',
             padding = 1,
             key = 'l',
             action = ':DiffviewOpen HEAD^',
+          },
+          {
+            icon = ' ',
+            desc = 'Diffview [h]istory',
+            padding = 1,
+            key = 'h',
+            action = ':DiffviewFileHistory',
           },
           { section = 'startup' },
         },
