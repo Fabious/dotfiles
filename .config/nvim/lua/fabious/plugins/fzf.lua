@@ -12,7 +12,7 @@ return {
     end,
     keys = {
       { '<C-p>', '<Cmd>lua require"fzf-lua".files()<CR>', desc = 'Files' },
-      { '<C-g>', '<Cmd>lua require"fzf-lua".live_grep_glob()<CR>', desc = 'Live Grep' },
+      { '<C-g>', '<Cmd>lua require"fzf-lua".live_grep()<CR>', desc = 'Live Grep' },
       { '<C-\\>', '<Cmd>lua require"fzf-lua".buffers()<CR>', desc = 'Buffers' },
       { '<C-b>', '<Cmd>lua require"fzf-lua".builtin()<CR>', desc = 'Builtin commands' },
       { '<F1>', '<Cmd>lua require"fzf-lua".help_tags()<CR>', desc = 'Neovim help' },

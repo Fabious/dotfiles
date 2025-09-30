@@ -45,8 +45,8 @@ return {
             'buffers',
             mode = 0,
             buffers_color = {
-              active = { bg = '#d8a657', fg = '#1d1d1d', gui = 'bold' },
-              inactive = { bg = '#444444', fg = '#fff4d2', gui = 'italic' },
+              -- active = { bg = '#d8a657', fg = '#1d1d1d', gui = 'bold' },
+              -- inactive = { bg = '#444444', fg = '#fff4d2', gui = 'italic' },
             },
           },
         },

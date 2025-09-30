@@ -1,67 +1,60 @@
-local lsp_formatting = function(bufnr)
-  vim.lsp.buf.format({
-    filter = function(client)
-      return client.name == 'null-ls'
-    end,
-    bufnr = bufnr,
-  })
-end
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+local lsp_attach_group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = lsp_attach_group,
+  desc = 'Setup LSP keymaps and format-on-save',
+  callback = function(event)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    local bufnr = event.buf
+
+    if client and client:supports_method('textDocument/formatting') then
+      local format_group = vim.api.nvim_create_augroup('LspFormatOnSave', { clear = true })
+
+      vim.api.nvim_clear_autocmds({ group = format_group, buffer = bufnr })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = format_group,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 5000 })
+        end,
+      })
+    end
+
+    local nmap = function(keys, func, desc)
+      if desc then
+        desc = 'LSP: ' .. desc
+      end
+      vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, noremap = true, silent = true })
+    end
+
+    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    -- Many servers do not implement declaration method. Generally, see vim.lsp.buf.definition() instead.
+    nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+    nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+    nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
+    -- nmap(']e', vim.diagnostic.jump({ count = 1, float = true }), 'Goto next diagnostic')
+    -- nmap('[e', vim.diagnostic.jump({ count = -1, float = true }), 'Goto previous diagnostic')
+    nmap(']e', function()
+      vim.diagnostic.goto_next({ float = true })
+    end, 'Next Diagnostic')
+    nmap('[e', function()
+      vim.diagnostic.goto_prev({ float = true })
+    end, 'Previous Diagnostic')
+    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+
+    -- Create a buffer-local command for formatting
+    -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function()
+    --   vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 5000 })
+    -- end, { desc = 'Format current buffer with LSP' })
+
+    -- Handle the illuminate plugin if you use it
+    -- require('illuminate').on_attach(client)
+  end,
+})
 
 local function config(customConfig)
   return vim.tbl_deep_extend('force', {
-    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = function(client, bufnr)
-      if client.supports_method('textDocument/formatting') then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          group = augroup,
-          buffer = bufnr,
-          callback = function()
-            lsp_formatting(bufnr)
-          end,
-        })
-      end
-
-      local nmap = function(keys, func, desc)
-        if desc then
-          desc = 'LSP: ' .. desc
-        end
-
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, noremap = true })
-      end
-
-      nmap('gr', vim.lsp.buf.rename, '[R]e[n]ame')
-      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-      nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-      nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-      -- rmap('gr', require('telescope.builtin').lsp_references)
-
-      -- See `:help K` for why this keymap
-      nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
-      nmap(']e', vim.diagnostic.goto_next, 'Goto next diagnostic')
-      nmap('[e', vim.diagnostic.goto_prev, 'Goto previous diagnostic')
-
-      -- Lesser used LSP functionality
-      nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-      nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-
-      -- Create a command `:Format` local to the LSP buffer
-      vim.api.nvim_buf_create_user_command(
-        bufnr,
-        'Format',
-        vim.lsp.buf.format or vim.lsp.buf.formatting,
-        { desc = 'Format current buffer with LSP' }
-      )
-
-      vim.api.nvim_create_user_command('DisableLspFormatting', function()
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
-      end, { nargs = 0 })
-
-      require('illuminate').on_attach(client)
-    end,
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
   }, customConfig or {})
 end
 
@@ -73,69 +66,34 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'hrsh7th/cmp-nvim-lsp',
+      'saghen/blink.cmp',
       'b0o/schemastore.nvim',
-      'RRethy/vim-illuminate',
+      -- 'RRethy/vim-illuminate',
     },
     config = function()
       local runtime_path = vim.split(package.path, ';')
       table.insert(runtime_path, 'lua/?.lua')
       table.insert(runtime_path, 'lua/?/init.lua')
-      require('lspconfig').eslint.setup(config())
-      require('lspconfig').ts_ls.setup(config())
-      require('lspconfig').cssls.setup(config())
-      require('lspconfig').html.setup(config())
-      -- require('lspconfig').superhtml.setup(config())
-      require('lspconfig').tailwindcss.setup(config())
-      -- require('lspconfig').intelephense.setup(config())
-      require('lspconfig').phpactor.setup(config({
+      vim.lsp.config['eslint'] = config()
+      vim.lsp.config['ts_ls'] = config()
+      vim.lsp.config['cssls'] = config()
+      vim.lsp.config['html'] = config()
+      vim.lsp.config['tailwindcss'] = config()
+      vim.lsp.config['phpactor'] = config({
         init_options = {
           ['language_server_phpstan.enabled'] = false,
           ['language_server_psalm.enabled'] = false,
         },
-      }))
-      -- Golang
-      require('lspconfig').gopls.setup(config({
-        settings = {
-          gopls = {
-            analyses = {
-              unusedparams = true,
-            },
-            gofumpt = true, -- null-ls handle the formatting
-            staticcheck = true,
-          },
-        },
-      }))
-      -- Rust
-      require('lspconfig').rust_analyzer.setup(config({
-        settings = {
-          ['rust-analyzer'] = {
-            imports = {
-              granularity = {
-                group = 'module',
-              },
-              prefix = 'self',
-            },
-            cargo = {
-              buildScripts = {
-                enable = true,
-              },
-            },
-            procMacro = {
-              enable = true,
-            },
-          },
-        },
-      }))
-      require('lspconfig').jsonls.setup(config({
+      })
+      vim.lsp.config['jsonls'] = config({
         settings = {
           json = {
             schemas = require('schemastore').json.schemas(),
             validate = { enable = true },
           },
         },
-      }))
-      require('lspconfig').lua_ls.setup(config({
+      })
+      vim.lsp.config['lua_ls'] = config({
         settings = {
           Lua = {
             runtime = {
@@ -152,31 +110,30 @@ return {
             telemetry = { enable = false },
           },
         },
-      }))
+      })
+
+      vim.lsp.enable({ 'eslint', 'ts_ls', 'tailwindcss', 'cssls', 'jsonls', 'html', 'lua_ls' })
     end,
   },
 
   -- formatters
   {
-    'jose-elias-alvarez/null-ls.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'mason.nvim' },
-    opts = function()
-      local nls = require('null-ls')
-      return {
-        debug = true,
-        sources = {
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.prettierd,
-          nls.builtins.formatting.phpcsfixer,
-          -- require('null-ls').builtins.diagnostics.eslint,
-
-          -- Golang
-          nls.builtins.formatting.gofmt,
-          -- require('null-ls').builtins.formatting.gofumpt, -- stricter than gofmt
-        },
-      }
-    end,
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        javascript = { 'prettierd' },
+        typescript = { 'prettierd' },
+        php = { 'phpcsfixer' },
+        go = { 'gofmt' },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
   },
 
   -- cmdline tools and lsp servers
@@ -200,23 +157,23 @@ return {
         'typescript-language-server',
       },
     },
-    config = function(_, opts)
-      require('mason').setup(opts)
-      local mr = require('mason-registry')
-      local function ensure_installed()
-        for _, tool in ipairs(opts.ensure_installed) do
-          local p = mr.get_package(tool)
-          if not p:is_installed() then
-            p:install()
-          end
-        end
-      end
-      if mr.refresh then
-        mr.refresh(ensure_installed)
-      else
-        ensure_installed()
-      end
-    end,
+    -- config = function(_, opts)
+    --   require('mason').setup(opts)
+    --   local mr = require('mason-registry')
+    --   local function ensure_installed()
+    --     for _, tool in ipairs(opts.ensure_installed) do
+    --       local p = mr.get_package(tool)
+    --       if not p:is_installed() then
+    --         p:install()
+    --       end
+    --     end
+    --   end
+    --   if mr.refresh then
+    --     mr.refresh(ensure_installed)
+    --   else
+    --     ensure_installed()
+    --   end
+    -- end,
   },
 
   -- show function signature as you type
