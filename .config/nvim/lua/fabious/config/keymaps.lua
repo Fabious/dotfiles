@@ -49,8 +49,8 @@ map('n', '<Right>', '<cmd>wincmd ><CR>')
 map('n', '<leader>=', '<cmd>wincmd =<CR>')
 
 -- Buffers
-map('n', '<Tab>', '<cmd>bn<CR>')
-map('n', '<S-Tab>', '<cmd>bp<CR>')
+map('n', '<S-L>', '<cmd>bn<CR>')
+map('n', '<S-H>', '<cmd>bp<CR>')
 
 -- Copypasta
 map('n', 'x', '"_x')

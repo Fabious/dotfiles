@@ -7,18 +7,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     local bufnr = event.buf
 
-    if client and client:supports_method('textDocument/formatting') then
-      local format_group = vim.api.nvim_create_augroup('LspFormatOnSave', { clear = true })
-
-      vim.api.nvim_clear_autocmds({ group = format_group, buffer = bufnr })
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = format_group,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 5000 })
-        end,
-      })
-    end
+    -- if client and client:supports_method('textDocument/formatting') then
+    --   local format_group = vim.api.nvim_create_augroup('LspFormatOnSave', { clear = true })
+    --   vim.api.nvim_clear_autocmds({ group = format_group, buffer = bufnr })
+    --   vim.api.nvim_create_autocmd('BufWritePre', {
+    --     group = format_group,
+    --     buffer = bufnr,
+    --     callback = function(args)
+    --       require('conform').format({ bufnr = args.buf })
+    --     end,
+    --   })
+    -- end
 
     local nmap = function(keys, func, desc)
       if desc then
@@ -123,9 +122,11 @@ return {
     cmd = { 'ConformInfo' },
     opts = {
       formatters_by_ft = {
+        javascript = { 'prettierd', 'prettier' },
+        javascriptreact = { 'prettierd' },
+        typescript = { 'prettierd', 'prettier' },
+        typescriptreact = { 'prettierd' },
         lua = { 'stylua' },
-        javascript = { 'prettierd' },
-        typescript = { 'prettierd' },
         php = { 'phpcsfixer' },
         go = { 'gofmt' },
       },
