@@ -7,13 +7,16 @@ return {
     opts = {
       keymap = {
         preset = 'enter',
-        -- ['<Tab>'] = { 'select_next', 'fallback_to_mappings' },
-        -- ['<S-Tab>'] = { 'select_prev', 'fallback_to_mappings' },
+        ['<Tab>'] = { 'select_next', 'fallback_to_mappings' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback_to_mappings' },
       },
       appearance = {
         nerd_font_variant = 'mono',
       },
-      completion = { documentation = { auto_show = true, auto_show_delay_ms = 200 } },
+      completion = {
+        documentation = { auto_show = true, auto_show_delay_ms = 200 },
+        accept = { auto_bracket = false },
+      },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
       },

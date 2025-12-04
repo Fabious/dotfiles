@@ -42,18 +42,16 @@ return {
         },
       },
       lazygit = { enabled = true },
-      toggle = { enabled = true },
       notifier = { enabled = true },
+      toggle = { enabled = true },
       words = { enabled = true },
+      zen = { enabled = true },
     },
     keys = {
-      {
-        '<leader>gg',
-        function()
-          Snacks.lazygit()
-        end,
-        desc = 'Lazygit',
-      },
+      { '<leader>gg', function() Snacks.lazygit() end, desc = 'Lazygit' },
+      { '<leader>z', function() Snacks.zen() end, desc = 'Toggle Zen Mode' },
+      { '<leader>Z', function() Snacks.zen.zoom() end, desc = 'Toggle Zoom' },
+      { '<leader>.', function() Snacks.scratch() end, desc = 'Toggle Scratch Buffer' },
     },
   },
 

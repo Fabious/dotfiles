@@ -49,6 +49,8 @@ map('n', '<Right>', '<cmd>wincmd ><CR>')
 map('n', '<leader>=', '<cmd>wincmd =<CR>')
 
 -- Buffers
+map('n', '<tab>', '<cmd>bn<CR>')
+map('n', '<S-tab>', '<cmd>bp<CR>')
 map('n', '<S-L>', '<cmd>bn<CR>')
 map('n', '<S-H>', '<cmd>bp<CR>')
 
@@ -72,5 +74,5 @@ map('n', '<leader>tp', ':tabp<CR>')
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
-map('n', '<leader>vf', vim.diagnostic.open_float)
-map('n', '<leader>cl', vim.diagnostic.setloclist)
+map('n', '<leader>xf', vim.diagnostic.open_float, { desc = 'Open diagnostic floating window' })
+map('n', '<leader>xl', vim.diagnostic.setloclist, { desc = 'Set Loclist with diagnostics' })

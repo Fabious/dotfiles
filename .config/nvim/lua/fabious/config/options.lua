@@ -38,3 +38,9 @@ vim.o.completeopt = 'menuone,noselect'
 -- :make to populate quickfix with ESLint
 vim.o.errorformat = '%f:%l:%c: %m [%t%*[^]]]' -- parse eslint errors
 vim.o.makeprg = "npx eslint -f unix 'src/**/*.{js,ts,jsx,tsx}'" -- make command
+
+-- vim.api.nvim_set_hl(0, 'Visual', { reverse = true })
+-- vim.api.nvim_set_hl(0, 'Visual', {
+--   bg = '#3E4452', -- A dark, muted blue/gray for the background
+--   fg = '#ABB2BF', -- A light gray for the foreground text
+-- })

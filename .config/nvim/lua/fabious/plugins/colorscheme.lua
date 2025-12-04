@@ -51,8 +51,14 @@ return {
           palette = {},
           theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
         },
-        overrides = function(_colors) -- add/modify highlights
-          return {}
+        overrides = function(colors) -- add/modify highlights
+          local theme = colors.theme
+          return {
+            --   Visual = {
+            --     bg = theme.ui.fg,
+            --     fg = theme.ui.bg,
+            --   },
+          }
         end,
         theme = 'wave', -- Load "wave" theme
         background = { -- map the value of 'background' option to a theme

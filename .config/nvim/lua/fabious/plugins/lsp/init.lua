@@ -69,7 +69,21 @@ return {
       'b0o/schemastore.nvim',
       -- 'RRethy/vim-illuminate',
     },
+    opts = { diagnostics = { virtual_text = false } },
     config = function()
+      -- Show inline diagnostic
+      -- vim.diagnostic.config({
+      --   virtual_text = {
+      --     prefix = '●', -- Or any other character you like
+      --     source = 'if_many', -- Only show source if there are multiple
+      --     spacing = 4,
+      --   },
+      --   signs = true,
+      --   underline = true,
+      --   update_in_insert = false,
+      --   severity_sort = true,
+      -- })
+
       local runtime_path = vim.split(package.path, ';')
       table.insert(runtime_path, 'lua/?.lua')
       table.insert(runtime_path, 'lua/?/init.lua')
@@ -111,7 +125,16 @@ return {
         },
       })
 
-      vim.lsp.enable({ 'eslint', 'ts_ls', 'tailwindcss', 'cssls', 'jsonls', 'html', 'lua_ls' })
+      vim.lsp.enable({
+        'cssls',
+        'eslint',
+        'html',
+        'jsonls',
+        'lua_ls',
+        'phpactor',
+        'tailwindcss',
+        'ts_ls',
+      })
     end,
   },
 
@@ -122,9 +145,9 @@ return {
     cmd = { 'ConformInfo' },
     opts = {
       formatters_by_ft = {
-        javascript = { 'prettierd', 'prettier' },
+        javascript = { 'prettierd' },
         javascriptreact = { 'prettierd' },
-        typescript = { 'prettierd', 'prettier' },
+        typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
         lua = { 'stylua' },
         php = { 'phpcsfixer' },
