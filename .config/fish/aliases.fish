@@ -46,7 +46,7 @@ alias nah 'git reset --hard && git clean -df'
 alias pn pnpm
 
 # Docker
-alias dc docker-compose
+alias dc 'docker compose'
 
 # Dotfiles
 alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'

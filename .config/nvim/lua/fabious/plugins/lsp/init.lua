@@ -7,6 +7,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     local bufnr = event.buf
 
+    -- If the server is NOT on the trusted list, force disable Call Hierarchy
+    if not is_trusted then
+      client.server_capabilities.callHierarchyProvider = false
+    end
+    -- =========================================================================
     -- if client and client:supports_method('textDocument/formatting') then
     --   local format_group = vim.api.nvim_create_augroup('LspFormatOnSave', { clear = true })
     --   vim.api.nvim_clear_autocmds({ group = format_group, buffer = bufnr })

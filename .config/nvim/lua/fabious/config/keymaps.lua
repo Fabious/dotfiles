@@ -74,5 +74,32 @@ map('n', '<leader>tp', ':tabp<CR>')
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
-map('n', '<leader>xf', vim.diagnostic.open_float, { desc = 'Open diagnostic floating window' })
 map('n', '<leader>xl', vim.diagnostic.setloclist, { desc = 'Set Loclist with diagnostics' })
+
+map('n', '<leader>xy', function()
+  -- Get the current line number (0-indexed)
+  local line = vim.fn.line('.') - 1
+
+  -- Get diagnostics for the current line
+  local diagnostics = vim.diagnostic.get(0, { lnum = line })
+
+  -- If no diagnostics, exit
+  if vim.tbl_isempty(diagnostics) then
+    print('No diagnostics found on this line.')
+    return
+  end
+
+  -- Collect messages (handle multiple errors on one line)
+  local messages = {}
+  for _, d in ipairs(diagnostics) do
+    -- table.insert(messages, d.message) -- Only the message text
+    table.insert(messages, string.format('%s: %s', d.source, d.message)) -- Optional: Include source (e.g., "Eslint: ...")
+  end
+
+  -- Join messages with newlines
+  local text = table.concat(messages, '\n')
+
+  -- Copy to system clipboard ('+') and print confirmation
+  vim.fn.setreg('+', text)
+  print('Copied diagnostic to clipboard!')
+end, { desc = 'Copy diagnostic message' })
