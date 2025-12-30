@@ -18,7 +18,6 @@ map('n', ';', ':', { noremap = false })
 map('n', 'Q', '<Nop>')
 map('n', '<C-c>', '<Esc>')
 map('n', '<C-s>', '<cmd>w<CR>')
-map('n', '<C-c>', 'ciw')
 
 -- Suspend (aka go to terminal)
 map('n', '<C-t>', ':stop<CR>', { noremap = false })
