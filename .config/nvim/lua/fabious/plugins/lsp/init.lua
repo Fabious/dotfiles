@@ -4,21 +4,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = lsp_attach_group,
   desc = 'Setup LSP keymaps and format-on-save',
   callback = function(event)
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
     local bufnr = event.buf
-
-    -- if client and client:supports_method('textDocument/formatting') then
-    --   local format_group = vim.api.nvim_create_augroup('LspFormatOnSave', { clear = true })
-    --   vim.api.nvim_clear_autocmds({ group = format_group, buffer = bufnr })
-    --   vim.api.nvim_create_autocmd('BufWritePre', {
-    --     group = format_group,
-    --     buffer = bufnr,
-    --     callback = function(args)
-    --       require('conform').format({ bufnr = args.buf })
-    --     end,
-    --   })
-    -- end
-
     local nmap = function(keys, func, desc)
       if desc then
         desc = 'LSP: ' .. desc
@@ -40,14 +26,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.diagnostic.goto_prev({ float = true })
     end, 'Previous Diagnostic')
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-
-    -- Create a buffer-local command for formatting
-    -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function()
-    --   vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 5000 })
-    -- end, { desc = 'Format current buffer with LSP' })
-
-    -- Handle the illuminate plugin if you use it
-    -- require('illuminate').on_attach(client)
   end,
 })
 

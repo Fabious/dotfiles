@@ -1,17 +1,19 @@
 return {
   'nvim-neotest/neotest',
   dependencies = {
-    'nvim-neotest/nvim-nio',
-    'nvim-lua/plenary.nvim',
     'antoinemadec/FixCursorHold.nvim',
-    'nvim-treesitter/nvim-treesitter',
+    'marilari88/neotest-vitest',
+    'nvim-lua/plenary.nvim',
     'nvim-neotest/neotest-jest',
+    'nvim-neotest/nvim-nio',
+    'nvim-treesitter/nvim-treesitter',
     'olimorris/neotest-phpunit',
   },
   config = function()
     require('neotest').setup({
       adapters = {
         require('neotest-phpunit'),
+        require('neotest-vitest'),
         require('neotest-jest')({
           jestCommand = 'npm test --',
           env = { CI = true },
