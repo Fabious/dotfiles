@@ -3,6 +3,9 @@
 # Globals
 set -gx EDITOR nvim
 
+# SSH
+eval (env SHELL=/usr/bin/fish keychain --eval --quiet --noask --agents ssh 2>$HOME/ssh-keychain.log)
+
 # Zellij
 if set -q ZELLIJ
 else
@@ -31,6 +34,5 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
-# SSH
-eval (keychain --eval --agents ssh ~/.ssh/id_ed25519)
-
+# FZF
+fzf --fish | source
