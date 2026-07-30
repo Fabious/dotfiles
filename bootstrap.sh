@@ -228,17 +228,17 @@ step_pnpm() {
 }
 
 step_fonts() {
-  log "Cascadia Code Nerd Font"
+  log "JetBrainsMono Nerd Font"
   local dir="$HOME/.local/share/fonts"
-  if compgen -G "$dir/CaskaydiaCove*" >/dev/null; then
-    skip "Cascadia Code Nerd Font"
+  if compgen -G "$dir/JetBrainsMono*" >/dev/null; then
+    skip "JetBrainsMono Nerd Font"
     return
   fi
   mkdir -p "$dir"
-  curl -fsSLo /tmp/CascadiaCode.zip \
-    https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip
-  unzip -oq /tmp/CascadiaCode.zip -d "$dir"
-  rm -f /tmp/CascadiaCode.zip
+  curl -fsSLo /tmp/JetBrainsMono.zip \
+    https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+  unzip -oq /tmp/JetBrainsMono.zip -d "$dir"
+  rm -f /tmp/JetBrainsMono.zip
   if have fc-cache; then fc-cache -f; fi
 }
 

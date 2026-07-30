@@ -140,13 +140,13 @@ asdf current
 
 ## Fonts
 
-I use the [Cascadia Code Nerd Font][cascadia-code-nerd-font].
+I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font].
 
 ```sh
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts
-curl -fLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip
-unzip -o CascadiaCode.zip && rm CascadiaCode.zip
+curl -fLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip -o JetBrainsMono.zip && rm JetBrainsMono.zip
 fc-cache -fv
 ```
 
@@ -179,4 +179,4 @@ fc-cache -fv
 [vim-plug]: https://github.com/junegunn/vim-plug
 [yazi]: https://github.com/sxyazi/yazi
 [zellij]: https://github.com/zellij-org/zellij
-[cascadia-code-nerd-font]: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CascadiaCode
+[jetbrainsmono-nerd-font]: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono

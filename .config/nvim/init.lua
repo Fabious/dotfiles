@@ -1,3 +1,3 @@
 require('fabious')
 
-vim.opt.guifont = { 'CaskaydiaCove Nerd Font', ':h11' }
+vim.opt.guifont = { 'JetBrainsMono Nerd Font', ':h11' }
