@@ -1,68 +1,79 @@
+local function pick(fn, opts)
+  return function()
+    require('fzf-lua')[fn](opts)
+  end
+end
+
+-- Files changed against the repo's default branch, falling back to dev-main.
+local function changed_vs_default()
+  local fzf = require('fzf-lua')
+  local head = vim.fn.systemlist({ 'git', 'symbolic-ref', '--short', 'refs/remotes/origin/HEAD' })[1]
+  local base = head and head:gsub('^origin/', '') or nil
+  if vim.v.shell_error ~= 0 or not base or base == '' then
+    base = 'dev-main'
+  end
+  fzf.fzf_exec({ 'git', 'diff', '--name-only', base }, {
+    prompt = 'Changed vs ' .. base .. '> ',
+    previewer = 'builtin',
+    actions = fzf.defaults.actions.files,
+  })
+end
+
 return {
-  {
-    enabled = false,
-    'ibhagwan/fzf-lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      -- calling `setup` is optional for customization
-      require('fzf-lua').setup({
-        fzf_opts = {
-          ['--layout'] = 'reverse', -- default
-        },
-      })
-    end,
-    keys = {
-      { '<C-p>', '<Cmd>lua require"fzf-lua".files()<CR>', desc = 'Files' },
-      { '<C-g>', '<Cmd>lua require"fzf-lua".live_grep()<CR>', desc = 'Live Grep' },
-      { '<C-\\>', '<Cmd>lua require"fzf-lua".buffers()<CR>', desc = 'Buffers' },
-      { '<leader><leader>', '<Cmd>lua require"fzf-lua".buffers()<CR>', desc = 'Buffers' },
-      { '<C-b>', '<Cmd>lua require"fzf-lua".builtin()<CR>', desc = 'Builtin commands' },
-      { '<F1>', '<Cmd>lua require"fzf-lua".help_tags()<CR>', desc = 'Neovim help' },
-      { '<leader>h', '<Cmd>lua require"fzf-lua".oldfiles()<CR>', desc = 'Find [H]istory' },
-      { '<leader>fd', '<Cmd>lua require"fzf-lua".lsp_implementations()<CR>', desc = '[F]ind implementations' },
-      { '<leader>fi', '<Cmd>lua require"fzf-lua".lsp_incoming_calls()<CR>', desc = '[F]ind [i]ncoming calls' },
-      { '<leader>fl', '<Cmd>lua require"fzf-lua".lsp_finder()<CR>', desc = '[L]SP' },
-      { '<leader>fr', '<Cmd>lua require"fzf-lua".lsp_references()<CR>', desc = '[F]ind [r]eferences' },
-      { '<leader>fw', '<Cmd>lua require"fzf-lua".grep_cword()<CR>', desc = '[F]ind current [W]ord' },
-      { '<leader>fx', '<Cmd>lua require"fzf-lua".diagnostics_workspace()<CR>', desc = '[F]ind diagnostics' },
+  'ibhagwan/fzf-lua',
+  event = 'VimEnter',
+  dependencies = { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+  config = function()
+    local fzf = require('fzf-lua')
+
+    fzf.setup({
+      fzf_opts = { ['--layout'] = 'reverse' },
+      winopts = { preview = { default = 'builtin' } },
+    })
+
+    -- Replaces telescope-ui-select: routes vim.ui.select through fzf.
+    fzf.register_ui_select()
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('fzf-lsp-attach', { clear = true }),
+      callback = function(event)
+        local function map(keys, fn, desc)
+          vim.keymap.set('n', keys, pick(fn), { buffer = event.buf, desc = 'LSP: ' .. desc })
+        end
+
+        map('grr', 'lsp_references', '[G]oto [R]eferences')
+        map('gri', 'lsp_implementations', '[G]oto [I]mplementation')
+        map('grd', 'lsp_definitions', '[G]oto [D]efinition')
+        map('grt', 'lsp_typedefs', '[G]oto [T]ype Definition')
+        map('gO', 'lsp_document_symbols', 'Open Document Symbols')
+        map('gW', 'lsp_live_workspace_symbols', 'Open Workspace Symbols')
+        map('<leader>fi', 'lsp_incoming_calls', '[F]ind [i]ncoming calls')
+      end,
+    })
+  end,
+  keys = {
+    { '<C-p>', pick('git_files'), desc = 'Fuzzy finder' },
+    { '<C-g>', pick('live_grep'), desc = 'Live [G]rep' },
+    { '<F1>', pick('helptags'), desc = '[F]ind [H]elp' },
+    { '<leader><leader>', pick('buffers'), desc = '[ ] Find existing buffers' },
+    { '<leader>h', pick('oldfiles'), desc = '[H]istory' },
+    { '<leader>ff', pick('files'), desc = '[F]ind [F]iles' },
+    { '<leader>fk', pick('keymaps'), desc = '[F]ind [K]eymaps' },
+    { '<leader>fs', pick('builtin'), desc = '[F]ind [S]elect fzf-lua' },
+    { '<leader>fw', pick('grep_cword'), desc = '[F]ind current [W]ord' },
+    { '<leader>fw', pick('grep_visual'), mode = 'v', desc = '[F]ind selection' },
+    { '<leader>fg', pick('git_status'), desc = '[F]ind by [G]it status' },
+    { '<leader>fd', pick('diagnostics_document'), desc = '[F]ind [D]iagnostics' },
+    { '<leader>fr', pick('lsp_references'), desc = '[F]ind [R]eferences' },
+    { '<leader>fc', pick('commands'), desc = '[F]ind [C]ommands' },
+    { '<leader>fx', pick('diagnostics_workspace'), desc = '[F]ind workspace diagnostics' },
+    { '<leader>/', pick('lgrep_curbuf'), desc = '[/] Fuzzily search in current buffer' },
+    { '<leader>s/', pick('lines'), desc = '[F]ind [/] in open buffers' },
+    {
+      '<leader>fn',
+      pick('files', { cwd = vim.fn.stdpath('config') }),
+      desc = '[F]ind [N]eovim files',
     },
+    { '<leader>gm', changed_vs_default, desc = 'Find files changed vs default branch' },
   },
-  -- {
-  --   enabled = false,
-  --   'nvim-telescope/telescope.nvim',
-  --   dependencies = { 'nvim-lua/plenary.nvim' },
-  --   cmd = 'Telescope',
-  --   opts = {
-  --     defaults = {
-  --       mappings = {
-  --         i = {
-  --           ['<C-h>'] = 'which_key',
-  --         },
-  --       },
-  --     },
-  --   },
-  --   keys = {
-  --     { '<C-p>', '<cmd>Telescope git_files<cr>', desc = 'Fuzzy finder' },
-  --     { '<C-g>', '<cmd>Telescope live_grep<cr>', desc = 'Live [G]rep' },
-  --     { '<leader><space>', '<cmd>Telescope buffers<cr>', desc = 'Find existing buffers' },
-  --     -- find
-  --     { '<leader>h', '<cmd>Telescope oldfiles<cr>', desc = 'Files [H]istory' },
-  --     { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = '[F]ind [F]iles' },
-  --     { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = '[F]ind [H]elp' },
-  --     { '<leader>fw', '<cmd>Telescope grep_string<cr>', desc = '[F]ind current [W]ord' },
-  --     { '<leader>fd', '<cmd>Telescope diagnostics<cr>', desc = '[F]ind [D]iagnostics' },
-  --     -- git
-  --     { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = 'commits' },
-  --     { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'status' },
-  --   },
-  -- },
-  -- {
-  --   enabled = false,
-  --   'nvim-telescope/telescope-fzf-native.nvim',
-  --   build = 'make',
-  --   cond = vim.fn.executable('make') == 1,
-  --   config = function()
-  --     require('telescope').load_extension('fzf')
-  --   end,
-  -- },
 }
