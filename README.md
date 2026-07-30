@@ -10,14 +10,18 @@ Before starting the installation, I recommend reading theses articles to underst
 - https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
 - https://engineeringwith.kalkayan.io/series/developer-experience/storing-dotfiles-with-git-this-is-the-way/
 
-```
+```sh
 # To install the dotfiles
 git clone --bare git@github.com:fabious/dotfiles.git ~/.dotfiles
 /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 ```
 
-```
+`status.showUntrackedFiles no` is not optional. The work-tree is `$HOME`, so
+without it every command that walks untracked files enumerates the entire home
+directory — `status --untracked-files=all` produces well over 100 MB of output.
+
+```sh
 # Then use this alias to update the repo like you would normally do
 alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
@@ -26,33 +30,83 @@ dotfiles checkout
 
 # normal git commands
 dotfiles status
-dotfiles add ~/.config/nvim/init.vim
+dotfiles add ~/.config/nvim/init.lua
 dotfiles commit -m 'update neovim config'
 dotfiles push
 ```
 
+Then install the tools listed below:
+
+```sh
+./bootstrap.sh            # everything
+./bootstrap.sh --list     # show the step names
+./bootstrap.sh cargo      # run just one step
+```
+
+Every step skips work that is already done, so re-running it is safe.
+
+### What must never be committed
+
+The remote is **public** and the work-tree is `$HOME`, which means a careless
+`dotfiles add` can publish an SSH key or an auth token. Two layers guard against
+that:
+
+- **`.gitignore`** — tracked, so the rules follow the repo to a new machine.
+  Covers `.ssh/`, `.gnupg/`, `.claude/.credentials.json`, prompt history,
+  agent transcripts, and machine-local state.
+- **`.dotfiles/info/exclude`** — local to one clone, never committed. Use it for
+  anything machine-specific that should not be published as a rule for others.
+
+Machine-local git config (work identities, credential helpers for private
+GitLab/GitHub instances) belongs in `~/.gitconfig.local`, which `.gitconfig`
+includes and `.gitignore` excludes.
+
+## Machine
+
+Developed on Linux Mint 22.1 (`xia`, Ubuntu 24.04 `noble` base), but not tied to
+it. `bootstrap.sh` detects the native package manager (apt, pacman, dnf, zypper,
+apk) and installs everything else from upstream, so it should work on any glibc
+distro. Both x86_64 and aarch64 are handled.
+
 ## Tools
 
-- [fish][fish] - The user-friendly command line shell
-- [starship][starship] - The minimal, blazing-fast, and infinitely customizable prompt
-- [gh][gh] - GitHub’s official command line tool
-- [delta][delta] - A syntax-highlighting pager for git, diff, and grep output
-- [bat][bat] - A cat(1) clone with wings
-- [fd][fd] - A simple, fast and user-friendly alternative to 'find'
-- [ripgrep][ripgrep] - ripgrep recursively searches directories for a regex pattern
-- [lsd][lsd] - The next gen ls command
-- [exa][exa] - A modern replacement for ls
-- [fzf][fzf] - 🌸 A command-line fuzzy finder
-- [jq][jq] - Command-line JSON processor
-- [procs][procs] - A modern replacement for ps written in Rust
-- [lazydocker][lazydocker] - Docker TUI
-- [lazygit][lazygit] - Simple terminal UI for git commands
-- [tokei][tokei] - Count your code, quickly
-- [glow][glow] - Render markdown on the CLI, with pizzazz! 💅🏻
+Installed from a mix of sources, which is why `bootstrap.sh` exists. Only the
+first group depends on the distro; the rest install identically everywhere.
 
-## Arch
+| Tool | What it is | Installed via |
+| --- | --- | --- |
+| [fish][fish] | The user-friendly command line shell | native package manager |
+| [git-delta][delta] | A syntax-highlighting pager for git, diff, and grep output | native package manager |
+| [ripgrep][ripgrep] | Recursively searches directories for a regex pattern | native package manager |
+| [lsd][lsd] | The next gen ls command | native package manager |
+| [jq][jq] | Command-line JSON processor | native package manager |
+| [keychain][keychain] | Manages ssh-agent across logins | native package manager |
+| [starship][starship] | The minimal, blazing-fast, infinitely customizable prompt | official script → `/usr/local/bin` |
+| [lazygit][lazygit] | Simple terminal UI for git commands | GitHub release → `/usr/local/bin` |
+| [gh][gh] | GitHub's official command line tool | GitHub release → `~/.local/bin` |
+| [bat][bat] | A cat(1) clone with wings | GitHub release → `~/.local/bin` |
+| [fd][fd] | A simple, fast and user-friendly alternative to 'find' | GitHub release → `~/.local/bin` |
+| [fzf][fzf] | 🌸 A command-line fuzzy finder | git clone → `~/.fzf` |
+| [kitty][kitty] | GPU-based terminal emulator | official installer → `~/.local/kitty.app` |
+| [zellij][zellij] | Terminal workspace / multiplexer | `cargo install zellij` |
+| [yazi][yazi] | Blazing fast terminal file manager | `cargo install --locked yazi-fm yazi-cli` |
+| [stylua][stylua] | Lua formatter (used by conform.nvim) | `cargo install stylua` |
+| [bob][bob] | Neovim version manager | `cargo install bob-nvim` |
+| [neovim][neovim] | Main editor | `bob install stable` |
+| [lazydocker][lazydocker] | Docker TUI | asdf plugin |
+| [asdf][asdf] | Multi-runtime version manager | GitHub release → `~/.asdf` |
 
-```
+`bat` and `fd` come from upstream releases rather than the distro package on
+purpose: Debian/Ubuntu ship them as `batcat` and `fdfind` to avoid name
+collisions, and the configs here expect the upstream names. On distros that do
+not rename them this is redundant but harmless.
+
+`.vimrc` is kept as a fallback for when `nvim` is unavailable. It needs
+[vim-plug][vim-plug] at `~/.vim/autoload/plug.vim`, then `:PlugInstall`.
+
+## Keyboard (X11)
+
+```sh
 # Set keyboard repeat rate
 xset r rate 220 40
 
@@ -62,26 +116,23 @@ setxkbmap -option caps:ctrl_modifier
 # Set Compose key (eg: french accents)
 setxkbmap -option compose:ralt
 
-# To make it persitent in Xfce4, add this line :
+# To make it persistent in Xfce4, add this line :
 # Option "XkbOptions" "caps:ctrl_modifier,compose:ralt"
 sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf
 ```
 
 ## ASDF
 
-```
-# Install asdf with yay (AUR helper)
-yay -S asdf-vm
-
+```sh
 # Install nodejs
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs latest
-asdf global nodejs latest
+asdf set -u nodejs latest
 
 # Install Python
 asdf plugin add python
 asdf install python latest
-asdf global python latest
+asdf set -u python latest
 
 # Check everything is fine
 asdf current
@@ -91,9 +142,12 @@ asdf current
 
 I use the [Cascadia Code Nerd Font][cascadia-code-nerd-font].
 
-```
-# Install on Arch
-yay -S nerd-fonts-cascadia-code
+```sh
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+curl -fLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip
+unzip -o CascadiaCode.zip && rm CascadiaCode.zip
+fc-cache -fv
 ```
 
 ## Inspiration
@@ -104,21 +158,25 @@ yay -S nerd-fonts-cascadia-code
 - https://github.com/mathiasbynens/dotfiles/
 - https://github.com/kalkayan/dotfiles
 
+[asdf]: https://asdf-vm.com/
 [bat]: https://github.com/sharkdp/bat
+[bob]: https://github.com/MordechaiHadad/bob
 [delta]: https://github.com/dandavison/delta
-[exa]: https://github.com/ogham/exa
 [fd]: https://github.com/sharkdp/fd
 [fish]: https://fishshell.com/
 [fzf]: https://github.com/junegunn/fzf
 [gh]: https://github.com/cli/cli
-[glow]: https://github.com/charmbracelet/glow
-[hack-font]: https://sourcefoundry.org/hack/
-[cascadia-code-nerd-font]: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CascadiaCode
-[jq]: https://github.com/stedolan/jq
+[jq]: https://github.com/jqlang/jq
+[keychain]: https://github.com/funtoo/keychain
+[kitty]: https://sw.kovidgoyal.net/kitty/
 [lazydocker]: https://github.com/jesseduffield/lazydocker
 [lazygit]: https://github.com/jesseduffield/lazygit
-[lsd]: https://github.com/Peltoche/lsd
-[procs]: https://github.com/dalance/procs
+[lsd]: https://github.com/lsd-rs/lsd
+[neovim]: https://neovim.io/
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [starship]: https://github.com/starship/starship
-[tokei]: https://github.com/XAMPPRocky/tokei
+[stylua]: https://github.com/JohnnyMorganz/StyLua
+[vim-plug]: https://github.com/junegunn/vim-plug
+[yazi]: https://github.com/sxyazi/yazi
+[zellij]: https://github.com/zellij-org/zellij
+[cascadia-code-nerd-font]: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CascadiaCode

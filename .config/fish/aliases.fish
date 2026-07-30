@@ -2,9 +2,9 @@
 alias ea 'v ~/.config/fish/aliases.fish'
 alias ef 'v ~/.config/fish/config.fish'
 alias ek 'v ~/.config/kitty/kitty.conf'
-alias ev 'v ~/.config/nvim/init.vim'
+alias ev 'v ~/.config/nvim/init.lua'
 alias eg 'v ~/.gitconfig'
-alias et 'v ~/.tmux.conf'
+alias ez 'v ~/.config/zellij/config.kdl'
 
 # Quick open
 alias gvc 'v (git show HEAD --pretty="format:" --name-only)'
@@ -12,7 +12,6 @@ alias gvc 'v (git show HEAD --pretty="format:" --name-only)'
 # Shortcuts
 alias v nvim
 alias g git
-alias r ranger
 alias c clear
 alias l ls
 alias ld lazydocker
@@ -36,7 +35,7 @@ alias gd 'git diff'
 alias gfa 'git fetch --all'
 alias gl 'git pull'
 alias gp 'git push'
-alias gp 'git push --force'
+alias gpf 'git push --force-with-lease'
 alias grc 'git rebase --continue'
 alias gstat 'git show HEAD --stat'
 alias gw 'git switch'
@@ -72,7 +71,7 @@ function gwi -d 'git switch fzf'
 end
 
 function vs -d 'Opens all git staged files in Vim'
-    v (git diff --name-only)
+    v (git diff --cached --name-only)
 end
 
 function vc -d 'Opens all files from last commit in Vim'
@@ -86,11 +85,3 @@ end
 function vts -d 'Opens all files with TypeScript issues in Vim'
     v ( tsc | grep -vEe '^\s' | cut -d'(' -f1 | sort -u )
 end
-
-# Ctrl + T
-# 2>/dev/null removes the Send job X, “PROGRAM” to foreground message, omit that if you wish to keep it.
-# commandline -f repaint tells fish to redraw the prompt to avoid weird cursor position issues.
-function fish_user_key_bindings
-    bind \ct 'fg 2>/dev/null; commandline -f repaint'
-end
-

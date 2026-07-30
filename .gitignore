@@ -1,0 +1,62 @@
+# This repo's work-tree is $HOME and the remote is public.
+# Everything here is a guard against `dotfiles add <path>` reaching for
+# something it should not. Unlike .dotfiles/info/exclude, this file is
+# tracked, so the rules follow the repo to a new machine.
+
+# Credentials and keys
+.ssh/
+.gnupg/
+.netrc
+.aws/
+.npmrc
+.pypirc
+.docker/config.json
+.keychain/
+*.pem
+*_rsa
+*_ed25519
+id_*.pub
+
+# Machine-local git identity / credential helpers
+.gitconfig.local
+
+# Claude Code: auth, prompt history, transcripts, runtime state
+.claude/.credentials.json
+.claude/history.jsonl
+.claude/backups/
+.claude/cache/
+.claude/daemon*
+.claude/debug/
+.claude/downloads/
+.claude/file-history/
+.claude/jobs/
+.claude/paste-cache/
+.claude/plans/
+.claude/policy-limits.json
+.claude/projects/
+.claude/remote-settings.json
+.claude/session-env/
+.claude/sessions/
+.claude/settings.local.json
+.claude/statsig/
+.claude/todos/
+.claude.json
+.claude.json.backup
+
+# Other agent tooling with the same shape
+.codex/
+.copilot/
+.cursor/
+.gemini/
+.grok/
+.factory/
+
+# Machine-local shell state
+.config/fish/fish_variables
+.config/fish/functions/picurl.fish
+ssh-keychain.log
+
+# Editor / tool scratch
+*.bak
+*.swp
+.netrwhist
