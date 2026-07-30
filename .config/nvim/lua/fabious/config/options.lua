@@ -26,11 +26,11 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+vim.g.have_nerd_font = true
+
 -- Set colorscheme
 vim.o.termguicolors = true
 vim.o.background = 'dark'
-vim.g.everforest_background = 'hard'
-vim.g.nord_italic = false
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -38,9 +38,3 @@ vim.o.completeopt = 'menuone,noselect'
 -- :make to populate quickfix with ESLint
 vim.o.errorformat = '%f:%l:%c: %m [%t%*[^]]]' -- parse eslint errors
 vim.o.makeprg = "npx eslint -f unix 'src/**/*.{js,ts,jsx,tsx}'" -- make command
-
--- vim.api.nvim_set_hl(0, 'Visual', { reverse = true })
--- vim.api.nvim_set_hl(0, 'Visual', {
---   bg = '#3E4452', -- A dark, muted blue/gray for the background
---   fg = '#ABB2BF', -- A light gray for the foreground text
--- })

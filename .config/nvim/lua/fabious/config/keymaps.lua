@@ -7,10 +7,6 @@ end
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Remap for dealing with word wrap
--- map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
--- map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
-
 -- [[ My Keymaps ]]
 -- best keymaps
 map('i', 'jk', '<ESC>')
@@ -25,16 +21,13 @@ map('n', '<C-t>', ':stop<CR>', { noremap = false })
 -- Turn off last search highlight
 map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 
--- Oil
-map('n', '-', ':Oil<CR>', { desc = 'Open parent directory' })
-
 map('n', '<leader>0', ':e ~/.config/nvim/lua/fabious<CR>', { desc = 'Open config' })
 map('n', '<leader>9', ':Lazy<CR>', { desc = 'Open Lazy UI' })
 
 map('n', '<leader>w', ':w<CR>')
 map('n', '<leader>W', ':noautocmd w<CR>')
 map('n', '<leader>q', ':q<CR>')
-map('n', '<leader>o', ':only<CR>')
+map('n', '<leader>O', ':only<CR>')
 
 -- Window
 map('n', '<C-h>', '<cmd>wincmd h<CR>')
@@ -71,8 +64,19 @@ map('n', '<leader>tn', ':tabn<CR>')
 map('n', '<leader>tp', ':tabp<CR>')
 
 -- Diagnostic keymaps
-map('n', '[d', vim.diagnostic.goto_prev)
-map('n', ']d', vim.diagnostic.goto_next)
+local function diagnostic_jump(count)
+  return function()
+    vim.diagnostic.jump({
+      count = count,
+      on_jump = function()
+        vim.diagnostic.open_float()
+      end,
+    })
+  end
+end
+
+map('n', '[d', diagnostic_jump(-1))
+map('n', ']d', diagnostic_jump(1))
 map('n', '<leader>xl', vim.diagnostic.setloclist, { desc = 'Set Loclist with diagnostics' })
 
 map('n', '<leader>xy', function()

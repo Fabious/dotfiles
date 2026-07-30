@@ -4,12 +4,10 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'mason-org/mason.nvim', opts = {} },
-      -- This plugin streamlines Neovim's LSP setup by automating server installation and activation, providing helpful management commands, and mapping mason.nvim packages to nvim-lspconfig configurations.
       { 'mason-org/mason-lspconfig.nvim', opts = {} },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
-      -- Allows extra capabilities provided by blink.cmp
+      -- Provides the extra completion capabilities advertised to servers below.
       'saghen/blink.cmp',
       'b0o/schemastore.nvim',
     },
@@ -28,20 +26,20 @@ return {
           map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 
-          -- nmap(']e', vim.diagnostic.jump({ count = 1, float = true }), 'Goto next diagnostic')
-          -- nmap('[e', vim.diagnostic.jump({ count = -1, float = true }), 'Goto previous diagnostic')
-          map(']e', function()
-            vim.diagnostic.goto_next({ float = true })
-          end, 'Next Diagnostic')
-          map('[e', function()
-            vim.diagnostic.goto_prev({ float = true })
-          end, 'Previous Diagnostic')
+          local function diagnostic_jump(count)
+            return function()
+              vim.diagnostic.jump({
+                count = count,
+                on_jump = function()
+                  vim.diagnostic.open_float()
+                end,
+              })
+            end
+          end
+          map(']e', diagnostic_jump(1), 'Next Diagnostic')
+          map('[e', diagnostic_jump(-1), 'Previous Diagnostic')
 
-          -- The following two autocommands are used to highlight references of the
-          -- word under your cursor when your cursor rests there for a little while.
-          --    See `:help CursorHold` for information about when this is executed
-          --
-          -- When you move your cursor, the highlights will be cleared (the second autocommand).
+          -- Highlight references to the word under the cursor while it rests there.
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client:supports_method('textDocument/documentHighlight', event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -66,10 +64,6 @@ return {
             })
           end
 
-          -- The following code creates a keymap to toggle inlay hints in your
-          -- code, if the language server you are using supports them
-          --
-          -- This may be unwanted, since they displace some of your code
           if client and client:supports_method('textDocument/inlayHint', event.buf) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
@@ -78,19 +72,11 @@ return {
         end,
       })
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
+      -- Advertise blink.cmp's extra capabilities to every server below.
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --  See `:help lsp-config` for information about keys and how to configure
+      -- Servers here are installed automatically. See `:help lsp-config`.
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
         rust_analyzer = {},
         phpactor = {
           init_options = {
@@ -109,13 +95,7 @@ return {
         },
       }
 
-      -- Ensure the servers and tools above are installed
-      --
-      -- To check the current status of installed tools and/or manually install
-      -- other tools, you can run
-      --    :Mason
-      --
-      -- You can press `g?` for help in this menu.
+      -- Run :Mason to inspect or manually manage installed tools.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'copilot-language-server',

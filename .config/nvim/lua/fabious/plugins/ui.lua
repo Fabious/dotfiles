@@ -44,10 +44,6 @@ return {
           {
             'buffers',
             mode = 0,
-            buffers_color = {
-              -- active = { bg = '#d8a657', fg = '#1d1d1d', gui = 'bold' },
-              -- inactive = { bg = '#444444', fg = '#fff4d2', gui = 'italic' },
-            },
           },
         },
         lualine_b = {},
@@ -125,16 +121,7 @@ return {
       threshold = 3, -- animate if threshold lines jump
       disable_float_win = true, -- disable on float window
       enabled_filetypes = nil, -- example: { "lua", "vim" }
-      disabled_filetypes = nil, -- this option will be skipped if enabled_filetypes is set. example: { "TelescopePrompt", "NvimTree" }
-    },
-  },
-
-  -- Fidget (notifications and LSP progress messages)
-  {
-    'j-hui/fidget.nvim',
-    event = 'LspAttach',
-    opts = {
-      -- options
+      disabled_filetypes = nil, -- skipped if enabled_filetypes is set. example: { "neo-tree", "oil" }
     },
   },
 
