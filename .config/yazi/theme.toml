@@ -1,0 +1,5 @@
+# Both variants point at the Tinty-managed flavor, since Tinty already tracks
+# whether the current scheme is light or dark.
+[flavor]
+dark = "tinted-scheme"
+light = "tinted-scheme"

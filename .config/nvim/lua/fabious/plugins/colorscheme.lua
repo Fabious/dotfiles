@@ -1,9 +1,7 @@
--- Exactly one colorscheme may be non-lazy. Previously kanagawa and
--- solarized-osaka both loaded eagerly and kanagawa won only on load order.
 return {
   {
     'rebelot/kanagawa.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       compile = false,
@@ -26,7 +24,6 @@ return {
     end,
   },
 
-  -- Switchable with :colorscheme <name>; lazy.nvim loads them on ColorSchemePre.
   {
     'ellisonleao/gruvbox.nvim',
     lazy = true,
@@ -46,4 +43,16 @@ return {
     },
   },
   { 'catppuccin/nvim', name = 'catppuccin', lazy = true },
+  {
+    'maxmx03/solarized.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function(_, opts)
+      vim.o.termguicolors = true
+      vim.o.background = 'light'
+      require('solarized').setup(opts)
+      vim.cmd.colorscheme('solarized')
+    end,
+  },
 }

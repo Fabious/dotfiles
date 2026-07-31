@@ -271,7 +271,9 @@ plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "kanagawa"
+// Managed by Tinty: themes/tinted-scheme.kdl is regenerated on every `tinty apply`.
+// Revert to a fixed theme by putting a name like "kanagawa" back here.
+theme "tinted-scheme"
 
 // The name of the default layout to load on startup
 // Default: "default"

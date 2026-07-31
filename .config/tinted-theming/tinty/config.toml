@@ -1,0 +1,58 @@
+shell = "sh -c '{}'"
+
+[[items]]
+name = "tinted-shell"
+path = "https://github.com/tinted-theming/tinted-shell"
+themes-dir = "fish"
+hook = "fish -c \"source %f\""
+supported-systems = ["base16"]
+
+[[items]]
+name = "tinted-fzf"
+path = "https://github.com/tinted-theming/tinted-fzf"
+themes-dir = "fish"
+hook = "fish -c \"source %f\""
+supported-systems = ["base16"]
+
+[[items]]
+name = "tinted-terminal"
+path = "https://github.com/tinted-theming/tinted-terminal"
+themes-dir = "themes/kitty"
+hook = "[ -n \"$KITTY_PID\" ] && kill -USR1 \"$KITTY_PID\" || true"
+supported-systems = ["base16", "base24"]
+
+[[items]]
+name = "tinted-delta"
+path = "https://github.com/tinted-theming/tinted-delta"
+themes-dir = "configs"
+supported-systems = ["base16", "base24"]
+
+[[items]]
+name = "tinted-lazygit"
+path = "https://github.com/tinted-theming/tinted-lazygit"
+themes-dir = "themes"
+supported-systems = ["base16"]
+
+[[items]]
+name = "tinted-yazi"
+path = "https://github.com/tinted-theming/tinted-yazi"
+themes-dir = "flavors"
+hook = 'mkdir -p "$HOME/.config/yazi/flavors/tinted-scheme.yazi" && cp -f "$TINTY_THEME_FILE_PATH" "$HOME/.config/yazi/flavors/tinted-scheme.yazi/flavor.toml"'
+
+# Local template (no official tinted-theming repo for zellij).
+# Source lives in ~/.config/tinted-theming/templates/tinted-zellij — rebuild with:
+#   tinty build ~/.config/tinted-theming/templates/tinted-zellij
+[[items]]
+name = "tinted-zellij"
+path = "~/.config/tinted-theming/templates/tinted-zellij"
+themes-dir = "themes"
+supported-systems = ["base16"]
+hook = 'mkdir -p "$HOME/.config/zellij/themes" && cp -f "$TINTY_THEME_FILE_PATH" "$HOME/.config/zellij/themes/tinted-scheme.kdl"'
+
+[[items]]
+name = "tinted-claude-code"
+path = "https://github.com/tinted-theming/tinted-claude-code"
+themes-dir = "scripts"
+theme-file-extension = ".js"
+supported-systems = ["base16", "base24", "tinted8"]
+hook = "mkdir -p \"$HOME/.claude/themes\" && node \"$TINTY_THEME_FILE_PATH\" > \"$HOME/.claude/themes/tinty.json\""

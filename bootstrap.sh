@@ -184,6 +184,7 @@ step_cargo() {
   have zellij || cargo install --locked zellij
   have stylua || cargo install stylua
   have bob    || cargo install bob-nvim
+  have tinty  || cargo install tinty
   if have yazi; then skip yazi; else cargo install --locked yazi-fm yazi-cli; fi
 }
 
