@@ -1,3 +1,12 @@
+# PATH first, so everything below finds the tools. ~/.local/bin holds what
+# install.sh downloads (zellij, starship, fzf, mise…); fish doesn't read
+# ~/.profile, so don't rely on it adding ~/.local/bin. Then cargo, and bob's
+# nvim proxy. fish_add_path skips dirs that don't exist.
+fish_add_path -g ~/.local/bin ~/.cargo/bin ~/.local/share/bob/nvim-bin
+
+# mise — runtime versions (node, python…), see README
+type -q mise; and mise activate fish | source
+
 . ~/.config/fish/aliases.fish
 
 # Globals
@@ -26,14 +35,8 @@ type -q starship; and starship init fish | source
 # Zoxide
 type -q zoxide; and zoxide init fish | source
 
-# Cargo, and bob's nvim proxy (fish_add_path skips dirs that don't exist)
-fish_add_path -g ~/.cargo/bin ~/.local/share/bob/nvim-bin
-
-# mise — runtime versions (node, python…), see README
-type -q mise; and mise activate fish | source
-
 # pnpm
-set -gx PNPM_HOME "/home/fabious/.local/share/pnpm"
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
