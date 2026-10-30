@@ -21,8 +21,8 @@ It installs Chrome, kitty, the JetBrainsMono Nerd Font, the shell tools
 (git-delta, ripgrep, zoxide, keychain, lsd, zellij, tree-sitter, starship, fzf,
 mise) and fish (set as the login shell), then checks out the dotfiles into
 `$HOME`, then installs cargo, bob, the latest stable Neovim and the mise tools
-(Node). Files already in the way are moved to `~/.dotfiles-backup/<date>/`
-first. Re-running it is safe.
+(Node, lazygit, lazydocker, gh, fd, bat). Files already in the way are moved to
+`~/.dotfiles-backup/<date>/` first. Re-running it is safe.
 
 What it does for the dotfiles, by hand:
 
@@ -82,10 +82,10 @@ when you need them. `config.fish` skips any tool that isn't installed.
 | [keychain][keychain] | Manages ssh-agent across logins | `install.sh` (apt) |
 | [zoxide][zoxide] | A smarter cd command (`z`) | `install.sh` (apt) |
 | [starship][starship] | The minimal, blazing-fast, infinitely customizable prompt | `install.sh` (official script → `~/.local/bin`) |
-| [lazygit][lazygit] | Simple terminal UI for git commands | GitHub release → `/usr/local/bin` |
-| [gh][gh] | GitHub's official command line tool | GitHub release → `~/.local/bin` |
-| [bat][bat] | A cat(1) clone with wings | GitHub release → `~/.local/bin` |
-| [fd][fd] | A simple, fast and user-friendly alternative to 'find' | GitHub release → `~/.local/bin` |
+| [lazygit][lazygit] | Simple terminal UI for git commands (`lg`) | `install.sh` (mise) |
+| [gh][gh] | GitHub's official command line tool | `install.sh` (mise) |
+| [bat][bat] | A cat(1) clone with wings | `install.sh` (mise) |
+| [fd][fd] | A simple, fast and user-friendly alternative to 'find' | `install.sh` (mise) |
 | [fzf][fzf] | 🌸 A command-line fuzzy finder (also used by fzf-lua in Neovim) | `install.sh` (GitHub release → `~/.local/bin`) |
 | [kitty][kitty] | GPU-based terminal emulator | `install.sh` (official installer → `~/.local/kitty.app`) |
 | [zellij][zellij] | Terminal workspace / multiplexer, auto-started in kitty | `install.sh` (GitHub release → `~/.local/bin`) |
@@ -96,12 +96,10 @@ when you need them. `config.fish` skips any tool that isn't installed.
 | [neovim][neovim] | Main editor | `install.sh` (`bob use stable`) |
 | [tree-sitter][tree-sitter] | CLI that nvim-treesitter uses to build parsers | `install.sh` (GitHub release → `~/.local/bin`) |
 | [mise][mise] | Runtime version manager (node, python…), replaces asdf | `install.sh` (official script → `~/.local/bin`) |
-| [lazydocker][lazydocker] | Docker TUI | `mise use -g lazydocker` |
+| [lazydocker][lazydocker] | Docker TUI (`ld`) | `install.sh` (mise) |
 
-`bat` and `fd` come from upstream releases rather than the distro package on
-purpose: Debian/Ubuntu ship them as `batcat` and `fdfind` to avoid name
-collisions, and the configs here expect the upstream names. On distros that do
-not rename them this is redundant but harmless.
+`bat` and `fd` come from mise rather than apt on purpose: Debian/Ubuntu ship
+them as `batcat` and `fdfind`, and the configs here expect the upstream names.
 
 `.vimrc` is kept as a fallback for when `nvim` is unavailable. It needs
 [vim-plug][vim-plug] at `~/.vim/autoload/plug.vim`, then `:PlugInstall`.
@@ -126,13 +124,13 @@ sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf
 ## mise
 
 Global runtimes and tools are listed in `~/.config/mise/config.toml`, and
-`install.sh` installs them with `mise install`. Node is there because Neovim's
-Mason installs several language servers with npm.
+`install.sh` installs them with `mise install`: Node (Neovim's Mason installs
+several language servers with npm), lazygit, lazydocker, gh, fd and bat.
 
 ```sh
 # Add a tool to the list and install it
 mise use -g python@latest
-mise use -g lazydocker
+mise use -g yazi@latest
 
 # Check everything is fine
 mise ls

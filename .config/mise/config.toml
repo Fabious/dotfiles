@@ -1,4 +1,9 @@
 # Global runtimes and tools, installed by `mise install` (install.sh runs it).
-# Add one per line, e.g. python = "latest" or lazydocker = "latest".
+# Add one with `mise use -g <tool>@latest` (it edits this file), then commit it.
 [tools]
+bat = "latest"
+fd = "latest"
+gh = "latest"
+lazydocker = "latest"
+lazygit = "latest"
 node = "lts" # Neovim's Mason installs several language servers with npm
