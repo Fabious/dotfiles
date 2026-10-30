@@ -4,7 +4,7 @@
 set -gx EDITOR nvim
 
 # SSH
-eval (env SHELL=/usr/bin/fish keychain --eval --quiet --noask 2>$HOME/ssh-keychain.log)
+eval (env SHELL=/usr/bin/fish keychain --eval --quiet id_ed25519 2>$HOME/ssh-keychain.log)
 
 # Zellij
 if set -q ZELLIJ
