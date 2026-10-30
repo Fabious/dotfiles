@@ -130,4 +130,7 @@ fi
 log "neovim (latest stable, via bob)"
 "$HOME/.cargo/bin/bob" use stable
 
+log "mise tools (from ~/.config/mise/config.toml)"
+"$HOME/.local/bin/mise" install
+
 log "done — log out and back in so fish becomes your login shell"

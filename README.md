@@ -20,7 +20,8 @@ bash /tmp/install.sh
 It installs Chrome, kitty, the JetBrainsMono Nerd Font, the shell tools
 (git-delta, ripgrep, zoxide, keychain, lsd, zellij, tree-sitter, starship, fzf,
 mise) and fish (set as the login shell), then checks out the dotfiles into
-`$HOME`, then installs cargo, bob and the latest stable Neovim. Files already in
+`$HOME`, then installs cargo, bob, the latest stable Neovim and the mise tools
+(Node). Files already in
 the way are moved to `~/.dotfiles-backup/<date>/` first. Re-running it is safe.
 
 What it does for the dotfiles, by hand:
@@ -124,17 +125,20 @@ sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf
 
 ## mise
 
-Runtimes aren't installed by `install.sh`; add them when you need them.
+Global runtimes and tools are listed in `~/.config/mise/config.toml`, and
+`install.sh` installs them with `mise install`. Node is there because Neovim's
+Mason installs several language servers with npm.
 
 ```sh
-# Install Node.js (LTS) and Python, globally
-mise use -g node@lts
+# Add a tool to the list and install it
 mise use -g python@latest
+mise use -g lazydocker
 
 # Check everything is fine
 mise ls
 ```
 
+`mise use -g` writes to `~/.config/mise/config.toml`, so commit it afterwards.
 `mise` also reads asdf's `.tool-versions` files in projects.
 
 ## Fonts
