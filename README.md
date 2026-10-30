@@ -21,8 +21,8 @@ It installs Chrome, kitty, the JetBrainsMono Nerd Font, the shell tools
 (git-delta, ripgrep, zoxide, keychain, lsd, zellij, tree-sitter, starship, fzf,
 mise) and fish (set as the login shell), then checks out the dotfiles into
 `$HOME`, then installs cargo, bob, the latest stable Neovim and the mise tools
-(Node). Files already in
-the way are moved to `~/.dotfiles-backup/<date>/` first. Re-running it is safe.
+(Node). Files already in the way are moved to `~/.dotfiles-backup/<date>/`
+first. Re-running it is safe.
 
 What it does for the dotfiles, by hand:
 
