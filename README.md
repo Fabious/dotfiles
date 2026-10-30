@@ -24,8 +24,12 @@ mise) and fish (set as the login shell), then checks out the dotfiles into
 (Node, lazygit, lazydocker, gh, fd, bat). Files already in the way are moved to
 `~/.dotfiles-backup/<date>/` first. Re-running it is safe.
 
-After the first run, log out and back in: that makes fish the login shell and
-lets you run `docker` without `sudo`.
+### After the first run
+
+1. Log out and back in: that makes fish the login shell and lets you run
+   `docker` without `sudo`.
+2. Sign in to GitHub: `gh auth login`.
+3. Sign in to Copilot: `:LspCopilotSignIn` in Neovim.
 
 What it does for the dotfiles, by hand:
 
@@ -65,6 +69,20 @@ that:
 Machine-local git config (work identities, credential helpers for private
 GitLab/GitHub instances) belongs in `~/.gitconfig.local`, which `.gitconfig`
 includes and `.gitignore` excludes.
+
+## Updating
+
+```sh
+mise upgrade        # the mise tools (node, lazygit, gh, fd, bat…)
+bob use stable      # Neovim, to the latest stable release
+```
+
+In Neovim, `:Lazy update` updates the plugins; then commit the new
+`~/.config/nvim/lazy-lock.json`:
+
+```sh
+dotfiles commit -am 'nvim: update plugins' && dotfiles push
+```
 
 ## Machine
 
