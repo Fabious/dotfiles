@@ -17,12 +17,15 @@ curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Fabious/dotfiles/m
 bash /tmp/install.sh
 ```
 
-It installs Chrome, kitty, the JetBrainsMono Nerd Font, the shell tools
+It installs Chrome, Docker, kitty, the JetBrainsMono Nerd Font, the shell tools
 (git-delta, ripgrep, zoxide, keychain, lsd, zellij, tree-sitter, starship, fzf,
 mise) and fish (set as the login shell), then checks out the dotfiles into
 `$HOME`, then installs cargo, bob, the latest stable Neovim and the mise tools
 (Node, lazygit, lazydocker, gh, fd, bat). Files already in the way are moved to
 `~/.dotfiles-backup/<date>/` first. Re-running it is safe.
+
+After the first run, log out and back in: that makes fish the login shell and
+lets you run `docker` without `sudo`.
 
 What it does for the dotfiles, by hand:
 
@@ -96,6 +99,7 @@ when you need them. `config.fish` skips any tool that isn't installed.
 | [neovim][neovim] | Main editor | `install.sh` (`bob use stable`) |
 | [tree-sitter][tree-sitter] | CLI that nvim-treesitter uses to build parsers | `install.sh` (GitHub release → `~/.local/bin`) |
 | [mise][mise] | Runtime version manager (node, python…), replaces asdf | `install.sh` (official script → `~/.local/bin`) |
+| [docker][docker] | Containers, with `docker compose` (`dc`) | `install.sh` (apt `docker.io`, `docker-compose-v2`) |
 | [lazydocker][lazydocker] | Docker TUI (`ld`) | `install.sh` (mise) |
 
 `bat` and `fd` come from mise rather than apt on purpose: Debian/Ubuntu ship
@@ -156,6 +160,7 @@ I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font], installed by
 [bob]: https://github.com/MordechaiHadad/bob
 [cargo]: https://rustup.rs/
 [delta]: https://github.com/dandavison/delta
+[docker]: https://docs.docker.com/engine/
 [fd]: https://github.com/sharkdp/fd
 [fish]: https://fishshell.com/
 [fzf]: https://github.com/junegunn/fzf

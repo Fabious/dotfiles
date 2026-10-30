@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sets up a fresh Linux Mint machine: Chrome, kitty, the font, zellij, fish, then
+# Sets up a fresh Linux Mint machine: Chrome, Docker, kitty, the font, zellij, fish, then
 # checks out these dotfiles into $HOME. Every step skips work that is already
 # done, so re-running it is safe.
 #
@@ -28,6 +28,14 @@ if ! have google-chrome; then
   curl -fsSLo /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo apt-get install -y /tmp/chrome.deb
   rm /tmp/chrome.deb
+fi
+
+log "Docker"
+sudo apt-get install -y docker.io docker-compose-v2
+# Run docker without sudo. The group is root-equivalent, and only applies
+# after logging out and back in.
+if ! id -nG "$USER" | grep -qw docker; then
+  sudo usermod -aG docker "$USER"
 fi
 
 log "kitty"
@@ -86,7 +94,8 @@ if [[ ! -x "$HOME/.local/bin/mise" ]]; then
 fi
 
 log "fish"
-if ! ls /etc/apt/sources.list.d/ | grep -q fish-shell-release-4; then
+# Match the repo URL, not the file name: Mint and Ubuntu name the file differently.
+if ! grep -rqs fish-shell/release-4 /etc/apt/sources.list.d/; then
   sudo add-apt-repository -y ppa:fish-shell/release-4
   sudo apt-get update
 fi
@@ -133,4 +142,4 @@ log "neovim (latest stable, via bob)"
 log "mise tools (from ~/.config/mise/config.toml)"
 "$HOME/.local/bin/mise" install
 
-log "done — log out and back in so fish becomes your login shell"
+log "done — log out and back in so fish is your login shell and docker works without sudo"
