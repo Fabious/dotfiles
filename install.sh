@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sets up a fresh Linux Mint machine: Chrome, kitty, the font, fish, then
+# Sets up a fresh Linux Mint machine: Chrome, kitty, the font, zellij, fish, then
 # checks out these dotfiles into $HOME. Every step skips work that is already
 # done, so re-running it is safe.
 #
@@ -47,6 +47,13 @@ if [[ -z "$(fc-list 'JetBrainsMono Nerd Font')" ]]; then
   unzip -oq /tmp/JetBrainsMono.zip -d "$HOME/.local/share/fonts/JetBrainsMono"
   rm /tmp/JetBrainsMono.zip
   fc-cache -f
+fi
+
+log "zellij"
+# Not in Mint's apt repos; the static musl build runs anywhere.
+if [[ ! -x "$HOME/.local/bin/zellij" ]]; then
+  curl -fsSL https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz \
+    | tar xz -C "$HOME/.local/bin" zellij
 fi
 
 log "fish"

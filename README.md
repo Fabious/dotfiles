@@ -17,7 +17,7 @@ curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Fabious/dotfiles/m
 bash /tmp/install.sh
 ```
 
-It installs Chrome, kitty, the JetBrainsMono Nerd Font, git-delta and fish
+It installs Chrome, kitty, the JetBrainsMono Nerd Font, git-delta, zellij and fish
 (set as the login shell), then checks out the dotfiles into `$HOME`. Files
 already in the way are moved to `~/.dotfiles-backup/<date>/` first. Re-running
 it is safe.
@@ -67,7 +67,7 @@ Developed on Linux Mint 22.1 (`xia`, Ubuntu 24.04 `noble` base).
 
 ## Tools
 
-`install.sh` only sets up fish, kitty and git-delta from this list. The configs
+`install.sh` only sets up fish, kitty, zellij and git-delta from this list. The configs
 cover the rest too; install them by hand when you need them. `config.fish`
 skips any tool that isn't installed.
 
@@ -86,7 +86,7 @@ skips any tool that isn't installed.
 | [fd][fd] | A simple, fast and user-friendly alternative to 'find' | GitHub release → `~/.local/bin` |
 | [fzf][fzf] | 🌸 A command-line fuzzy finder | git clone → `~/.fzf` |
 | [kitty][kitty] | GPU-based terminal emulator | `install.sh` (official installer → `~/.local/kitty.app`) |
-| [zellij][zellij] | Terminal workspace / multiplexer | `cargo install zellij` |
+| [zellij][zellij] | Terminal workspace / multiplexer, auto-started in kitty | `install.sh` (GitHub release → `~/.local/bin`) |
 | [yazi][yazi] | Blazing fast terminal file manager | `cargo install --locked yazi-fm yazi-cli` |
 | [stylua][stylua] | Lua formatter (used by conform.nvim) | `cargo install stylua` |
 | [bob][bob] | Neovim version manager | `cargo install bob-nvim` |

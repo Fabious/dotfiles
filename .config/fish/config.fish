@@ -11,8 +11,9 @@ if type -q keychain
   eval (env SHELL=/usr/bin/fish keychain --eval --quiet id_ed25519 2>$HOME/ssh-keychain.log)
 end
 
-# Zellij
-if status is-interactive; and type -q zellij; and not set -q ZELLIJ
+# Zellij — only in kitty windows. KITTY_WINDOW_ID isn't forwarded over ssh,
+# unlike TERM=xterm-kitty, so remote shells don't nest a second zellij.
+if status is-interactive; and set -q KITTY_WINDOW_ID; and type -q zellij; and not set -q ZELLIJ
   zellij --layout compact
 end
 
