@@ -17,8 +17,9 @@ curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Fabious/dotfiles/m
 bash /tmp/install.sh
 ```
 
-It installs Chrome, kitty, the JetBrainsMono Nerd Font, git-delta, zellij and fish
-(set as the login shell), then checks out the dotfiles into `$HOME`. Files
+It installs Chrome, kitty, the JetBrainsMono Nerd Font, git-delta, zellij, the
+tree-sitter CLI and fish (set as the login shell), then checks out the dotfiles
+into `$HOME`, then installs cargo, bob and the latest stable Neovim. Files
 already in the way are moved to `~/.dotfiles-backup/<date>/` first. Re-running
 it is safe.
 
@@ -67,9 +68,9 @@ Developed on Linux Mint 22.1 (`xia`, Ubuntu 24.04 `noble` base).
 
 ## Tools
 
-`install.sh` only sets up fish, kitty, zellij and git-delta from this list. The configs
-cover the rest too; install them by hand when you need them. `config.fish`
-skips any tool that isn't installed.
+`install.sh` sets up fish, kitty, zellij, git-delta, tree-sitter, cargo, bob
+and neovim from this list. The configs cover the rest too; install them by hand
+when you need them. `config.fish` skips any tool that isn't installed.
 
 | Tool | What it is | Installed via |
 | --- | --- | --- |
@@ -89,8 +90,10 @@ skips any tool that isn't installed.
 | [zellij][zellij] | Terminal workspace / multiplexer, auto-started in kitty | `install.sh` (GitHub release → `~/.local/bin`) |
 | [yazi][yazi] | Blazing fast terminal file manager | `cargo install --locked yazi-fm yazi-cli` |
 | [stylua][stylua] | Lua formatter (used by conform.nvim) | `cargo install stylua` |
-| [bob][bob] | Neovim version manager | `cargo install bob-nvim` |
-| [neovim][neovim] | Main editor | `bob install stable` |
+| [cargo][cargo] | Rust toolchain, used to build bob | `install.sh` (rustup) |
+| [bob][bob] | Neovim version manager | `install.sh` (`cargo install bob-nvim`) |
+| [neovim][neovim] | Main editor | `install.sh` (`bob use stable`) |
+| [tree-sitter][tree-sitter] | CLI that nvim-treesitter uses to build parsers | `install.sh` (GitHub release → `~/.local/bin`) |
 | [lazydocker][lazydocker] | Docker TUI | asdf plugin |
 | [asdf][asdf] | Multi-runtime version manager | GitHub release → `~/.asdf` |
 
@@ -152,6 +155,7 @@ I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font], installed by
 [asdf]: https://asdf-vm.com/
 [bat]: https://github.com/sharkdp/bat
 [bob]: https://github.com/MordechaiHadad/bob
+[cargo]: https://rustup.rs/
 [delta]: https://github.com/dandavison/delta
 [fd]: https://github.com/sharkdp/fd
 [fish]: https://fishshell.com/
@@ -167,6 +171,7 @@ I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font], installed by
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [starship]: https://github.com/starship/starship
 [stylua]: https://github.com/JohnnyMorganz/StyLua
+[tree-sitter]: https://github.com/tree-sitter/tree-sitter
 [vim-plug]: https://github.com/junegunn/vim-plug
 [yazi]: https://github.com/sxyazi/yazi
 [zellij]: https://github.com/zellij-org/zellij

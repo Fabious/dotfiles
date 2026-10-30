@@ -57,6 +57,14 @@ if [[ ! -x "$HOME/.local/bin/zellij" ]]; then
     | tar xz -C "$HOME/.local/bin" zellij
 fi
 
+log "tree-sitter CLI"
+# nvim-treesitter (main branch) needs it to build parsers.
+if [[ ! -x "$HOME/.local/bin/tree-sitter" ]]; then
+  curl -fsSL https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz \
+    | gunzip > "$HOME/.local/bin/tree-sitter"
+  chmod +x "$HOME/.local/bin/tree-sitter"
+fi
+
 log "fish"
 if ! ls /etc/apt/sources.list.d/ | grep -q fish-shell-release-4; then
   sudo add-apt-repository -y ppa:fish-shell/release-4
