@@ -16,8 +16,10 @@ alias c clear
 alias l ls
 alias ld lazydocker
 alias lg lazygit
-alias ls 'lsd --group-directories-first'
-alias lt 'lsd --tree'
+if type -q lsd
+  alias ls 'lsd --group-directories-first'
+  alias lt 'lsd --tree'
+end
 
 # Git
 alias a 'git amend --allow-empty --no-verify'
