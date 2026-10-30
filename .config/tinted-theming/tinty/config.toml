@@ -55,4 +55,4 @@ path = "https://github.com/tinted-theming/tinted-claude-code"
 themes-dir = "scripts"
 theme-file-extension = ".js"
 supported-systems = ["base16", "base24", "tinted8"]
-hook = "mkdir -p \"$HOME/.claude/themes\" && node \"$TINTY_THEME_FILE_PATH\" > \"$HOME/.claude/themes/tinty.json\""
+hook = "command -v node >/dev/null || exit 0; mkdir -p \"$HOME/.claude/themes\" && node \"$TINTY_THEME_FILE_PATH\" > \"$HOME/.claude/themes/tinty.json\""

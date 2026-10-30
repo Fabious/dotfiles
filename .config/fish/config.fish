@@ -4,7 +4,7 @@
 set -gx EDITOR nvim
 
 # SSH
-eval (env SHELL=/usr/bin/fish keychain --eval --quiet --noask --agents ssh 2>$HOME/ssh-keychain.log)
+eval (env SHELL=/usr/bin/fish keychain --eval --quiet --noask 2>$HOME/ssh-keychain.log)
 
 # Zellij
 if set -q ZELLIJ
@@ -21,8 +21,12 @@ starship init fish | source
 # Zoxide
 zoxide init fish | source
 
-# ASDF
-source ~/.asdf/asdf.fish
+# ASDF (0.16+ is a single Go binary; no asdf.fish to source)
+if test -x ~/.asdf/bin/asdf
+  fish_add_path -g ~/.asdf/bin
+  set -q ASDF_DATA_DIR; or set -gx ASDF_DATA_DIR ~/.asdf
+  fish_add_path -g $ASDF_DATA_DIR/shims
+end
 
 # Zellij
 source ~/.config/fish/completions/zellij.fish
