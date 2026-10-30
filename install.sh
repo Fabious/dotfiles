@@ -19,7 +19,8 @@ log "apt packages"
 sudo apt-get update
 # git-delta: .gitconfig uses delta as the pager, so git breaks without it.
 # build-essential: cargo needs a C linker to build bob.
-sudo apt-get install -y curl git unzip fontconfig git-delta build-essential
+sudo apt-get install -y curl git unzip fontconfig git-delta build-essential \
+  zoxide keychain lsd ripgrep
 
 log "Chrome"
 if ! have google-chrome; then
@@ -63,6 +64,25 @@ if [[ ! -x "$HOME/.local/bin/tree-sitter" ]]; then
   curl -fsSL https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz \
     | gunzip > "$HOME/.local/bin/tree-sitter"
   chmod +x "$HOME/.local/bin/tree-sitter"
+fi
+
+log "starship"
+if [[ ! -x "$HOME/.local/bin/starship" ]]; then
+  curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.local/bin"
+fi
+
+log "fzf"
+# From the release, not apt: Mint's fzf is too old for `fzf --fish`.
+if [[ ! -x "$HOME/.local/bin/fzf" ]]; then
+  tag="$(curl -fsSLI -o /dev/null -w '%{url_effective}' https://github.com/junegunn/fzf/releases/latest)"
+  tag="${tag##*/v}"
+  curl -fsSL "https://github.com/junegunn/fzf/releases/download/v$tag/fzf-$tag-linux_amd64.tar.gz" \
+    | tar xz -C "$HOME/.local/bin" fzf
+fi
+
+log "mise"
+if [[ ! -x "$HOME/.local/bin/mise" ]]; then
+  curl -fsSL https://mise.run | MISE_INSTALL_PATH="$HOME/.local/bin/mise" sh
 fi
 
 log "fish"

@@ -17,11 +17,11 @@ curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Fabious/dotfiles/m
 bash /tmp/install.sh
 ```
 
-It installs Chrome, kitty, the JetBrainsMono Nerd Font, git-delta, zellij, the
-tree-sitter CLI and fish (set as the login shell), then checks out the dotfiles
-into `$HOME`, then installs cargo, bob and the latest stable Neovim. Files
-already in the way are moved to `~/.dotfiles-backup/<date>/` first. Re-running
-it is safe.
+It installs Chrome, kitty, the JetBrainsMono Nerd Font, the shell tools
+(git-delta, ripgrep, zoxide, keychain, lsd, zellij, tree-sitter, starship, fzf,
+mise) and fish (set as the login shell), then checks out the dotfiles into
+`$HOME`, then installs cargo, bob and the latest stable Neovim. Files already in
+the way are moved to `~/.dotfiles-backup/<date>/` first. Re-running it is safe.
 
 What it does for the dotfiles, by hand:
 
@@ -68,24 +68,24 @@ Developed on Linux Mint 22.1 (`xia`, Ubuntu 24.04 `noble` base).
 
 ## Tools
 
-`install.sh` sets up fish, kitty, zellij, git-delta, tree-sitter, cargo, bob
-and neovim from this list. The configs cover the rest too; install them by hand
+Everything marked `install.sh` below is set up by the script. The configs cover the rest too; install them by hand
 when you need them. `config.fish` skips any tool that isn't installed.
 
 | Tool | What it is | Installed via |
 | --- | --- | --- |
 | [fish][fish] | The user-friendly command line shell | `install.sh` (fish 4 PPA) |
 | [git-delta][delta] | A syntax-highlighting pager for git, diff, and grep output | `install.sh` (apt) |
-| [ripgrep][ripgrep] | Recursively searches directories for a regex pattern | native package manager |
-| [lsd][lsd] | The next gen ls command | native package manager |
+| [ripgrep][ripgrep] | Recursively searches directories for a regex pattern (fzf-lua grep) | `install.sh` (apt) |
+| [lsd][lsd] | The next gen ls command | `install.sh` (apt) |
 | [jq][jq] | Command-line JSON processor | native package manager |
-| [keychain][keychain] | Manages ssh-agent across logins | native package manager |
-| [starship][starship] | The minimal, blazing-fast, infinitely customizable prompt | official script → `/usr/local/bin` |
+| [keychain][keychain] | Manages ssh-agent across logins | `install.sh` (apt) |
+| [zoxide][zoxide] | A smarter cd command (`z`) | `install.sh` (apt) |
+| [starship][starship] | The minimal, blazing-fast, infinitely customizable prompt | `install.sh` (official script → `~/.local/bin`) |
 | [lazygit][lazygit] | Simple terminal UI for git commands | GitHub release → `/usr/local/bin` |
 | [gh][gh] | GitHub's official command line tool | GitHub release → `~/.local/bin` |
 | [bat][bat] | A cat(1) clone with wings | GitHub release → `~/.local/bin` |
 | [fd][fd] | A simple, fast and user-friendly alternative to 'find' | GitHub release → `~/.local/bin` |
-| [fzf][fzf] | 🌸 A command-line fuzzy finder | git clone → `~/.fzf` |
+| [fzf][fzf] | 🌸 A command-line fuzzy finder (also used by fzf-lua in Neovim) | `install.sh` (GitHub release → `~/.local/bin`) |
 | [kitty][kitty] | GPU-based terminal emulator | `install.sh` (official installer → `~/.local/kitty.app`) |
 | [zellij][zellij] | Terminal workspace / multiplexer, auto-started in kitty | `install.sh` (GitHub release → `~/.local/bin`) |
 | [yazi][yazi] | Blazing fast terminal file manager | `cargo install --locked yazi-fm yazi-cli` |
@@ -94,8 +94,8 @@ when you need them. `config.fish` skips any tool that isn't installed.
 | [bob][bob] | Neovim version manager | `install.sh` (`cargo install bob-nvim`) |
 | [neovim][neovim] | Main editor | `install.sh` (`bob use stable`) |
 | [tree-sitter][tree-sitter] | CLI that nvim-treesitter uses to build parsers | `install.sh` (GitHub release → `~/.local/bin`) |
-| [lazydocker][lazydocker] | Docker TUI | asdf plugin |
-| [asdf][asdf] | Multi-runtime version manager | GitHub release → `~/.asdf` |
+| [mise][mise] | Runtime version manager (node, python…), replaces asdf | `install.sh` (official script → `~/.local/bin`) |
+| [lazydocker][lazydocker] | Docker TUI | `mise use -g lazydocker` |
 
 `bat` and `fd` come from upstream releases rather than the distro package on
 purpose: Debian/Ubuntu ship them as `batcat` and `fdfind` to avoid name
@@ -122,22 +122,20 @@ setxkbmap -option compose:ralt
 sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf
 ```
 
-## ASDF
+## mise
+
+Runtimes aren't installed by `install.sh`; add them when you need them.
 
 ```sh
-# Install nodejs
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs latest
-asdf set -u nodejs latest
-
-# Install Python
-asdf plugin add python
-asdf install python latest
-asdf set -u python latest
+# Install Node.js (LTS) and Python, globally
+mise use -g node@lts
+mise use -g python@latest
 
 # Check everything is fine
-asdf current
+mise ls
 ```
+
+`mise` also reads asdf's `.tool-versions` files in projects.
 
 ## Fonts
 
@@ -152,7 +150,6 @@ I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font], installed by
 - https://github.com/mathiasbynens/dotfiles/
 - https://github.com/kalkayan/dotfiles
 
-[asdf]: https://asdf-vm.com/
 [bat]: https://github.com/sharkdp/bat
 [bob]: https://github.com/MordechaiHadad/bob
 [cargo]: https://rustup.rs/
@@ -167,6 +164,7 @@ I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font], installed by
 [lazydocker]: https://github.com/jesseduffield/lazydocker
 [lazygit]: https://github.com/jesseduffield/lazygit
 [lsd]: https://github.com/lsd-rs/lsd
+[mise]: https://mise.jdx.dev/
 [neovim]: https://neovim.io/
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [starship]: https://github.com/starship/starship
@@ -175,4 +173,5 @@ I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font], installed by
 [vim-plug]: https://github.com/junegunn/vim-plug
 [yazi]: https://github.com/sxyazi/yazi
 [zellij]: https://github.com/zellij-org/zellij
+[zoxide]: https://github.com/ajeetdsouza/zoxide
 [jetbrainsmono-nerd-font]: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono
