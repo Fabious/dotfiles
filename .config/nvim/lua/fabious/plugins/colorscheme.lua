@@ -42,17 +42,19 @@ return {
       contrast = '',
     },
   },
-  { 'catppuccin/nvim', name = 'catppuccin', lazy = true },
   {
-    'maxmx03/solarized.nvim',
+    -- Matches kitty and zellij
+    'catppuccin/nvim',
+    name = 'catppuccin',
     lazy = false,
     priority = 1000,
-    opts = {},
+    opts = {
+      flavour = 'mocha',
+    },
     config = function(_, opts)
-      vim.o.termguicolors = true
-      vim.o.background = 'light'
-      require('solarized').setup(opts)
-      vim.cmd.colorscheme('solarized')
+      require('catppuccin').setup(opts)
+      vim.cmd.colorscheme('catppuccin')
     end,
   },
+  { 'maxmx03/solarized.nvim', lazy = true, opts = {} },
 }
