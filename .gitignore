@@ -56,12 +56,6 @@ id_*.pub
 .config/fish/functions/picurl.fish
 ssh-keychain.log
 
-# Tinty output — every file below is rewritten by `tinty apply`, not edited
-.claude/themes/tinty.json
-.config/yazi/flavors/
-.config/zellij/themes/tinted-scheme.kdl
-.config/tinted-theming/templates/*/themes/
-
 # Editor / tool scratch
 *.bak
 *.bak-*

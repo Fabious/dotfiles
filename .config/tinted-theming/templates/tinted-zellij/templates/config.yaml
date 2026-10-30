@@ -1,3 +1,0 @@
-default:
-  filename: "themes/{{ scheme-system }}-{{ scheme-slug }}.kdl"
-  supported-systems: [base16]

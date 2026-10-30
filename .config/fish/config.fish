@@ -40,11 +40,3 @@ end
 
 # FZF
 fzf --fish | source
-
-# Lazygit — chain our config with the Tinty-generated theme (lazygit has no include mechanism)
-set -gx LG_CONFIG_FILE "$HOME/.config/lazygit/config.yml,$HOME/.local/share/tinted-theming/tinty/tinted-lazygit-themes-file.yml"
-
-# Tinty — re-apply the current scheme to this shell session
-if status is-interactive
-  tinty init >/dev/null
-end

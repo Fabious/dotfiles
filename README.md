@@ -91,7 +91,6 @@ first group depends on the distro; the rest install identically everywhere.
 | [zellij][zellij] | Terminal workspace / multiplexer | `cargo install zellij` |
 | [yazi][yazi] | Blazing fast terminal file manager | `cargo install --locked yazi-fm yazi-cli` |
 | [stylua][stylua] | Lua formatter (used by conform.nvim) | `cargo install stylua` |
-| [tinty][tinty] | Change the theme of your terminal, text editor and anything else with one command | `cargo install tinty` |
 | [bob][bob] | Neovim version manager | `cargo install bob-nvim` |
 | [neovim][neovim] | Main editor | `bob install stable` |
 | [lazydocker][lazydocker] | Docker TUI | asdf plugin |
@@ -177,7 +176,6 @@ fc-cache -fv
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [starship]: https://github.com/starship/starship
 [stylua]: https://github.com/JohnnyMorganz/StyLua
-[tinty]: https://github.com/tinted-theming/tinty
 [vim-plug]: https://github.com/junegunn/vim-plug
 [yazi]: https://github.com/sxyazi/yazi
 [zellij]: https://github.com/zellij-org/zellij

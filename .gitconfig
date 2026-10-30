@@ -48,11 +48,7 @@
   line-numbers = true
   max-line-length = 700
   navigate = true
-
-# Tinty — supplies [delta] light/dark + syntax-theme for the current scheme.
-# Must come AFTER [delta] above so the generated values win.
-[include]
-  path = ~/.local/share/tinted-theming/tinty/tinted-delta-configs-file.gitconfig
+  dark = true
 
 [diff]
   colorMoved = default
