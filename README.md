@@ -10,11 +10,24 @@ Before starting the installation, I recommend reading theses articles to underst
 - https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
 - https://engineeringwith.kalkayan.io/series/developer-experience/storing-dotfiles-with-git-this-is-the-way/
 
+On a fresh Linux Mint machine:
+
 ```sh
-# To install the dotfiles
+curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/fabious/dotfiles/master/install.sh
+bash /tmp/install.sh
+```
+
+It installs Chrome, kitty, the JetBrainsMono Nerd Font, git-delta and fish
+(set as the login shell), then checks out the dotfiles into `$HOME`. Files
+already in the way are moved to `~/.dotfiles-backup/<date>/` first. Re-running
+it is safe.
+
+What it does for the dotfiles, by hand:
+
+```sh
 git clone --bare git@github.com:fabious/dotfiles.git ~/.dotfiles
-/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
+/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 ```
 
 `status.showUntrackedFiles no` is not optional. The work-tree is `$HOME`, so
@@ -24,9 +37,6 @@ directory — `status --untracked-files=all` produces well over 100 MB of output
 ```sh
 # Then use this alias to update the repo like you would normally do
 alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
-# initial install of the dotfiles
-dotfiles checkout
 
 # normal git commands
 dotfiles status
@@ -57,13 +67,14 @@ Developed on Linux Mint 22.1 (`xia`, Ubuntu 24.04 `noble` base).
 
 ## Tools
 
-The configs in this repo cover these tools. Install them by hand when you need
-them.
+`install.sh` only sets up fish, kitty and git-delta from this list. The configs
+cover the rest too; install them by hand when you need them. `config.fish`
+skips any tool that isn't installed.
 
 | Tool | What it is | Installed via |
 | --- | --- | --- |
-| [fish][fish] | The user-friendly command line shell | native package manager |
-| [git-delta][delta] | A syntax-highlighting pager for git, diff, and grep output | native package manager |
+| [fish][fish] | The user-friendly command line shell | `install.sh` (fish 4 PPA) |
+| [git-delta][delta] | A syntax-highlighting pager for git, diff, and grep output | `install.sh` (apt) |
 | [ripgrep][ripgrep] | Recursively searches directories for a regex pattern | native package manager |
 | [lsd][lsd] | The next gen ls command | native package manager |
 | [jq][jq] | Command-line JSON processor | native package manager |
@@ -74,7 +85,7 @@ them.
 | [bat][bat] | A cat(1) clone with wings | GitHub release → `~/.local/bin` |
 | [fd][fd] | A simple, fast and user-friendly alternative to 'find' | GitHub release → `~/.local/bin` |
 | [fzf][fzf] | 🌸 A command-line fuzzy finder | git clone → `~/.fzf` |
-| [kitty][kitty] | GPU-based terminal emulator | official installer → `~/.local/kitty.app` |
+| [kitty][kitty] | GPU-based terminal emulator | `install.sh` (official installer → `~/.local/kitty.app`) |
 | [zellij][zellij] | Terminal workspace / multiplexer | `cargo install zellij` |
 | [yazi][yazi] | Blazing fast terminal file manager | `cargo install --locked yazi-fm yazi-cli` |
 | [stylua][stylua] | Lua formatter (used by conform.nvim) | `cargo install stylua` |
@@ -127,15 +138,8 @@ asdf current
 
 ## Fonts
 
-I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font].
-
-```sh
-mkdir -p ~/.local/share/fonts
-cd ~/.local/share/fonts
-curl -fLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-unzip -o JetBrainsMono.zip && rm JetBrainsMono.zip
-fc-cache -fv
-```
+I use the [JetBrainsMono Nerd Font][jetbrainsmono-nerd-font], installed by
+`install.sh` into `~/.local/share/fonts/JetBrainsMono`.
 
 ## Inspiration
 
