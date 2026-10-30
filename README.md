@@ -13,7 +13,7 @@ Before starting the installation, I recommend reading theses articles to underst
 On a fresh Linux Mint machine:
 
 ```sh
-curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/fabious/dotfiles/master/install.sh
+curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Fabious/dotfiles/master/install.sh
 bash /tmp/install.sh
 ```
 
@@ -25,7 +25,7 @@ it is safe.
 What it does for the dotfiles, by hand:
 
 ```sh
-git clone --bare git@github.com:fabious/dotfiles.git ~/.dotfiles
+git clone --bare git@github.com:Fabious/dotfiles.git ~/.dotfiles
 /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 ```

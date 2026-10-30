@@ -3,12 +3,12 @@
 # checks out these dotfiles into $HOME. Every step skips work that is already
 # done, so re-running it is safe.
 #
-#   curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/fabious/dotfiles/master/install.sh
+#   curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Fabious/dotfiles/master/install.sh
 #   bash /tmp/install.sh
 
 set -euo pipefail
 
-readonly REPO=fabious/dotfiles
+readonly REPO=Fabious/dotfiles
 readonly DOTFILES="$HOME/.dotfiles"
 
 have()     { command -v "$1" >/dev/null 2>&1; }
