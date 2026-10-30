@@ -98,7 +98,6 @@ return {
       -- Run :Mason to inspect or manually manage installed tools.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'copilot-language-server',
         'css-lsp',
         'eslint-lsp',
         'html-lsp',

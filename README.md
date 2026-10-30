@@ -29,7 +29,6 @@ mise) and fish (set as the login shell), then checks out the dotfiles into
 1. Log out and back in: that makes fish the login shell and lets you run
    `docker` without `sudo`.
 2. Sign in to GitHub: `gh auth login`.
-3. Sign in to Copilot: `:LspCopilotSignIn` in Neovim.
 
 What it does for the dotfiles, by hand:
 
