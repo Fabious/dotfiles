@@ -26,6 +26,9 @@ type -q starship; and starship init fish | source
 # Zoxide
 type -q zoxide; and zoxide init fish | source
 
+# Cargo, and bob's nvim proxy (fish_add_path skips dirs that don't exist)
+fish_add_path -g ~/.cargo/bin ~/.local/share/bob/nvim-bin
+
 # ASDF (0.16+ is a single Go binary; no asdf.fish to source)
 if test -x ~/.asdf/bin/asdf
   fish_add_path -g ~/.asdf/bin

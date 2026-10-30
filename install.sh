@@ -18,7 +18,8 @@ dotfiles() { git --git-dir="$DOTFILES" --work-tree="$HOME" "$@"; }
 log "apt packages"
 sudo apt-get update
 # git-delta: .gitconfig uses delta as the pager, so git breaks without it.
-sudo apt-get install -y curl git unzip fontconfig git-delta
+# build-essential: cargo needs a C linker to build bob.
+sudo apt-get install -y curl git unzip fontconfig git-delta build-essential
 
 log "Chrome"
 if ! have google-chrome; then
@@ -85,5 +86,20 @@ if ! dotfiles checkout 2>/dev/null; then
   done
   dotfiles checkout
 fi
+
+# After the checkout: bob reads ~/.config/bob/config.json from this repo, which
+# stops it prompting to edit shell rc files. config.fish puts both on PATH.
+log "cargo"
+if [[ ! -x "$HOME/.cargo/bin/cargo" ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+fi
+
+log "bob"
+if [[ ! -x "$HOME/.cargo/bin/bob" ]]; then
+  "$HOME/.cargo/bin/cargo" install bob-nvim
+fi
+
+log "neovim (latest stable, via bob)"
+"$HOME/.cargo/bin/bob" use stable
 
 log "done — log out and back in so fish becomes your login shell"
