@@ -35,16 +35,6 @@ dotfiles commit -m 'update neovim config'
 dotfiles push
 ```
 
-Then install the tools listed below:
-
-```sh
-./bootstrap.sh            # everything
-./bootstrap.sh --list     # show the step names
-./bootstrap.sh cargo      # run just one step
-```
-
-Every step skips work that is already done, so re-running it is safe.
-
 ### What must never be committed
 
 The remote is **public** and the work-tree is `$HOME`, which means a careless
@@ -63,15 +53,12 @@ includes and `.gitignore` excludes.
 
 ## Machine
 
-Developed on Linux Mint 22.1 (`xia`, Ubuntu 24.04 `noble` base), but not tied to
-it. `bootstrap.sh` detects the native package manager (apt, pacman, dnf, zypper,
-apk) and installs everything else from upstream, so it should work on any glibc
-distro. Both x86_64 and aarch64 are handled.
+Developed on Linux Mint 22.1 (`xia`, Ubuntu 24.04 `noble` base).
 
 ## Tools
 
-Installed from a mix of sources, which is why `bootstrap.sh` exists. Only the
-first group depends on the distro; the rest install identically everywhere.
+The configs in this repo cover these tools. Install them by hand when you need
+them.
 
 | Tool | What it is | Installed via |
 | --- | --- | --- |
