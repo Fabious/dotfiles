@@ -85,7 +85,7 @@ dotfiles commit -am 'nvim: update plugins' && dotfiles push
 
 ## Machine
 
-Developed on Linux Mint 22.1 (`xia`, Ubuntu 24.04 `noble` base).
+Developed on Linux Mint.
 
 ## Tools
 
