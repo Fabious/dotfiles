@@ -34,7 +34,3 @@ vim.o.background = 'dark'
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
-
--- :make to populate quickfix with ESLint
-vim.o.errorformat = '%f:%l:%c: %m [%t%*[^]]]' -- parse eslint errors
-vim.o.makeprg = "npx eslint -f unix 'src/**/*.{js,ts,jsx,tsx}'" -- make command
