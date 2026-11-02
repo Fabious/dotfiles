@@ -110,6 +110,12 @@ if [[ ! -d "$DOTFILES" ]]; then
   git clone --bare "https://github.com/$REPO.git" "$DOTFILES"
   dotfiles remote set-url origin "git@github.com:$REPO.git"
 fi
+# A bare clone has no fetch refspec, so there is no origin/master to track and
+# `dotfiles push` fails with "no upstream". Set it, then fetch and track.
+# Fetch over https: origin is ssh now, and a fresh machine has no key on GitHub.
+dotfiles config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+dotfiles fetch -q "https://github.com/$REPO.git" '+refs/heads/*:refs/remotes/origin/*'
+dotfiles branch -q --set-upstream-to=origin/master master
 # Not optional: the work-tree is $HOME, so untracked files would mean all of it.
 dotfiles config --local status.showUntrackedFiles no
 if ! dotfiles checkout 2>/dev/null; then
