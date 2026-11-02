@@ -17,7 +17,7 @@ set -gx EDITOR nvim
 
 # SSH
 if type -q keychain
-  eval (env SHELL=/usr/bin/fish keychain --eval --quiet id_ed25519 2>$HOME/ssh-keychain.log)
+  eval (env SHELL=/usr/bin/fish keychain --eval --quiet id_ed25519 2>$HOME/.cache/keychain.log)
 end
 
 # Zellij — only in kitty windows. KITTY_WINDOW_ID isn't forwarded over ssh,
