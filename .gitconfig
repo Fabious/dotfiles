@@ -11,8 +11,8 @@
   co = checkout
   cp = cherry-pick
   df = diff --color --color-words --abbrev
-  diffbranch = !"git diff $(git merge-base HEAD origin/master)"
-  fpush = push --force
+  diffbranch = !"git diff $(git merge-base HEAD origin/HEAD)"
+  fpush = push --force-with-lease
   hreset = reset --hard
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   s = status
@@ -20,15 +20,15 @@
   undocommit = reset HEAD~
   w = switch
 
-  # show commit log of unique commits of this branch (not on master)
-  diffcommitsfrommaster = log --no-merges master..
+  # show commit log of unique commits of this branch (not on the default branch)
+  diffcommitsfrommaster = log --no-merges origin/HEAD..
   # show unified diff of unique commits of this branch (and working tree)
-  difffrommaster = diff master:
-  # ^^^^ diff master... (with THREE dots) is similar, but doesn't include working tree
+  difffrommaster = diff origin/HEAD
+  # ^^^^ diff origin/HEAD... (with THREE dots) is similar, but doesn't include working tree
   #     ^^^^ also, two dots vs three dots, so important. https://stackoverflow.com/a/48681527
 
-  # What's the ancestor commit this branch shares with master?
-  diffbase = merge-base HEAD origin/master
+  # What's the ancestor commit this branch shares with the default branch?
+  diffbase = merge-base HEAD origin/HEAD
 
   # Show the diff between the latest commit and the current state
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -71,6 +71,3 @@
 
 [init]
 	defaultBranch = main
-[user]
-	email = fabious@free.fr
-	name = Fabious
